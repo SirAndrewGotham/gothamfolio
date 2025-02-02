@@ -23,9 +23,6 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->appendToGroup('web', SetLocale::class);
         $middleware->appendToGroup('web', ShareErrorsFromSession::class);
-        $middleware->alias([
-            'admin' => IsAdmin::class
-        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

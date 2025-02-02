@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(\App\Models\Language::class)->nullable()->constrained()->onDelete('SET NULL');
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('email')->unique();
