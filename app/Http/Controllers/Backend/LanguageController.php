@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\Http\Requests\StoreWorkRequest;
-use App\Http\Requests\UpdateWorkRequest;
-use App\Models\Work;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreLanguageRequest;
+use App\Http\Requests\UpdateLanguageRequest;
+use App\Models\Language;
 
-class WorkController extends Controller
+class LanguageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +28,7 @@ class WorkController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreWorkRequest $request)
+    public function store(StoreLanguageRequest $request)
     {
         //
     }
@@ -35,7 +36,7 @@ class WorkController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Work $work)
+    public function show(Language $language)
     {
         //
     }
@@ -43,7 +44,7 @@ class WorkController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Work $work)
+    public function edit(Language $language)
     {
         //
     }
@@ -51,7 +52,7 @@ class WorkController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateWorkRequest $request, Work $work)
+    public function update(UpdateLanguageRequest $request, Language $language)
     {
         //
     }
@@ -59,7 +60,7 @@ class WorkController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Work $work)
+    public function destroy(Language $language)
     {
         //
     }

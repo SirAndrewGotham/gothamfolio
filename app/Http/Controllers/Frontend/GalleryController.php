@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
-use App\Http\Requests\StoreTranslateRequest;
-use App\Http\Requests\UpdateTranslateRequest;
-use App\Models\Translate;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreGalleryRequest;
+use App\Http\Requests\UpdateGalleryRequest;
+use App\Models\Gallery;
 
-class TranslateController extends Controller
+class GalleryController
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +28,7 @@ class TranslateController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTranslateRequest $request)
+    public function store(StoreGalleryRequest $request)
     {
         //
     }
@@ -35,7 +36,7 @@ class TranslateController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Translate $translate)
+    public function show(Gallery $gallery)
     {
         //
     }
@@ -43,7 +44,7 @@ class TranslateController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Translate $translate)
+    public function edit(Gallery $gallery)
     {
         //
     }
@@ -51,7 +52,7 @@ class TranslateController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTranslateRequest $request, Translate $translate)
+    public function update(UpdateGalleryRequest $request, Gallery $gallery)
     {
         //
     }
@@ -59,7 +60,7 @@ class TranslateController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Translate $translate)
+    public function destroy(Gallery $gallery)
     {
         //
     }

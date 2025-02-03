@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
-use App\Http\Requests\StoreLanguageRequest;
-use App\Http\Requests\UpdateLanguageRequest;
-use App\Models\Language;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
+use App\Models\Post;
 
-class LanguageController extends Controller
+class BlogController
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +28,7 @@ class LanguageController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreLanguageRequest $request)
+    public function store(StorePostRequest $request)
     {
         //
     }
@@ -35,7 +36,7 @@ class LanguageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Language $language)
+    public function show(Post $post)
     {
         //
     }
@@ -43,7 +44,7 @@ class LanguageController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Language $language)
+    public function edit(Post $post)
     {
         //
     }
@@ -51,7 +52,7 @@ class LanguageController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateLanguageRequest $request, Language $language)
+    public function update(UpdatePostRequest $request, Post $post)
     {
         //
     }
@@ -59,7 +60,7 @@ class LanguageController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Language $language)
+    public function destroy(Post $post)
     {
         //
     }

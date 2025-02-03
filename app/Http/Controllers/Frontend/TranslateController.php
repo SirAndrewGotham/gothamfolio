@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
-use App\Http\Requests\StorePostRequest;
-use App\Http\Requests\UpdatePostRequest;
-use App\Models\Post;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreTranslateRequest;
+use App\Http\Requests\UpdateTranslateRequest;
+use App\Models\Translate;
 
-class PostController extends Controller
+class TranslateController
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +28,7 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorePostRequest $request)
+    public function store(StoreTranslateRequest $request)
     {
         //
     }
@@ -35,7 +36,7 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(Translate $translate)
     {
         //
     }
@@ -43,7 +44,7 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
+    public function edit(Translate $translate)
     {
         //
     }
@@ -51,7 +52,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePostRequest $request, Post $post)
+    public function update(UpdateTranslateRequest $request, Translate $translate)
     {
         //
     }
@@ -59,7 +60,7 @@ class PostController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy(Translate $translate)
     {
         //
     }
