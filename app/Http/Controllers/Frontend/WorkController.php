@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreWorkRequest;
 use App\Http\Requests\UpdateWorkRequest;
+use App\Models\Tag;
 use App\Models\Work;
 
 class WorkController
@@ -14,7 +15,10 @@ class WorkController
      */
     public function index()
     {
-        //
+        $works = Work::with('tags')->get();
+        $tags = Tag::has('works')->get();
+
+        return view('frontend.legacy.works.index', compact('works', 'tags'));
     }
 
     /**
@@ -38,7 +42,9 @@ class WorkController
      */
     public function show(Work $work)
     {
-        //
+        $works = Work::latest()->take(5)->get();
+
+        return view('frontend.legacy.works.show', compact('work', 'works'));
     }
 
     /**

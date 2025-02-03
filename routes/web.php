@@ -23,12 +23,12 @@ Route::post('contact', [ContactController::class, 'store'])->name('contact.store
 
 // Blog
 Route::get('blog', [BlogController::class, 'index'])->name('blog.index');
-Route::get('blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
-Route::get('blog/tag/{slug}', [TagController::class, 'show'])->name('tag.show');
+Route::get('blog/{post}', [BlogController::class, 'show'])->name('blog.show');
+Route::get('blog/tag/{tag}', [TagController::class, 'show'])->name('tag.show');
 
 // Works
 Route::get('works', [WorkController::class, 'index'])->name('works.index');
-Route::get('works/{slug}', [WorkController::class, 'show'])->name('works.show');
+Route::get('works/{work}', [WorkController::class, 'show'])->name('works.show');
 
 // Galleries
 Route::get('galleries', [GalleryController::class, 'index'])->name('galleries.index');
@@ -43,5 +43,3 @@ Route::get('/language/{locale}', LanguageController::class)->name('locale');
 
 Route::get('image-upload', [ImageController::class, 'index']);
 Route::post('image-upload', [ImageController::class, 'store'])->name('image.store');
-
-require __DIR__.'/auth.php';

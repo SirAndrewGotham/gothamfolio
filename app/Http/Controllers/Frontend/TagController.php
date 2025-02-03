@@ -38,7 +38,10 @@ class TagController
      */
     public function show(Tag $tag)
     {
-        //
+        $posts = $tag->posts()->with(['tags'])->paginate(5);
+        $tags = Tag::all();
+
+        return view('frontend.legacy.blogs.tag', compact('tag', 'posts', 'tags'));
     }
 
     /**

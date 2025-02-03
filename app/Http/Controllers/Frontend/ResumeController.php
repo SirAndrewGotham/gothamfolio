@@ -8,6 +8,6 @@ class ResumeController extends Controller
 {
     public function __invoke()
     {
-        dd('Resume');
+        return view('frontend.legacy.resume');
     }
 }

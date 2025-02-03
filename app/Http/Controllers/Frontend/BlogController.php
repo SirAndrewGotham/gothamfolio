@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
+use App\Models\Tag;
 
 class BlogController
 {
@@ -14,7 +15,10 @@ class BlogController
      */
     public function index()
     {
-        //
+        $posts = Post::with(['tags'])->paginate(5);
+        $tags = Tag::all();
+
+        return view('frontend.legacy.blogs.index', compact('posts', 'tags'));
     }
 
     /**
@@ -38,7 +42,9 @@ class BlogController
      */
     public function show(Post $post)
     {
-        //
+        $tags = Tag::all();
+
+        return view('frontend.legacy.blogs.show', compact('post', 'tags'));
     }
 
     /**

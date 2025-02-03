@@ -35,23 +35,3 @@ Route::resource('tags', TagController::class);
 
 // Profile
 Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
-
-// Authentication
-//Route::get('auth/login',
-//    ['as' => 'admin.auth.login', 'middleware' => 'guest', 'uses' => 'Auth\AuthController@getLogin']);
-//Route::post('auth/login',
-//    ['as' => 'admin.auth.login', 'middleware' => 'guest', 'uses' => 'Auth\AuthController@postLogin']);
-//Route::get('auth/logout',
-//    ['as' => 'admin.auth.logout', 'middleware' => 'auth', 'uses' => 'Auth\AuthController@getLogout']);
-//
-//// Password Reset Request
-//Route::get('auth/remind',
-//    ['as' => 'admin.auth.remind', 'middleware' => 'guest', 'uses' => 'Auth\PasswordController@getEmail']);
-//Route::post('auth/remind',
-//    ['as' => 'admin.auth.remind', 'middleware' => 'guest', 'uses' => 'Auth\PasswordController@postEmail']);
-//
-//// Password Reset
-//Route::get('auth/reset/{token}',
-//    ['as' => 'admin.auth.reset', 'middleware' => 'guest', 'uses' => 'Auth\PasswordController@getReset']);
-//Route::post('auth/reset',
-//    ['as' => 'admin.auth.reset', 'middleware' => 'guest', 'uses' => 'Auth\PasswordController@postReset']);
