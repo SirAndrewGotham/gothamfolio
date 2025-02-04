@@ -11,7 +11,7 @@ use App\Http\Controllers\Backend\WorkController;
 use Illuminate\Support\Facades\Route;
 
 // Dashboard
-Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/', DashboardController::class)->name('dashboard');
 
 // Settings
 Route::get('settings', [SettingController::class, 'edit'])->name('settings.edit');

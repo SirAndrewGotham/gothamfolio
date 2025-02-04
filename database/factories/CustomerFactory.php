@@ -23,6 +23,7 @@ class CustomerFactory extends Factory
             'label'       => $label,
             'description' => '<p>'.$this->faker->text(2000).'</p>',
             'image'       => $this->faker->imageUrl(750, 346, 'cats', false),
+            'published_at' => now(),
         ];
     }
 }

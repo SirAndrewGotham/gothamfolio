@@ -6,7 +6,7 @@
     @endif
     <div class="blog-post-holder">
         <ul class="list-inline posted-info">
-{{--            <li>{{ trans('app.by') }} <a href="#">{{ $post->author->name }}</a></li>--}}
+{{--            <li>{{ trans('app.by') }} <a href="#">{{ $post->user->name }}</a></li>--}}
             <li>{{ $post->created_at->diffForHumans() }}</li>
             <li>
                 @foreach($post->tags as $tag)

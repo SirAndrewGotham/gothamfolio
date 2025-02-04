@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Language;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
@@ -18,9 +19,13 @@ class WorkFactory extends Factory
      */
     public function definition(): array
     {
+        $languages = Language::where('is_active', true)->pluck('id')->toArray();
         $title = substr($this->faker->sentence(rand(3, 7)), 0, -1);
+        $users = User::all();
 
         return [
+            'language_id' => $this->faker->randomElement($languages),
+            'user_id' => $this->faker->randomElement($users),
             'title'     => $title,
             'slug'      => Str::slug($title),
             'excerpt'   => '<p>'.$this->faker->text(200).'</p>',

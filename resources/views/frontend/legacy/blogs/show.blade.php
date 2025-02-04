@@ -11,7 +11,7 @@
                     <div id="disqus_thread"></div>
                     <script type="text/javascript">
                         /* * * CONFIGURATION VARIABLES * * */
-                        var disqus_shortname = 'tyloofr';
+                        var disqus_shortname = 'sirandrewgotham';
 
                         /* * * DON'T EDIT BELOW THIS LINE * * */
                         (function() {

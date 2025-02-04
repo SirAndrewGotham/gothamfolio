@@ -21,14 +21,17 @@ class PostFactory extends Factory
     {
         $languages = Language::where('is_active', true)->pluck('id')->toArray();
         $title = substr($this->faker->sentence(rand(3, 7)), 0, -1);
+        $users = User::all();
 
         return [
             'language_id' => $this->faker->randomElement($languages),
+            'user_id' => $this->faker->randomElement($users),
             'title'     => $title,
             'slug'      => Str::slug($title),
             'excerpt'   => '<p>'.$this->faker->text(200).'</p>',
             'content'   => '<p>'.$this->faker->text(2000).'</p>',
             'image'     => $this->faker->imageUrl(750, 346, 'cats', false),
+            'published_at' => now(),
         ];
     }
 }

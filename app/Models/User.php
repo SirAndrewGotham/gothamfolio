@@ -13,6 +13,11 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -47,4 +52,13 @@ class User extends Authenticatable
         ];
     }
 
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function works(): HasMany
+    {
+        return $this->hasMany(Work::class);
+    }
 }
