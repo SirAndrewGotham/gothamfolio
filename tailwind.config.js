@@ -10,9 +10,15 @@ export default {
     ],
 
     theme: {
-        fontFamily: {
-            sans: ['Blackie'],
+        extend: {
+            fontFamily: {
+                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+            },
         },
+        // fontFamily: {
+            // 'blackie': ['Blackie', ...defaultTheme.fontFamily.sans],
+            // 'blackie': ['Blackie', 'sans-serif'],
+        // },
     },
 
     plugins: [forms],

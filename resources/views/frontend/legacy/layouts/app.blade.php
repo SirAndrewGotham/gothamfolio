@@ -10,6 +10,14 @@
 
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700%7CRaleway:200,300,400,700">
     <link rel="stylesheet" href="{{ asset('assets/frontend/legacy/css/frontend.css') }}">
+
+    <style>
+        [x-cloak]{
+            display: none !important;
+        }
+    </style>
+    {{-- Scripts --}}
+{{--    @vite(['resources/css/app.css', 'resources/js/app.js'])--}}
 </head>
 <body>
 

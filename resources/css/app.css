@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-    font-family: 'Blackie';
-    font-weight: normal;
-    src: url('../fonts/blackie.woff2') format('truetype');
-}
+/*@font-face {*/
+/*    font-family: 'Blackie';*/
+/*    font-weight: normal;*/
+/*    src: url('../fonts/blackie.woff2') format('truetype');*/
+/*}*/
