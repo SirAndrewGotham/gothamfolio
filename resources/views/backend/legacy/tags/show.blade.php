@@ -2,15 +2,15 @@
 
 @section('meta-title')
     {{ __('Tag') }} "{{ $tag->name }}"
-@stop
+@endsection
 
 @section('page-title')
     {{ __('Tag') }} "{{ $tag->name }}"
-@stop
+@endsection
 
 @section('breadcrumb-title')
     {{ __('Tag Details') }}
-@stop
+@endsection
 
 @section('content')
     <section class="mt40 mb40">
@@ -27,4 +27,4 @@
             </div>
         </div>
     </section>
-@stop
+@endsection

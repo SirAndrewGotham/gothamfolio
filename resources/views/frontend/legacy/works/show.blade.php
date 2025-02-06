@@ -40,4 +40,4 @@
         </div>
     </section>
     <!-- /Recent Work -->
-@stop
+@endsection

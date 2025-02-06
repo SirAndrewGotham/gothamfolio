@@ -2,15 +2,15 @@
 
 @section('meta-title')
     {{ __('Editing User') }} "{{ $user->name }}"
-@stop
+@endsection
 
 @section('page-title')
     {{ __('Editing User') }} "{{ $user->name }}"
-@stop
+@endsection
 
 @section('breadcrumb-title')
     {{ __('Edit User') }}
-@stop
+@endsection
 
 @section('content')
     <form role="form" action="{{ route('admin.users.update', $user->slug) }}" method="POST">
@@ -34,4 +34,4 @@
         </div>
         <button type="submit" class="btn btn-rw btn-primary">{{ __('Submit') }}</button>
     </form>
-@stop
+@endsection

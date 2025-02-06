@@ -2,15 +2,15 @@
 
 @section('meta-title')
 {{ __('Dashboard') }}
-@stop
+@endsection
 
 @section('page-title')
 {{ __('Dashboard') }}
-@stop
+@endsection
 
 @section('breadcrumb-title')
 {{ __('Dashboard') }}
-@stop
+@endsection
 
 @section('content')
     <div class="row">
@@ -63,4 +63,4 @@
             </div>
         </div>
     </div>
-@stop
+@endsection

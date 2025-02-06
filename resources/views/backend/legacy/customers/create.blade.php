@@ -2,15 +2,15 @@
 
 @section('meta-title')
     {{ __('Create a Customer') }}
-@stop
+@endsection
 
 @section('page-title')
     {{ __('Create a Customer') }}
-@stop
+@endsection
 
 @section('breadcrumb-title')
     {{ __('New Customer') }}
-@stop
+@endsection
 
 @section('content')
     <form role="form" action="{{ route('admin.customers.store') }}" method="POST" enctype="multipart/form-data">
@@ -30,4 +30,4 @@
         </div>
         <button type="submit" class="btn btn-rw btn-primary">{{ __('Submit') }}</button>
     </form>
-@stop
+@endsection

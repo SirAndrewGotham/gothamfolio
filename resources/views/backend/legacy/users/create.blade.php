@@ -2,15 +2,15 @@
 
 @section('meta-title')
     {{ __('Create a User') }}
-@stop
+@endsection
 
 @section('page-title')
     {{ __('Create a User') }}
-@stop
+@endsection
 
 @section('breadcrumb-title')
     {{ __('New User') }}
-@stop
+@endsection
 
 @section('content')
     <form role="form" action="{{ route('admin.users.store') }}" method="POST">
@@ -32,4 +32,4 @@
         </div>
         <button type="submit" class="btn btn-rw btn-primary">{{ __('Submit') }}</button>
     </form>
-@stop
+@endsection

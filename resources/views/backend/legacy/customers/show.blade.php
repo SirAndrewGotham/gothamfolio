@@ -2,15 +2,15 @@
 
 @section('meta-title')
     {{ __('Customer') }} "{{ $customer->label }}"
-@stop
+@endsection
 
 @section('page-title')
     {{ __('Customer') }} "{{ $customer->label }}"
-@stop
+@endsection
 
 @section('breadcrumb-title')
     {{ __('Customer') }}
-@stop
+@endsection
 
 @section('content')
     <section class="mt40 mb40">
@@ -29,4 +29,4 @@
             </div>
         </div>
     </section>
-@stop
+@endsection

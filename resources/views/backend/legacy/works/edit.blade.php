@@ -2,15 +2,15 @@
 
 @section('meta-title')
     {{ __('Editing Work') }} "{{ $work->title }}"
-@stop
+@endsection
 
 @section('page-title')
     {{ __('Editing Work') }} "{{ $work->title }}"
-@stop
+@endsection
 
 @section('breadcrumb-title')
     {{ __('Edit Work') }}
-@stop
+@endsection
 
 @section('content')
     <form role="form" action="{{ route('admin.works.update', $work->id) }}" method="POST" enctype="multipart/form-data">
@@ -50,4 +50,4 @@
         </div>
         <button type="submit" class="btn btn-rw btn-primary">{{ __('Submit') }}</button>
     </form>
-@stop
+@endsection

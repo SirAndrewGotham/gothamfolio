@@ -70,4 +70,4 @@
         </div>
     </section>
     <!-- /Contact -->
-@stop
+@endsection

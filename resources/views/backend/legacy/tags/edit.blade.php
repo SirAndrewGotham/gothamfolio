@@ -2,15 +2,15 @@
 
 @section('meta-title')
     {{ __('Editing Tag') }} "{{ $tag->name }}"
-@stop
+@endsection
 
 @section('page-title')
     {{ __('Editing Tag') }} "{{ $tag->name }}"
-@stop
+@endsection
 
 @section('breadcrumb-title')
     {{ __('Edit Tag') }}
-@stop
+@endsection
 
 @section('content')
     <form role="form" action="{{ route('admin.tags.update', $tag->id) }}" method="POST">
@@ -28,4 +28,4 @@
         </div>
         <button type="submit" class="btn btn-rw btn-primary">{{ __('Submit') }}</button>
     </form>
-@stop
+@endsection

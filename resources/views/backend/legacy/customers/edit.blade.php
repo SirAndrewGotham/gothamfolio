@@ -2,15 +2,15 @@
 
 @section('meta-title')
     {{ __('Editing Customer') }} "{{ $customer->label }}"
-@stop
+@endsection
 
 @section('page-title')
     {{ __('Editing Customer') }} "{{ $customer->title }}"
-@stop
+@endsection
 
 @section('breadcrumb-title')
     {{ __('Edit Customer') }}
-@stop
+@endsection
 
 @section('content')
     <form role="form" action="{{ route('admin.customers.update', $customer->id) }}" method="POST" enctype="multipart/form-data">
@@ -36,4 +36,4 @@
         </div>
         <button type="submit" class="btn btn-rw btn-primary">{{ __('Submit') }}</button>
     </form>
-@stop
+@endsection

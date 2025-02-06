@@ -2,15 +2,15 @@
 
 @section('meta-title')
     {{ __('Edit Settings') }}
-@stop
+@endsection
 
 @section('page-title')
     {{ __('Edit Settings') }}
-@stop
+@endsection
 
 @section('breadcrumb-title')
     {{ __('Edit Settings') }}
-@stop
+@endsection
 
 @section('content')
     <form role="form" action="{{ route('admin.settings.update') }}" method="POST">
@@ -23,4 +23,4 @@
 
         <button type="submit" class="btn btn-rw btn-primary">{{ __('Submit') }}</button>
     </form>
-@stop
+@endsection

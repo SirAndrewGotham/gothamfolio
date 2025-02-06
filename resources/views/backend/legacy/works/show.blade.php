@@ -2,15 +2,15 @@
 
 @section('meta-title')
 {{ __('Work') }} "{{ $work->title }}"
-@stop
+@endsection
 
 @section('page-title')
     {{ __('Work') }} "{{ $work->title }}"
-@stop
+@endsection
 
 @section('breadcrumb-title')
     {{ __('Work') }}
-@stop
+@endsection
 
 @section('content')
     <section class="mt40 mb40">
@@ -33,4 +33,4 @@
             </div>
         </div>
     </section>
-@stop
+@endsection

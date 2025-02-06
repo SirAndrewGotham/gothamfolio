@@ -2,15 +2,15 @@
 
 @section('meta-title')
     {{ __('Customers') }}
-@stop
+@endsection
 
 @section('page-title')
     {{ __('Customers') }} <a href="{{ route('admin.customers.create') }}" class="btn btn-sm btn-primary">{{ __('Create New Customer') }}</a>
-@stop
+@endsection
 
 @section('breadcrumb-title')
     {{ __('Customers') }}
-@stop
+@endsection
 
 @section('content')
     <table class="table table-bordered">
@@ -46,4 +46,4 @@
             </tr>
         @endforelse
     </table>
-@stop
+@endsection
