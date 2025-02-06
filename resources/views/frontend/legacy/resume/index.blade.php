@@ -12,8 +12,12 @@
                 <li>
                     <div class="timeline-panel">
                         <div class="heading">
-                            <h4>{!! trans('app.frontend.resume.work-experience.1.job-title') !!}</h4>
-                            <small class="heading-caption hidden-xs"><i class="fa fa-calendar"></i> {{ trans('app.frontend.resume.work-experience.1.dates') }}</small>
+                            <h4>
+                                {!! trans('app.frontend.resume.work-experience.1.job-title') !!}
+                            </h4>
+                            <small class="heading-caption hidden-xs">
+                                <i class="fa fa-calendar"></i> {{ trans('app.frontend.resume.work-experience.1.dates') }}
+                            </small>
                         </div>
                         <div class="timeline-body">
                             {!! trans('app.frontend.resume.work-experience.1.details') !!}
@@ -23,8 +27,12 @@
                 <li>
                     <div class="timeline-panel">
                         <div class="heading">
-                            <h4>{!! trans('app.frontend.resume.work-experience.2.job-title') !!}</h4>
-                            <small class="heading-caption hidden-xs"><i class="fa fa-calendar"></i> {{ trans('app.frontend.resume.work-experience.2.dates') }}</small>
+                            <h4>
+                                {!! trans('app.frontend.resume.work-experience.2.job-title') !!}
+                            </h4>
+                            <small class="heading-caption hidden-xs">
+                                <i class="fa fa-calendar"></i> {{ trans('app.frontend.resume.work-experience.2.dates') }}
+                            </small>
                         </div>
                         <div class="timeline-body">
                             {!! trans('app.frontend.resume.work-experience.2.details') !!}

@@ -127,7 +127,9 @@
                         <li><a href="{{ route('admin.users.create') }}"><i class="fa fa-plus"></i> Add an User</a></li>
                     </ul>
                 </li>
-                <li><a href="{{ route('admin.settings.edit') }}"><i class="fa fa-cogs"></i> <span>Settings</span></a></li>
+{{--                <li>--}}
+{{--                    <a href="{{ route('admin.settings.edit') }}"><i class="fa fa-cogs"></i> <span>Settings</span></a>--}}
+{{--                </li>--}}
             </ul>
         </section>
     </aside>

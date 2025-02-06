@@ -9,13 +9,13 @@ class ContactController
 {
     public function show()
     {
-        return view('frontend.legacy.contact');
+        return view('frontend.'. config('blackie.frontend.theme') .'.contact.index');
     }
 
     public function store(StoreContactRequest $request)
     {
         $this->dispatch(new SendContactEmail($request->all()));
 
-        return view('frontend.legacy.contact')->withSuccess(trans('app.frontend.contact.confirmMailSent'));
+        return view('frontend.'. config('blackie.frontend.theme') .'.contact.index')->withSuccess(trans('app.frontend.contact.confirmMailSent'));
     }
 }

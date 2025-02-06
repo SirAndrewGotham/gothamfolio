@@ -137,55 +137,53 @@ return [
             'work-experience'  => [
                 'title' => 'Work Experience',
                 1       => [
-                    'job-title' => 'Engineer @ <strong>CarvingLabs</strong>',
-                    'dates'     => 'September 2015 - Today',
+                    'job-title' => 'Latest position @ <strong>Company, Inc.</strong>',
+                    'dates'     => 'Start day - Today',
                     'details'   => '<ul class="list-arrow-color no-margin">
                                         <li>Developed Web Applications on Laravel.</li>
                                         <li>Created and maintained Open Source packages.</li>
                                     </ul>',
                 ],
                 2       => [
-                    'job-title' => 'Google Deployment Specialist @ <strong>NRX</strong>',
-                    'dates'     => 'October 2012 - September 2015',
+                    'job-title' => 'Previous position 1 @ <strong>Company</strong>',
+                    'dates'     => 'Start date - End date',
                     'details'   => '<ul class="list-arrow-color no-margin">
-                                        <li>Developed Web Applications on Laravel, Symfony 2 and Zend Framework 3.</li>
-                                        <li>Developed Core Java Applications.</li>
-                                        <li>Passed the following Google certifications :
+                                        <li>Developed Web Applications based on Laravel backend.</li>
+                                        <li>Passed the following certifications :
                                             <ul class="list-arrow-color no-margin">
-                                                <li>Google Deployment Specialist (Google Search Appliance)</li>
-                                                <li>Google Apps 100</li>
-                                                <li>Google Cloud Platform 300</li>
+                                                <li>First certification (AKA Name)</li>
+                                                <li>Second certification</li>
+                                                <li>Third certification</li>
                                             </ul>
                                         </li>
-                                        <li>Deployed Google Search Appliance projects for some customers.</li>
-                                        <li>Search & Development based on solutions related to Google for Work.</li>
-                                        <li>Created a dynamic library on PHP to administrate and monitor a GSA.</li>
+                                        <li>Deployed projects for customers.</li>
+                                        <li>Search & Development based on solutions related to the position.</li>
                                     </ul>',
                 ],
                 3       => [
-                    'job-title' => 'Developer Web & Mobile @ <strong>Lemonway</strong>',
-                    'dates'     => 'September 2011 - September 2012',
+                    'job-title' => 'Previous position 2 @ <strong>Company</strong>',
+                    'dates'     => 'Start date - End date',
                     'details'   => '<ul class="list-arrow-color no-margin">
-                                        <li>Developed the company\'s Website.</li>
+                                        <li>Developed the company\'s Website backend.</li>
+                                        <li>Developed the company\'s Website frontend.</li>
                                         <li>Developed the company\'s Mobile App.</li>
-                                        <li>Developed iPhone and Android applications for some customers.</li>
                                     </ul>',
                 ],
                 4       => [
-                    'job-title' => 'Sys Admin @ <strong>Autoscout24 France</strong>',
-                    'dates'     => 'January 2010 - August 2011',
+                    'job-title' => 'Previous position 3 @ <strong>Company</strong>',
+                    'dates'     => 'Start date - End date',
                     'details'   => '<ul class="list-arrow-color no-margin">
-                                        <li>Management of Software Interface for some customers.</li>
-                                        <li>Handling of the Computers Listing.</li>
-                                        <li>Helpdesk customers.</li>
-                                        <li>Developed softwares in PHP to automatize some tasks.</li>
+                                        <li>Website Backend development.</li>
+                                        <li>Website Frontend development.</li>
+                                        <li>Website API development.</li>
+                                        <li>Software automated testing.</li>
                                     </ul>',
                 ],
                 5       => [
-                    'job-title' => 'Web Developer @ <strong>Call Assurances</strong>',
-                    'dates'     => 'September 2008 - December 2009',
+                    'job-title' => 'Previous position 4 @ <strong>Company</strong>',
+                    'dates'     => 'Start date - End date',
                     'details'   => '<ul class="list-arrow-color no-margin">
-                                        <li>Developed and remade the entire Websites of the Company.</li>
+                                        <li>Developed Websites of the Company.</li>
                                         <li>Created some tools and technics for SEO and SEM.</li>
                                     </ul>',
                 ],
@@ -193,16 +191,16 @@ return [
             'education'        => [
                 'title' => 'Education',
                 1       => [
-                    'title' => 'Master Web & e-Business @ <strong>ESGI</strong>',
-                    'dates' => '2012 - 2014',
+                    'title' => 'Master Web & e-Business @ <strong>University</strong>',
+                    'dates' => 'Start date - End date',
                 ],
                 2       => [
-                    'title' => 'Bachelor Web & Mobile @ <strong>ECTEI</strong>',
-                    'dates' => '2011 - 2012',
+                    'title' => 'Bachelor Web & Mobile @ <strong>University</strong>',
+                    'dates' => 'Start date - End date',
                 ],
                 3       => [
-                    'title' => 'BTS Sys Admin @ <strong>ISEFAC Paris</strong>',
-                    'dates' => '2008 - August 2010',
+                    'title' => 'BTS Sys Admin @ <strong>University</strong>',
+                    'dates' => 'Start date - End date',
                 ],
             ],
             'skills'           => [
@@ -217,23 +215,23 @@ return [
                 ],
                 3       => [
                     'label' => 'Symfony 2',
-                    'level' => 'Working on it',
+                    'level' => 'Average',
                 ],
                 4       => [
                     'label' => 'Mobile (iOS &amp; Android)',
-                    'level' => 'Made some cool things!',
+                    'level' => 'Initial',
                 ],
                 5       => [
-                    'label' => 'HTML &amp; CSS (Bootstrap and other tools)',
+                    'label' => 'HTML &amp; CSS (Bootstrap, Tailwind :: Flexboxes & Grids)',
                     'level' => 'Expert',
                 ],
                 6       => [
                     'label' => 'Versioning (Git) and Agile',
-                    'level' => "We're getting good here...",
+                    'level' => "Used daily",
                 ],
                 7       => [
-                    'label' => 'Design',
-                    'level' => 'Rainbows and Unicorns!',
+                    'label' => 'Frontend Design',
+                    'level' => 'Technical',
                 ],
             ],
         ],

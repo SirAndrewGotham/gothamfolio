@@ -30,6 +30,16 @@ Also, it will use frontend theming mechanism with a default front-end theme avai
 
 These are the plans, feel free to comment or contact me with your questions, suggestions and proposals.
 
+Here is how it looks like with the **Legacy** theme throughout (to be changable eventually via admin interface):
+
+## Frontend
+
+![Frontend](./docs/img/frontend.png)
+
+## Bakcned
+
+![Backend](./docs/img/backend.png)
+
 Sincerely,
 Andrew
 
