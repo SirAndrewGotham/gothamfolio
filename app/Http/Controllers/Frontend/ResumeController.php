@@ -8,6 +8,6 @@ class ResumeController extends Controller
 {
     public function __invoke()
     {
-        return view('frontend.'. config('blackie.frontend.theme') .'.resume.index');
+        return view('frontend.'. config('gothamfolio.frontend.theme') .'.resume.index');
     }
 }

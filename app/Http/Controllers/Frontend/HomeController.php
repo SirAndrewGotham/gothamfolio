@@ -13,6 +13,6 @@ class HomeController
         $works = Work::latest()->get();
         $customers = Customer::all();
 
-        return view('frontend.'. config('blackie.frontend.theme') .'.home.index', compact('works', 'customers'));
+        return view('frontend.'. config('gothamfolio.frontend.theme') .'.home.index', compact('works', 'customers'));
     }
 }
