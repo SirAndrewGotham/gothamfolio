@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\LanguageController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SettingController;
@@ -32,6 +33,9 @@ Route::resource('users', UserController::class);
 // Tags
 Route::get('tags.json', [TagController::class, 'indexRaw'])->name('tags.indexRaw');
 Route::resource('tags', TagController::class);
+
+// Languages
+Route::resource('languages', LanguageController::class);
 
 // Profile
 Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');

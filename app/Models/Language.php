@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 
 class Language extends Model
 {
@@ -12,6 +13,26 @@ class Language extends Model
     use HasFactory, SoftDeletes;
 
     protected $guarded = ['id'];
+
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        self::creating(function ($model) {
+            $slug = Str::slug($model->english);
+            $originalSlug = $slug;
+            $count = 2;
+            while (static::whereSlug($slug)->exists()) {
+                $slug = $originalSlug . '-' . $count++;
+            }
+            $model->slug = $slug;
+        });
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'slug';
+    }
 
 
 }

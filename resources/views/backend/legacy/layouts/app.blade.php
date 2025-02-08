@@ -90,7 +90,12 @@
             <ul class="sidebar-menu">
                 <li class="header">Administration</li>
                 <!-- Optionally, you can add icons to the links -->
-                <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+                <li>
+                    <a href="{{ route('admin.dashboard') }}">
+                        <i class="fa fa-dashboard"></i>
+                        <span>{{ __('Dashboard') }}</span>
+                    </a>
+                </li>
                 <li class="treeview">
                     <a href="{{ route('admin.posts.index') }}"><i class="fa fa-files-o"></i> <span>Posts</span> <i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu">
@@ -120,14 +125,32 @@
 
                     </ul>
                 </li>
+                <li>
+                    <a href="{{ route('admin.languages.index') }}">
+                        <i class='fa fa-language'></i>
+                        <span>{{ __('Languages') }}</span>
+                    </a>
+                </li>
                 <li class="treeview">
-                    <a href="{{ route('admin.users.index') }}"><i class="fa fa-users"></i> <span>Users</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <a href="{{ route('admin.users.index') }}">
+                        <i class="fa fa-users"></i>
+                        <span>{{ __('Users') }}</span>
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{ route('admin.users.index') }}"><i class="fa fa-eye"></i> List Users</a></li>
-                        <li><a href="{{ route('admin.users.create') }}"><i class="fa fa-plus"></i> Add an User</a></li>
+                        <li>
+                            <a href="{{ route('admin.users.index') }}">
+                                <i class="fa fa-eye"></i>
+                                {{ __('List Users') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.users.create') }}">
+                                <i class="fa fa-plus"></i> {{ __('Add a User') }}
+                            </a>
+                        </li>
                     </ul>
                 </li>
-{{--                <li>--}}
+                {{--                <li>--}}
 {{--                    <a href="{{ route('admin.settings.edit') }}"><i class="fa fa-cogs"></i> <span>Settings</span></a>--}}
 {{--                </li>--}}
             </ul>

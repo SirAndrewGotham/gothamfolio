@@ -14,7 +14,9 @@ class LanguageController extends Controller
      */
     public function index()
     {
-        //
+        $languages = Language::orderBy('is_active', 'desc')->get();
+
+        return view('backend.legacy.languages.index', compact('languages'));
     }
 
     /**
@@ -38,7 +40,7 @@ class LanguageController extends Controller
      */
     public function show(Language $language)
     {
-        //
+        return view('backend.legacy.languages.show', compact('language'));
     }
 
     /**
@@ -46,7 +48,7 @@ class LanguageController extends Controller
      */
     public function edit(Language $language)
     {
-        //
+        return view('backend.legacy.languages.edit', compact('language'));
     }
 
     /**
