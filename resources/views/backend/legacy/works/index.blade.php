@@ -29,9 +29,12 @@
                 <td>/works/{{ $work->slug }}</td>
                 <td><a href="{{ route('admin.users.show', $work->user->slug) }}" target="_blank">{{ $work->user->name }}</a></td>
                 <td>{{ $work->updated_at->diffForHumans() }}</td>
-                <td><a href="{{ route('admin.works.show', $work->id) }}" class="btn btn-info" target="_blank"><i class="fa fa-eye"></i> View</a>
-                    <a href="{{ route('admin.works.edit', $work->id) }}" class="btn btn-warning"><i class="fa fa-pencil"></i> Edit</a>
-                    <a href="{{ route('admin.works.destroy', $work->id) }}" class="btn btn-danger"><i class="fa fa-trash-o"></i> Delete</a></td>
+                <td><a href="{{ route('admin.works.show', $work->slug) }}" class="btn btn-info" target="_blank"><i class="fa fa-eye"></i>
+                    {{ __('View') }}</a>
+                    <a href="{{ route('admin.works.edit', $work->slug) }}" class="btn btn-warning"><i class="fa fa-pencil"></i>
+                        {{ __('Edit') }}</a>
+                    <a href="{{ route('admin.works.destroy', $work->slug) }}" class="btn btn-danger"><i class="fa fa-trash-o"></i>
+                        {{ __('Delete') }}</a></td>
             </tr>
         @empty
             <tr>

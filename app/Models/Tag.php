@@ -20,7 +20,7 @@ class Tag extends Model
         parent::boot();
 
         self::creating(function ($model) {
-            $slug = Str::slug($model->title);
+            $slug = Str::slug($model->name);
             $originalSlug = $slug;
             $count = 2;
             while (static::whereSlug($slug)->exists()) {

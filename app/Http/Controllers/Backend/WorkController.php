@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreWorkRequest;
 use App\Models\Tag;
 use App\Models\Work;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class WorkController extends Controller
      */
     public function index()
     {
-        $works = Work::all();
+        $works = Work::latest()->paginate(15);
 
         return view('backend.legacy.works.index', compact('works'));
     }
@@ -33,7 +34,7 @@ class WorkController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreWorkRequest $request)
     {
         $this->saveWork($request->all());
 
@@ -76,7 +77,7 @@ class WorkController extends Controller
         return redirect()->route('admin.works.index');
     }
 
-    protected function saveWork(array $data = [], $id = null)
+    protected function saveWork(array $data = [], $work = null)
     {
         // Image Handling
         if (isset($data['image'])) {
@@ -84,12 +85,14 @@ class WorkController extends Controller
         }
 
         // We create the Work
-        if ($id === null) {
-            $data['author_id'] = Auth::id();
+        if ($work === null) {
+            $data['user_id'] = Auth::id();
 
-            $work = $this->works->create($data);
+            $work = Work::create($data);
         } else {
-            $work = $this->works->update($data, $id);
+            $work->find($work);
+//            $work = Work::where('id', $id->id)->update($data, $work);
+            $work->update($data);
         }
 
         $this->saveTags($data, $work);
@@ -106,7 +109,7 @@ class WorkController extends Controller
     protected function buildImage($slug, $image)
     {
         $filePath = 'uploads/works/'.$slug.'.'.$image->getClientOriginalExtension();
-        Image::make($image)->save(public_path($filePath));
+        Image::read($image)->save(public_path('/'.$filePath));
 
         return $filePath;
     }
@@ -117,12 +120,14 @@ class WorkController extends Controller
      * @param array $data
      * @param       $post
      */
-    protected function saveTags(array $data, $post)
+    protected function saveTags(array $data, $work)
     {
+        $tagIds = collect();
         $tags = explode(',', $data['tags']);
         foreach ($tags as $tag) {
-            Tag::firstOrCreate(['name' => $tag, 'slug' => Str::slug($tag)]);
+            $tagId = Tag::firstOrCreate(['name' => $tag]);
+            $tagIds->push($tagId);
         }
-        $post->tags()->sync($this->tags->findWhereIn('name', $tags)->pluck('id')->toArray());
+        $work->tags()->sync($tagIds->pluck('id')->toArray());
     }
 }

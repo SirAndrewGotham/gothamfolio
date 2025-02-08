@@ -106,7 +106,7 @@ class PostController extends Controller
     protected function buildImage($slug, $image)
     {
         $filePath = '/uploads/posts/'.$slug.'.'.$image->getClientOriginalExtension();
-        Image::make($image)->save(public_path($filePath));
+        Image::read($image)->save(public_path($filePath));
 
         return $filePath;
     }

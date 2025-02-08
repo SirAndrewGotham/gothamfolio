@@ -18,6 +18,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="blog-post mb40">
+                        {{dd($work->image)}}
                         <img class="img-responsive full-width" src="{{ $work->image }}" alt="">
                         <div class="blog-post-holder">
                             <ul class="list-inline posted-info">

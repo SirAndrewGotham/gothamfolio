@@ -24,7 +24,9 @@
                         <li class="item illustration col-sm-4 mix all {{ $work->tags->implode('slug', ' ') }}">
                             <div class="border">
                                 <div class="view port-borderless image-hover-1">
-                                    <img class="img-responsive" src="{{ $work->image }}" alt="..." />
+                                    <center>
+                                        <img class="img-responsive" src="{{ $work->image }}" alt="{{ $work->title }}" style="width: auto; height: 200px;" />
+                                    </center>
                                     <div class="mask">
                                         <div class="image-hover-content">
                                             <a href="{{ $work->image }}" class="info image-zoom-link">
