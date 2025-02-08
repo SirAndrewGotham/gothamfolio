@@ -1,6 +1,6 @@
-@if($works->count() > 0)
+{{--@if($works->count() > 0)--}}
     <div id="owl-carousel-thumb" class="owl-carousel">
-        @forelse($works as $work)
+        @foreach($works as $work)
             <div>
                 <div class="thumbnail">
                     <div class="caption">
@@ -12,8 +12,8 @@
                     <img src="{{ asset($work->image) }}" alt="...">
                 </div>
             </div>
-            @endforeach
+        @endforeach
     </div>
-@else
-    <p>{{ trans('app.frontend.home.recent-work.no-work-found') }}</p>
-@endif
+{{--@else--}}
+{{--    <p>{{ trans('app.frontend.home.recent-work.no-work-found') }}</p>--}}
+{{--@endif--}}

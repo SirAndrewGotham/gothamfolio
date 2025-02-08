@@ -98,8 +98,8 @@ return [
                     'content' => 'Whereas I have been graduated for several years, I keep learning many things everyday. I am the kind of guy that love new technologies and trending projects.',
                 ],
                 3 => [
-                    'title'   => 'Rugby is my duty.',
-                    'content' => 'I started playing Rugby 3 years ago. From that time, I started to think as a team, not for myself as an individual. That capacity helps me a lot at work with my collegues.',
+                    'title'   => 'Photography is my third name',
+                    'content' => 'I\'ve always photographed. In my early childhood I was playing with cameras. Been school photographer in school. And I still do it, now on a professional level.',
                 ],
             ],
             'about-me'      => [
@@ -124,11 +124,11 @@ return [
             ],
             'recent-work'   => [
                 'title'         => 'Recent Work',
-                'no-work-found' => 'There is no Work in the database.',
+                'no-work-found' => 'There are no current Works in the database.',
             ],
             'customers'     => [
                 'title'             => 'Customers',
-                'no-customer-found' => 'There is no Customer in the database.',
+                'no-customer-found' => 'There are no Customer to display.',
             ],
         ],
         'resume'  => [

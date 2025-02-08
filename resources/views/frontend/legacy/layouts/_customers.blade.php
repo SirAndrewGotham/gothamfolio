@@ -1,4 +1,4 @@
-@if($customers->count() > 0)
+{{--@if($customers->count() > 0)--}}
     <div id="owl-carousel-thumb-customers" class="owl-carousel">
         @foreach($customers as $customer)
             <div class="thumbnail">
@@ -6,6 +6,6 @@
             </div>
         @endforeach
     </div>
-@else
-    <p>{{ trans('app.frontend.home.customers.no-customer-found') }}</p>
-@endif
+{{--@else--}}
+{{--    <p>{{ trans('app.frontend.home.customers.no-customer-found') }}</p>--}}
+{{--@endif--}}

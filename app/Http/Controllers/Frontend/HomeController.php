@@ -10,7 +10,7 @@ class HomeController
 {
     public function __invoke()
     {
-        $works = Work::all();
+        $works = Work::latest()->get();
         $customers = Customer::all();
 
         return view('frontend.'. config('blackie.frontend.theme') .'.home.index', compact('works', 'customers'));
