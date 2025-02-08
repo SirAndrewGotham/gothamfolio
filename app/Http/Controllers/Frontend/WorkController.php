@@ -15,7 +15,7 @@ class WorkController
      */
     public function index()
     {
-        $works = Work::latest()->with('tags')->get();
+        $works = Work::where('published_at', '<=', now())->orderBy('order', 'asc')->with('tags')->get();
         $tags = Tag::has('works')->get();
 
         return view('frontend.legacy.works.index', compact('works', 'tags'));

@@ -1,5 +1,10 @@
 @extends('backend.legacy.layouts.app')
 
+@section('styles')
+{{--    <link rel="stylesheet" href="{{ asset('assets/backend/legacy/css/bootstrap441/bootstrap.min.css') }}">--}}
+    <link href="{{ asset('assets/backend/legacy/css/summernote0818/summernote-bs4.min.css') }}" rel="stylesheet">
+@endsection
+
 @section('meta-title')
     {{ __('Editing Work') }} "{{ $work->title }}"
 @endsection
@@ -40,6 +45,10 @@
             <input type="text" name="tags" id="tags" value="{{ old('tags', $work->tags->implode('name', ',')) }}" class="form-control">
         </div>
         <div class="form-group">
+            <label for="order">{{ __('Order') }}</label>
+            <input type="text" name="order" id="order" value="{{ $work->order }}" class="form-control">
+        </div>
+        <div class="form-group">
             <div>
                 @if ($work->image)
                     <img src="{{ asset($work->image) }}" alt="" height="100">
@@ -50,4 +59,15 @@
         </div>
         <button type="submit" class="btn btn-rw btn-primary">{{ __('Submit') }}</button>
     </form>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $('.summernote_dessription').summernote();
+            $('.summernote_catalog').summernote();
+
+        });
+    </script>
 @endsection

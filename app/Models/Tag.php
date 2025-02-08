@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Support\Str;
 
 class Tag extends Model
@@ -35,17 +36,17 @@ class Tag extends Model
         return 'slug';
     }
 
-    public function posts()
+    public function posts(): MorphToMany
     {
         return $this->morphedByMany(Post::class, 'taggable');
     }
 
-    public function works()
+    public function works(): MorphToMany
     {
         return $this->morphedByMany(Work::class, 'taggable');
     }
 
-    public function images()
+    public function images(): MorphToMany
     {
         return $this->morphedByMany(Image::class, 'taggable');
     }

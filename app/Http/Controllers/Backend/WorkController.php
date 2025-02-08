@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreWorkRequest;
+use App\Http\Requests\UpdateWorkRequest;
 use App\Models\Tag;
 use App\Models\Work;
 use Illuminate\Http\Request;
@@ -60,7 +61,7 @@ class WorkController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Work $work)
+    public function update(UpdateWorkRequest $request, Work $work)
     {
         $this->saveWork($request->all(), $work);
 
@@ -122,12 +123,15 @@ class WorkController extends Controller
      */
     protected function saveTags(array $data, $work)
     {
-        $tagIds = collect();
-        $tags = explode(',', $data['tags']);
-        foreach ($tags as $tag) {
-            $tagId = Tag::firstOrCreate(['name' => $tag]);
-            $tagIds->push($tagId);
+        if($data['tags'])
+        {
+            $tagIds = collect();
+            $tags = explode(',', $data['tags']);
+            foreach ($tags as $tag) {
+                $tagId = Tag::firstOrCreate(['name' => $tag]);
+                $tagIds->push($tagId);
+            }
+            $work->tags()->sync($tagIds->pluck('id')->toArray());
         }
-        $work->tags()->sync($tagIds->pluck('id')->toArray());
     }
 }

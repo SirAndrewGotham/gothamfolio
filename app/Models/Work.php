@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
@@ -27,6 +29,9 @@ class Work extends Model
                 $slug = $originalSlug . '-' . $count++;
             }
             $model->slug = $slug;
+
+            $language = Language::where('code', app()->getLocale())->first();
+            $model->language_id = $language->id;
         });
     }
 
@@ -35,7 +40,7 @@ class Work extends Model
         return 'slug';
     }
 
-    public function tags()
+    public function tags(): MorphToMany
     {
         return $this->morphToMany(Tag::class, 'taggable');
     }

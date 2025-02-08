@@ -32,6 +32,8 @@ class WorkFactory extends Factory
             'content'   => '<p>'.$this->faker->text(2000).'</p>',
             'image'     => $this->faker->imageUrl(750, 346, 'cats', false),
             'link'      => 'https://esperantejo.com',
+            'order'     => $this->faker->randomDigit(),
+            'published_at' => $this->faker->dateTimeBetween('-1 year', '+3 days'),
         ];
     }
 }

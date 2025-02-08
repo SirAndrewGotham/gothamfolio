@@ -11,7 +11,9 @@
                     <ul class="nav nav-pills col-xs-12 text-center">
                         <li class="filter active" data-filter=".all">{{ trans('app.all') }}</li>
                         @foreach($tags as $tag)
-                            <li class="filter" data-filter=".{{ $tag->slug }}">{{ $tag->name }}</li>
+                            @if($tag->name)
+                                <li class="filter" data-filter=".{{ $tag->slug }}">{{ $tag->name }}</li>
+                            @endif
                         @endforeach
                     </ul>
                 </div>
