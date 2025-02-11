@@ -22,7 +22,7 @@
                                     <p>
                                         {!! trans('app.frontend.home.carousel.1.content') !!}
                                     </p>
-                                    <a href="{{ route('blog.index') }}" class="btn btn-rw btn-default">{{ trans('app.frontend.home.carousel.1.link') }} <i class="fa fa-arrow-right"></i></a>
+                                    <a href="{{ route('resume') }}" class="btn btn-rw btn-default">{{ trans('app.frontend.home.carousel.1.link') }} <i class="fa fa-arrow-right"></i></a>
                                 </div>
                             </div>
                             <div class="fadeInLeft-animated" data-animation="fadeInLeft">
@@ -52,7 +52,7 @@
                                     <p>
                                         {!! trans('app.frontend.home.carousel.2.content') !!}
                                     </p>
-                                    <a href="{{ route('blog.index') }}" class="btn btn-rw btn-primary">{{ trans('app.frontend.home.carousel.2.link') }} <i class="fa fa-arrow-right"></i></a>
+                                    <a href="{{ route('works.index') }}" class="btn btn-rw btn-primary">{{ trans('app.frontend.home.carousel.2.link') }} <i class="fa fa-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>

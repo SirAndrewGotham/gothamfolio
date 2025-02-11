@@ -69,37 +69,38 @@ return [
             'breadcrumb-title' => 'Contact',
             'form-heading'     => "Let's get in touch!",
             'form-text'        => "Feel free to use this form and get in touch with me. I'll try to answer as fast as I can.",
-            'confirmMailSent'  => "<strong>Contact Form received!</strong><p>Your contact form has been received. I'll try to answer you as soon as possible!<br>Thank you ;)</p>",
+            'confirmMailSent'  => "<strong>Contact Form received!</strong><p>Your request has been successfully processed. I'll try to answer you as soon as possible!<br>Thank you ;)</p>",
         ],
         'home'    => [
             'carousel'      => [
                 1 => [
                     'title'   => 'Passionate & Flexible',
-                    'content' => "You might have not realized yet, but I'm in love with my job! Indeed, I always wanted to work on computers and started to learn how to code very early in my life. Since then I try to be able to adapt to new technologies and new techniques...",
-                    'link'    => 'Check out my Resume for more',
+                    'content' => "I must say, I am in love with my job! Indeed, I always wanted to work on computers and started to learn how to code back in mid-1980es, and moved to Web development when it was born. Since then I always tried to absorb and adapt to the new technologies and new techniques all the time...",
+                    'link'    => 'Please check my Resume for more',
                 ],
                 2 => [
-                    'title'   => 'Laravel enthousiast',
-                    'content' => "During my studies, I discovered this PHP Framework and I gotta say : IT WAS A BLAST!<br>To sum things up, this amazing toolset allows you to create websites and apps blazing fast! More importantly and I think It's a big feature : you code just like you speak! ;)",
-                    'link'    => 'Check out my Blog for more',
+                    'title'   => 'Laravel is the way to go',
+                    'content' => "Laravel came to the scene and changed everything!<br>All of a sudden, we don't have to think in terms of 'how to do this' or 'how to do that' anymore. Instead, we just concentrate on WHAT we are actually constructing, and coding just slips in naturally and intuitively. That's how powerful this flexible PHP Framework is.",
+                    'link'    => 'Check out my Portfolio to find out more',
                 ],
                 3 => [
                     'title'   => 'Sharing is Caring',
                     'content' => "I always wanted to be a teacher somehow in my life. The thing is, if you are able to learn something to someone, you can validate the fact that you fully understand the subject. More interesting, with the power of the Interwebs, if you make some mistakes and don't tell the truth, Internet guardians (trolls somehow) will just put you in troubles and you'll be forced to tell the truth. Finally, you start to correct yourself and you become better...",
+//                    'link'    => 'Check out my Resume and Blog for more',
                 ],
             ],
             'three-reasons' => [
                 1 => [
-                    'title'   => 'All for the Code.',
-                    'content' => "When I was a child, I wanted to work on computers. That's why I became an engineer and Web Developer!",
+                    'title'   => 'Code is my life',
+                    'content' => "I just love it. Coding is all I want to do, and I can do it straight all day long. It's like creating new Worlds and discovering Universes. You can never get tired of it!<br />Envisioning, planning, constructing and developing Web sites,- what can be more interesting or engaging?<br />I am happy doing it.",
                 ],
                 2 => [
-                    'title'   => 'Never stop learning.',
-                    'content' => 'Whereas I have been graduated for several years, I keep learning many things everyday. I am the kind of guy that love new technologies and trending projects.',
+                    'title'   => 'Never stop learning',
+                    'content' => "Technologies develop at a steady and very fast pace. Something new comes up every day. Compliance, ISO-9000, Scrum, Agile, Git, Tailwind, Frontend, Backend, API, you name it...<br />It's so interesting and engaging! Studying something new has long become my daily routine.",
                 ],
                 3 => [
-                    'title'   => 'Photography is my third name',
-                    'content' => 'I\'ve always photographed. In my early childhood I was playing with cameras. Been school photographer in school. And I still do it, now on a professional level.',
+                    'title'   => 'Photography is my middle name',
+                    'content' => "I've always been shooting. My early childhood pictures often depict me playing around with cameras and - in those days - film. Then, i've been a school photographer at school. Then it went on and on. And I still shoot, now on a pro level.<br />Please have a look at my galleries, it would be great if you will find something for yourself there.",
                 ],
             ],
             'about-me'      => [
@@ -255,7 +256,7 @@ return [
             'index' => [
                 'page-title'       => 'My Works',
                 'breadcrumb-title' => 'Works',
-                'no-work-found'    => 'No Work have been found in the database...',
+                'no-work-found'    => 'No Works here yet...',
             ],
             'show'  => [
                 'page-title'       => 'My Works',
@@ -265,7 +266,7 @@ return [
             'tag'   => [
                 'page-title'       => 'My Works - All works with tag ":tag_name"',
                 'breadcrumb-title' => 'Works',
-                'no-work-found'    => 'No Work have been found in the database...',
+                'no-work-found'    => 'No Works here yet...',
             ],
         ],
     ],
@@ -273,11 +274,11 @@ return [
         'blog'   => [
             'sidebar'    => [
                 'title' => 'The Laboratory',
-                'text'  => "In this section, I'll try to share you cool ideas, tools and techniques I learnt. I think that sharing my knowlege with you guys is important and I hope it might be useful for you. I was lucky to find some guys like me before, teaching me those stuff very kindly. So I guess it's now my turn ;)",
+                'text'  => "In this section, I'll try to share cool ideas, tools and techniques I learned. I think that sharing my knowledge with you guys is important and I hope it might be useful for some of you. I was lucky to find some like-minded guys early in my career, teaching me all of that stuff. So I guess it's my turn now! ;)",
             ],
             'last-posts' => [
-                'title'         => 'Last Posts',
-                'no-post-found' => 'No Post found in the database.',
+                'title'         => 'Latest Posts',
+                'no-post-found' => 'No Posts found in the database.',
             ],
             'tags'       => [
                 'title' => 'Tags',
@@ -286,16 +287,24 @@ return [
         'common' => [
             'about'      => [
                 'title' => 'About Me',
-                'text'  => "My name is Andrew Gotham and I'm a software engineer specialised in Web Development, full-stack, backend and api. My main tool is Laravel.",
-                'link'  => 'Want to know more?',
+                'text'  => "My name is Andrew, I am a software engineer for the last 3 decades specializing in Web Development: full-stack, backend and api. My main tools are Laravel, MySQL/PostgreSQL, Tailwind, Livewire, Alpinejs, Postman, Git, PhpStorm.",
+                'link'  => 'Please click here if you want to know more',
             ],
             'contact'    => [
                 'title' => 'Get in touch!',
+                'country' => 'Russia',
+                'city' => 'Moscow',
+                'AndrewGotham' => 'AndrewGotham',
+                'phone' => '+7 (775) 556-92-44',
+                'whatsapp' => 'WhatsApp',
+                'telegram' => 'Telegram',
+                'github' => 'Github',
+
             ],
             'copyright'  => 'Copyright &copy; :this_year <strong>Sir. Andrew Gotham</strong>. All rights reserved.',
             'last-posts' => [
                 'title'         => 'From the Blog',
-                'no-post-found' => 'No Post found in the database.',
+                'no-post-found' => 'No Posts in the database so far.',
             ],
             'social'     => [
                 'title' => 'Social Networks',
