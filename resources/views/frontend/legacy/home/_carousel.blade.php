@@ -13,7 +13,12 @@
         <div class="carousel-inner">
             {{-- Item 1 --}}
             <div class="item active">
-                <div class="background-main carousel-item1" data-0="background-position:0px 0px;" data-500="background-position:0px -250px;">
+                <div
+                    class="background-main"
+                    style="background-image: url({{ asset('assets/frontend/legacy/img/carousel/bg1.png') }})"
+                    data-0="background-position:0px 0px;"
+                    data-500="background-position:0px -250px;"
+                >
                     <div class="container">
                         <div class="row carousel-content center-vertically-right">
                             <div class="fadeInRight-animated" data-animation="fadeInRight">
@@ -22,12 +27,15 @@
                                     <p>
                                         {!! trans('app.frontend.home.carousel.1.content') !!}
                                     </p>
-                                    <a href="{{ route('resume') }}" class="btn btn-rw btn-default">{{ trans('app.frontend.home.carousel.1.link') }} <i class="fa fa-arrow-right"></i></a>
+                                    <a href="{{ route('resume') }}" class="btn btn-rw btn-default">
+                                        {{ trans('app.frontend.home.carousel.1.link') }}
+                                        <i class="fa fa-arrow-right"></i>
+                                    </a>
                                 </div>
                             </div>
                             <div class="fadeInLeft-animated" data-animation="fadeInLeft">
                                 <div class="col-sm-6 col-sm-offset-1">
-                                    <img src="{{ asset('assets/frontend/legacy/img/showcase-full.png') }}" class="img-responsive carousel-image" alt="Responsive Showcase" width="540" height="270px">
+                                    <img src="{{ asset('assets/frontend/legacy/img/carousel/showcase-full.png') }}" class="img-responsive carousel-image" alt="Responsive Showcase" width="540" height="270px">
                                 </div>
                             </div>
                         </div>
@@ -38,12 +46,16 @@
 
             {{-- Item 2 --}}
             <div class="item">
-                <div class="carousel-item2" data-0="background-position:0px 0px;" data-500="background-position:0px -250px;">
+                <div class=""
+                     style="background-image: url({{ asset('assets/frontend/legacy/img/carousel/bg2.jpg') }})"
+                     data-0="background-position:0px 0px;"
+                     data-500="background-position:0px -250px;"
+                >
                     <div class="container">
                         <div class="row carousel-content center-vertically-left">
                             <div class="fadeInLeft-animated" data-animation="fadeInLeft">
                                 <div class="col-sm-6 hidden-xs">
-                                    <img src="{{ asset('assets/frontend/legacy/img/showcase2.png') }}" width="510" height="328" class="img-responsive carousel-image" alt="Responsive Showcase">
+                                    <img src="{{ asset('assets/frontend/legacy/img/carousel/showcase2.png') }}" width="510" height="328" class="img-responsive carousel-image" alt="Responsive Showcase">
                                 </div>
                             </div>
                             <div class="fadeInRight-animated" data-animation="fadeInRight">
@@ -63,7 +75,12 @@
 
             {{-- Item 3 --}}
             <div class="item">
-                <div class="carousel-item3" data-0="background-position:0px 0px;" data-500="background-position:0px -250px;">
+                <div
+                    class=""
+                    style="background-image: url({{ asset('assets/frontend/legacy/img/carousel/bg3.jpg') }})"
+                    data-0="background-position:0px 0px;"
+                    data-500="background-position:0px -250px;"
+                >
                     <div class="container">
                         <div class="row carousel-content center-vertically-right">
                             <div class="fadeInUpBig-animated" data-animation="fadeInUpBig">
@@ -76,6 +93,10 @@
                                     <p>
                                         {!! trans('app.frontend.home.carousel.3.content') !!}
                                     </p>
+                                    <a href="{{ url('https://t.me/RetejoEsperanta') }}" class="btn btn-rw btn-primary" target="_blank">
+                                        {{ trans('app.frontend.home.carousel.3.link') }}
+                                        <i class="fa fa-arrow-right"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>

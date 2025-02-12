@@ -17,12 +17,12 @@ class DatabaseSeeder extends Seeder
         $this->call(LanguageSeeder::class);
         // User::factory(10)->create();
 
-        User::factory()
-            ->create([
-                'language_id' => 37,
-                'name' => 'Admin',
-                'email' => 'admin@admin.com',
-            ]);
+//        User::factory()
+//            ->create([
+//                'language_id' => 37,
+//                'name' => 'Admin',
+//                'email' => 'admin@admin.com',
+//            ]);
 
         $this->call([
             UserSeeder::class,

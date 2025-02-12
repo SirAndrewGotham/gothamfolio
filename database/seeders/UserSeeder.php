@@ -14,7 +14,14 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::factory()
-            ->count(15)
-            ->create();
+            ->create([
+                'language_id' => 37,
+                'name' => 'Admin',
+                'email' => 'admin@admin.com',
+            ]);
+
+//        User::factory()
+//            ->count(15)
+//            ->create();
     }
 }

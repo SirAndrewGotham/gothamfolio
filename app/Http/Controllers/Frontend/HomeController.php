@@ -10,6 +10,7 @@ class HomeController
 {
     public function __invoke()
     {
+        session()->put('language', config('app.locale'));
         $works = Work::latest()->get();
         $customers = Customer::all();
 

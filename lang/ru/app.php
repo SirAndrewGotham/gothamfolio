@@ -2,34 +2,34 @@
 
 return [
 
-    'by'               => 'By',
-    'name'             => 'Name',
+    'by'               => 'Автор',
+    'name'             => 'НИК',
     'email'            => 'Email',
-    'password'         => 'Password',
-    'password-confirm' => 'Confirm Password',
-    'message'          => 'Message',
-    'information'      => 'Information',
-    'phone'            => 'Phone',
-    'btn-submit'       => 'Submit',
-    'btn-read-more'    => 'Read more',
-    'all'              => 'All',
+    'password'         => 'Пароль',
+    'password-confirm' => 'Еще раз пароль для проверки',
+    'message'          => 'Сообщение',
+    'information'      => 'Информация',
+    'phone'            => 'Телефон',
+    'btn-submit'       => 'Сохранить',
+    'btn-read-more'    => 'Еще...',
+    'all'              => 'Все',
 
     'menu' => [
-        'home'    => 'Home',
-        'resume'  => 'Resume',
-        'works'   => 'Works',
-        'blog'    => 'Blog',
-        'contact' => 'Contact',
+        'home'    => 'Главная',
+        'resume'  => 'Резюме',
+        'works'   => 'Портфолио',
+        'blog'    => 'Блог',
+        'contact' => 'Контакты',
     ],
 
     'auth' => [
-        'login-page-title'     => 'Sign In!',
-        'login-title'          => 'Sign in to start your session',
-        'remember-me'          => 'Remember me',
-        'btn-sign-in'          => 'Sign In',
-        'forgot-password'      => 'I forgot my password!',
-        'profile'              => 'Profile',
-        'welcome'              => 'Welcome, :user_name!',
+        'login-page-title'     => 'Вход',
+        'login-title'          => 'Авторизуйтесь пожалуйста',
+        'remember-me'          => 'Запомнить',
+        'btn-sign-in'          => 'Войти',
+        'forgot-password'      => 'Я забыл свой пароль!',
+        'profile'              => 'Профиль',
+        'welcome'              => 'Добро пожаловать, :user_name!',
         'reset-password-title' => 'Reset your Password now',
     ],
 
@@ -52,10 +52,10 @@ return [
 
     'errors' => [
         '404'        => 'Four Oh Four!',
-        '503'        => 'Be right back.',
+        '503'        => 'Упс, на сервере ошибка.',
         'formErrors' => [
-            'heading'      => '<strong>Whoops!</strong> Houston, we have a problem!',
-            'fix-mistakes' => 'Please fix those mistakes:',
+            'heading'      => '<strong>Опана!</strong> Хьюстон, у нас проблема!',
+            'fix-mistakes' => 'Пожалуйста, исправьте:',
         ],
     ],
 
@@ -108,7 +108,7 @@ return [
                 ],
             ],
             'about-me'      => [
-                'title' => 'About Me',
+                'title' => 'Обо мне',
                 'link'  => 'Need to know more? Check out My Resume',
                 1       => [
                     'title'   => 'Raise the PHP Flag!',
@@ -132,18 +132,18 @@ return [
                 'no-work-found' => 'There are no current Works in the database.',
             ],
             'customers'     => [
-                'title'             => 'Customers',
-                'no-customer-found' => 'There are no Customer to display.',
+                'title'             => 'Клиенты',
+                'no-customer-found' => 'В настоящий момент ничего показать не можем.',
             ],
         ],
         'resume'  => [
-            'page-title'       => 'My Resume',
-            'breadcrumb-title' => 'Resume',
+            'page-title'       => 'Моё резюме',
+            'breadcrumb-title' => 'Резюме',
             'work-experience'  => [
-                'title' => 'Work Experience',
+                'title' => 'Опыт работы',
                 1       => [
-                    'job-title' => 'Latest position @ <strong>Company, Inc.</strong>',
-                    'dates'     => 'Start day - Today',
+                    'job-title' => 'Инженер-программист @ <strong>ООО "Тарис"</strong>',
+                    'dates'     => '2022 - наст. время',
                     'details'   => '<ul class="list-arrow-color no-margin">
                                         <li>Developed Web Applications on Laravel.</li>
                                         <li>Created and maintained Open Source packages.</li>
@@ -194,7 +194,7 @@ return [
                 ],
             ],
             'education'        => [
-                'title' => 'Education',
+                'title' => 'Образование',
                 1       => [
                     'title' => 'Master Web & e-Business @ <strong>University</strong>',
                     'dates' => 'Start date - End date',
@@ -209,14 +209,14 @@ return [
                 ],
             ],
             'skills'           => [
-                'title' => 'Technical Skills',
+                'title' => 'Навыки',
                 1       => [
                     'label' => 'PHP',
-                    'level' => 'Expert',
+                    'level' => 'Эксперт',
                 ],
                 2       => [
                     'label' => 'Laravel',
-                    'level' => 'Expert',
+                    'level' => 'Эксперт',
                 ],
                 3       => [
                     'label' => 'Symfony 2',
@@ -242,62 +242,62 @@ return [
         ],
         'blog'    => [
             'index' => [
-                'page-title'       => 'Blog',
-                'breadcrumb-title' => 'Blog',
-                'no-post-found'    => 'No Posts yet.',
+                'page-title'       => 'Блог',
+                'breadcrumb-title' => 'Блог',
+                'no-post-found'    => 'Еще пишу.',
             ],
             'show'  => [
-                'page-title'       => 'Blog',
-                'breadcrumb-title' => 'Blog',
+                'page-title'       => 'Блог',
+                'breadcrumb-title' => 'Блог',
             ],
             'tag'   => [
-                'page-title'       => 'Blog - All Posts with tag ":tag_name"',
-                'breadcrumb-title' => 'Blog',
-                'no-post-found'    => 'No Posts found matching this tag.',
+                'page-title'       => 'Блог - все статьи с тегом ":tag_name"',
+                'breadcrumb-title' => 'Блог',
+                'no-post-found'    => 'Статьей с таким тегом не найдено.',
             ],
         ],
         'works'   => [
             'index' => [
-                'page-title'       => 'My Works',
-                'breadcrumb-title' => 'Works',
-                'no-work-found'    => 'No Works here yet...',
+                'page-title'       => 'Моё портфолио',
+                'breadcrumb-title' => 'Портфолио',
+                'no-work-found'    => 'Пока не заполнено.',
             ],
             'show'  => [
-                'page-title'       => 'My Works',
-                'breadcrumb-title' => 'Works',
-                'recent-work'      => 'Recent Work',
+                'page-title'       => 'Мои работы',
+                'breadcrumb-title' => 'Работы',
+                'recent-work'      => 'Последние работы',
             ],
             'tag'   => [
-                'page-title'       => 'My Works - All works with tag ":tag_name"',
-                'breadcrumb-title' => 'Works',
-                'no-work-found'    => 'No Works here yet...',
+                'page-title'       => 'Мои работы - все работы с тегом ":tag_name"',
+                'breadcrumb-title' => 'Работы',
+                'no-work-found'    => 'Работ с таким тегом не найдено.',
             ],
         ],
     ],
     'blocks'   => [
         'blog'   => [
             'sidebar'    => [
-                'title' => 'Coding Alchemy',
+                'title' => 'Академия кодопроизводства',
                 'text'  => "In this blog, I will share my personal views on coding kitchen and share some cool ideas, tools and techniques I learned. It might happen, content won't repeat itself between languages, so please use some translation tools build into modern browsers if you find a thing or two that might interest you.<br />P.S. I will not forget photography too :)",
             ],
             'last-posts' => [
-                'title'         => 'Latest Posts',
-                'no-post-found' => 'No Posts yet.',
+                'title'         => 'Последний статьи',
+                'no-post-found' => 'Статьи пока не написаны.',
             ],
             'tags'       => [
-                'title' => 'Tags',
+                'title' => 'Теги',
             ],
         ],
         'common' => [
             'about'      => [
-                'title' => 'About Me',
-                'text'  => "My name is Andrew, I am a software engineer for the last 3 decades specializing in Web Development: full-stack, backend and api. My main tools today are Nginx, Laravel, MySQL/PostgreSQL, Tailwind, Livewire, Alpinejs, Swagger, Postman, Git, PhpStorm.",
-                'link'  => 'Please click here for more info',
+                'title' => 'Обо мне',
+                'text'  => "Меня зовут Эндрю, последние тридцать лет я - инженер-программист, специализирующийся на Веб-разработках: полного цикла (full-stack), бэк-ендов и апи. Сегодня мои основные инструменты, это Nginx, Laravel, MySQL/PostgreSQL, Tailwind, Livewire, Alpinejs, Swagger, Postman, Git, PhpStorm.",
+                'link'  => 'По ссылке можно найти больше сведений',
             ],
             'contact'    => [
                 'title' => 'Get in touch!',
-                'country' => 'Russia',
-                'city' => 'Moscow',
+                'country' => 'Россия',
+                'city' => 'Москва',
                 'AndrewGotham' => 'AndrewGotham',
                 'phone' => '+7 (775) 556-92-44',
                 'whatsapp' => 'WhatsApp',
@@ -305,13 +305,13 @@ return [
                 'github' => 'Github',
 
             ],
-            'copyright'  => 'Copyright &copy; :this_year <strong>Sir. Andrew Gotham</strong>. All rights reserved.',
+            'copyright'  => 'Copyright &copy; :this_year <strong>Sir. Andrew Gotham</strong>. Права охраняются законом.',
             'last-posts' => [
-                'title'         => 'From the Blog',
-                'no-post-found' => 'No Posts yet.',
+                'title'         => 'Из опубликованных статей',
+                'no-post-found' => 'Статьи еще не написаны.',
             ],
             'social'     => [
-                'title' => 'Social Networks',
+                'title' => 'Социальные сети',
             ],
         ],
     ],

@@ -15,7 +15,7 @@ return [
     'all'              => 'All',
 
     'menu' => [
-        'home'    => 'Home',
+        'home'    => 'Hejmpaĝo',
         'resume'  => 'Resume',
         'works'   => 'Works',
         'blog'    => 'Blog',

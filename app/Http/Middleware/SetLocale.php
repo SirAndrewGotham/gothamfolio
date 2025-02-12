@@ -5,6 +5,8 @@ namespace App\Http\Middleware;
 use App\Models\Language;
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Response;
 
 class SetLocale
@@ -12,12 +14,18 @@ class SetLocale
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param  \Closure(Request): (Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
         // allow only enabled languages
         $active_languages = Language::where('is_active', true)->pluck('code');
+
+        if(session()->get('language') === null)
+        {
+            session()->put('language', Language::where('default', true)->first()->code);
+        }
+
         if((request('change_language') && !$active_languages->contains(request('change_language'))) || (session()->has('language') && !$active_languages->contains(session()->get('language'))))
         {
             return $next($request);

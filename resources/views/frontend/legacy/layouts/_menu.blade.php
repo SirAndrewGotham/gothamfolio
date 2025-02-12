@@ -8,12 +8,12 @@
                 <a href="{{ route('resume') }}">{{ trans('app.menu.resume') }}</a>
             </li>
         @endif
-        @if(config('gothamfolio.frontend.works') === 'on')
+        @if(config('gothamfolio.frontend.works') === 'on' && \App\Models\Work::count() >= 1)
         <li{{ Request::segment(1) == 'works' ? ' class=active' : '' }}>
             <a href="{{ route('works.index') }}">{{ trans('app.menu.works') }}</a>
         </li>
         @endif
-        @if(config('gothamfolio.frontend.blog') === 'on')
+        @if(config('gothamfolio.frontend.blog') === 'on' && \App\Models\Post::count() >= 1)
         <li{{ Request::segment(1) == 'blog' ? ' class=active' : '' }}>
             <a href="{{ route('blog.index') }}">{{ trans('app.menu.blog') }}</a>
         </li>
