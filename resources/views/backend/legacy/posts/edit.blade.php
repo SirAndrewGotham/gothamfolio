@@ -1,5 +1,9 @@
 @extends('backend.legacy.layouts.app')
 
+@section('styles')
+    <link href="{{ asset('assets/backend/legacy/css/summernote0818/summernote-bs4.min.css') }}" rel="stylesheet">
+@endsection
+
 @section('meta-title')
     {{ __('Editing Post') }} "{{ $post->title }}"
 @endsection
@@ -50,4 +54,15 @@
         </div>
         <button type="submit" class="btn btn-rw btn-primary">{{ __('Submit') }}</button>
     </form>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $('.summernote_excerpt').summernote();
+            $('.summernote_content').summernote();
+
+        });
+    </script>
 @endsection

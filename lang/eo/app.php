@@ -2,60 +2,60 @@
 
 return [
 
-    'by'               => 'By',
-    'name'             => 'Name',
-    'email'            => 'Email',
-    'password'         => 'Password',
-    'password-confirm' => 'Confirm Password',
-    'message'          => 'Message',
-    'information'      => 'Information',
-    'phone'            => 'Phone',
-    'btn-submit'       => 'Submit',
-    'btn-read-more'    => 'Read more',
-    'all'              => 'All',
+    'by'               => '̆Aŭtoro',
+    'name'             => 'Nomo',
+    'email'            => 'Retpoŝto',
+    'password'         => 'Pasvorto',
+    'password-confirm' => 'Konfirmu Pasvorton',
+    'message'          => 'Mesaĝo',
+    'information'      => 'Informoj',
+    'phone'            => 'Telefono',
+    'btn-submit'       => 'Submeti',
+    'btn-read-more'    => 'Legi plu',
+    'all'              => 'Ĉiuj',
 
     'menu' => [
         'home'    => 'Hejmpaĝo',
-        'resume'  => 'Resume',
-        'works'   => 'Works',
-        'blog'    => 'Blog',
-        'contact' => 'Contact',
+        'resume'  => 'Laborresumo',
+        'works'   => 'Portfolio',
+        'blog'    => 'Blogo',
+        'contact' => 'Kontaktoj',
     ],
 
     'auth' => [
-        'login-page-title'     => 'Sign In!',
-        'login-title'          => 'Sign in to start your session',
-        'remember-me'          => 'Remember me',
-        'btn-sign-in'          => 'Sign In',
-        'forgot-password'      => 'I forgot my password!',
-        'profile'              => 'Profile',
-        'welcome'              => 'Welcome, :user_name!',
-        'reset-password-title' => 'Reset your Password now',
+        'login-page-title'     => 'Ensalutu!',
+        'login-title'          => 'Ensalutu por komenci vian sesion',
+        'remember-me'          => 'Memoru min',
+        'btn-sign-in'          => 'Ensalutu',
+        'forgot-password'      => 'Mi forgesis mian pasvorton!',
+        'profile'              => 'Profilo',
+        'welcome'              => 'Bonvenon, :user_name!',
+        'reset-password-title' => 'Restarigu vian pasvorton nun',
     ],
 
     'emails' => [
         'contact'  => [
-            'contact-message'    => 'Contact Message',
-            'contact-heading'    => 'Hello Master,',
-            'contact-info-text'  => 'A Contact form has been filled on the website <a href=":website_url">:website_url</a>!',
-            'here-are-the-infos' => 'Here are the informations:',
-            'bottom-message'     => 'Sincerely,<br>BB8',
+            'contact-message'    => 'Kontakta Mesaĝo',
+            'contact-heading'    => 'Saluton Majstro,',
+            'contact-info-text'  => 'Kontaktoformularo estas sendita de la retejo <a href=":website_url">:website_url</a>!',
+            'here-are-the-infos' => 'Jen la informoj:',
+            'bottom-message'     => 'Sincere,<br>Andreo',
         ],
         'password' => [
-            'password-reset'    => 'Password Reset',
-            'password-heading'  => 'Hello sir,',
-            'password-content1' => "You asked for a password reset, and because I am kind, I'll give you one new!",
-            'password-content2' => 'Here is the link to create a new password: :reset_url',
-            'bottom-message'    => 'Sincerely,<br>BB8',
+            'password-reset'    => 'Restarigi Pasvorton',
+            'password-heading'  => 'Saluton,',
+            'password-content1' => "Vi petis pasvortigon, kaj ĉar mi estas afabla, mi donos al vi la novan!",
+            'password-content2' => 'Jen la ligilo por krei novan pasvorton: :reset_url',
+            'bottom-message'    => 'Sincere,<br>Andreo',
         ],
     ],
 
     'errors' => [
-        '404'        => 'Four Oh Four!',
-        '503'        => 'Be right back.',
+        '404'        => 'Kvar Nulo Kvar!',
+        '503'        => 'Revenonta baldaŭ.',
         'formErrors' => [
-            'heading'      => '<strong>Whoops!</strong> Houston, we have a problem!',
-            'fix-mistakes' => 'Please fix those mistakes:',
+            'heading'      => '<strong>Hops!</strong> Houston, ni havas problemon!',
+            'fix-mistakes' => 'Bonvolu ripari tiujn ĉi erarojn:',
         ],
     ],
 
@@ -65,239 +65,239 @@ return [
 
     'frontend' => [
         'contact' => [
-            'page-title'       => 'Get in Touch!',
-            'breadcrumb-title' => 'Contact',
-            'form-heading'     => "Let's get in touch!",
-            'form-text'        => "Feel free to use this form and get in touch with me. I'll try to answer as fast as I can.",
-            'confirmMailSent'  => "<strong>Contact Form received!</strong><p>Your request has been successfully processed. I'll try to answer you as soon as possible!<br>Thank you ;)</p>",
+            'page-title'       => 'Kontaktu!',
+            'breadcrumb-title' => 'Kontaktoj',
+            'form-heading'     => "Ni kontaktu!",
+            'form-text'        => "Bonvolu uzi ĉi tiun formularon por kontakti min. Mi provos respondi kiel eble plej rapide.",
+            'confirmMailSent'  => "<strong>Kontaktformularo ricevita!</strong><p>Via peto estas sukcese procesita. Mi provos respondi al vi kiel eble plej frue!<br>Dankon ;)</p>",
         ],
         'home'    => [
             'carousel'      => [
                 'slides' => '3',
                 1 => [
-                    'title'   => 'Passionate & Caring',
-                    'content' => "I must say, I am in love with my job! Indeed, I always wanted to work on computers and started to learn how to code back in mid-1980es, and moved to Web development when it was born. Since then I always tried to absorb and adapt to the new technologies and new techniques all the time...",
-                    'link'    => 'Please check my Resume for more',
+                    'title'   => 'Pasia kaj Zorgema',
+                    'content' => "Mi devas diri, ke mi tute amas mian laboron! Efektive, mi ĉiam volis labori pri komputiloj kaj komencis lerni kiel kodigi jam meze de la 1980-aj jaroj, kaj moviĝis al Reta evoluo kiam ĝi naskiĝis. Ekde tiam mi ĉiam provis absorbi kaj adaptiĝi al la novaj teknologioj kaj novaj teknikoj la tutan tempon...",
+                    'link'    => 'Bonvolu kontroli mian resumon por pli',
                     'background' => 'bg1.png',
                 ],
                 2 => [
-                    'title'   => 'Laravel is the way to go',
-                    'content' => "Laravel came to the scene and changed everything!<br>All of a sudden, we don't have to think in terms of 'how to do this' or 'how to do that' anymore. Instead, we just concentrate on WHAT we are actually constructing, and coding just slips in naturally and intuitively. That's how powerful this flexible PHP Framework is.",
-                    'link'    => 'Check out my Portfolio to find out more',
+                    'title'   => 'Laravel estas la vojo por preni',
+                    'content' => "Laravel venis al la sceno kaj ŝanĝis ĉion!<br>Subite, ni ne plu devas pensi pri 'kiel fari tion' aŭ 'kiel fari ion alian'. Anstataŭe, ni nur koncentriĝas pri KION ni efektive konstruas, kaj kodigo simple eniras nature kaj intuicie. Tiel potenca estas ĉi tiu fleksebla PHP Framework.",
+                    'link'    => 'Vidu mian Portfolion por ekscii pli',
                     'background' => 'bg2.jpg',
                 ],
                 3 => [
-                    'title'   => 'Developing & Mentoring',
-                    'content' => "Modern programmers do not work alone. There are always fellow programmers involved. Keeping one's knowledge to thyself is harmful to both project and individual. Sharing knowledge and experience is not only natural, but crucial as well.",
-                    'link'    => 'You could check my Web development community on the Telegram',
+                    'title'   => 'Disvolvado kaj Mentorado',
+                    'content' => "Modernaj programistoj ne laboras sole. Ĉiam estas kunprogramistoj implikitaj. Konservi onies scion al vi mem estas malutila al projekto kaj individuo. Kunhavigi scion kaj sperton estas ne nur natura, sed ankaŭ decida.",
+                    'link'    => 'Vi povus kontroli mian TTT-disvolvan komunumon ĉe Telegramo',
                     'background' => 'bg3.jpg',
                 ],
             ],
             'three-reasons' => [
                 1 => [
-                    'title'   => 'Code is my life',
-                    'content' => "I just love it. Coding is all I want to do, and I can do it straight all day long. It's like creating new Worlds and discovering Universes. You can never get tired of it!<br />Envisioning, planning, constructing and developing Web sites,- what can be more interesting or engaging?<br />I am happy doing it.",
+                    'title'   => 'Kodo estas mia vivo',
+                    'content' => "Mi simple amas ĝin. Kodigo estas ĉio, kion mi volas fari, kaj mi povas fari ĝin rekte la tutan tagon. Estas kiel krei novajn Mondojn kaj malkovri Universojn. Vi neniam povas laciĝi pri ĝi!<br />Vidi, plani, konstrui kaj disvolvi TTT-ejojn,- kio povas esti pli interesa aŭ alloga?<br />Mi ĝojas fari ĝin.",
                 ],
                 2 => [
-                    'title'   => 'Never stop learning',
-                    'content' => "Technologies develop at a steady and very fast pace. Something new comes up every day. Compliance, ISO-9000, Scrum, Agile, Git, Tailwind, Frontend, Backend, API, you name it...<br />It's so interesting and engaging! Studying something new has long become my daily routine.",
+                    'title'   => 'Neniam ĉesu lerni',
+                    'content' => "Teknologioj evoluas je konstanta kaj tre rapida ritmo. Ĉiutage aperas io nova. Konformeco, ISO-9000, Scrum, Agile, Git, Tailwind, Frontend, Backend, API, vi nomu ĝin...<br />Ĝi estas tiel interesa kaj alloga! Studi ion novan fariĝis delonge mia ĉiutaga rutino.",
                 ],
                 3 => [
-                    'title'   => 'Photography is my second name',
-                    'content' => "I've always been shooting. My early childhood pictures often depict me playing around with cameras and - in those days - film. Then, i've been a school photographer at school. Then it went on and on. And I still shoot, now on a pro level.<br />Please have a look at my galleries, it would be great if you will find something for yourself there.",
+                    'title'   => 'Fotografio estas mia kromnomo',
+                    'content' => "Mi ĉiam pafis. Miaj fruaj infanaj bildoj ofte prezentas min ludante per fotiloj kaj - en tiuj tagoj - filmo. Tiam mi estis lerneja fotisto en la lernejo. Tiam ĝi daŭris kaj plu. Kaj mi ankoraŭ pafas, nun sur profesia nivelo.<br />Bonvolu rigardi miajn galeriojn, estus bonege se vi trovos ion por vi tie.",
                 ],
             ],
             'about-me'      => [
-                'title' => 'About Me',
-                'link'  => 'Need to know more? Check out My Resume',
+                'title' => 'Pri Mi',
+                'link'  => 'Ĉu vi bezonas scii pli? Rigardu Mian Resumon',
                 1       => [
-                    'title'   => 'Raise the PHP Flag!',
-                    'content' => "<p>Since I'm a child (well, actually I started nerd stuff when I was 14...) I develop applications in PHP.</p>
-                                  <p>That being said, I could see the evolution of this language since PHP4. At this time (and because I was a novice), nothing was really structured. You didn't have the Framework echosystem and I have to admit that it was really painful...</p>
-                                  <p>Nowadays, with tools like Laravel, Carbon, PHPUnit and others, it's becoming something big and you no longer hear \"No big website runs with PHP. It's a fact. Period. (insert Trollface here)\"</p>",
+                    'title'   => 'Levu la PHP-Flagon!',
+                    'content' => "<p>De kiam mi estas infano (nu, efektive mi komencis nerdajn aferojn kiam mi estis 14-jara...) mi disvolvas aplikaĵojn en PHP.</p>
+ <p>Dirite, mi povis vidi la evoluon de ĉi tiu lingvo ekde PHP4. En ĉi tiu tempo (kaj ĉar mi estis novulo), nenio estis vere strukturita. Vi ne havis la Framework-eĥsistemon kaj mi devas konfesi, ke ĝi estis vere dolora...</p>
+ <p>Nuntempe, kun iloj kiel Laravel, Carbon, PHPUnit kaj aliaj, ĝi fariĝas io granda kaj vi ne plu aŭdas \"Neniu granda retejo funkcias kun PHP. Estas fakto. Punkto. (enmetu Trollface ĉi tie)\"</p>",
                 ],
                 2       => [
-                    'title'   => 'Brace yourself. Laravel is coming!',
-                    'content' => '<p>Recently (well, for two years now), I discovered the Laravel Framework and I felt in love! Indeed, this Framework based on Symfony and other useful libraries is meant to be "easy" and allows you to develop and deploy projects really quickly!</p>
-                                  <p>If you check my <a href=":blog_url">Blog</a>, you\'ll be able to find tips, ideas and other stuff linked to Laravel... Don\'t hesitate to check them and leave me some feedback ;)</p>',
+                    'title'   => 'Stigu vin. Laravel venas!',
+                    'content' => '<p>Lastatempe (nu, jam de du jaroj), mi malkovris la Laravel-Kadron kaj mi enamiĝis! Efektive, ĉi tiu Kadro bazita sur Symfony kaj aliaj utilaj bibliotekoj estas celita esti "facila" kaj permesas vin disvolvi kaj disfaldi projektojn vere rapide!</p>
+ <p>Se vi kontrolas mian <a href=":blog_url">Blogon</a>, vi povos trovi konsiletojn, ideojn kaj aliajn aferojn ligitajn al Laravel... Ne hezitu kontroli ilin kaj lasi al mi kelkajn rimarkojn ;)</p>',
                 ],
                 3       => [
-                    'title'   => 'Code is not everything... Get a life bro!',
-                    'content' => "<p>Well, now come the cool part, at least I hope it is. As you can imagine, I'm not a robot and I don't have only nerdy activities in my life!</p>
-                                  <p>Indeed, I love hanging out with friends (well, I live in Paris, the best city in the world! Isn't it? :)), play Rugby (because I feel like a Beast there...), I watch a lot of TV shows and other cool stuff!</p>",
+                    'title'   => 'Kodo ne estas ĉio... Akiru vivon frato!',
+                    'content' => "<p>Nu, nun venas la bonega parto, almenaŭ mi esperas, ke ĝi estas. Kiel vi povas imagi, mi ne estas roboto kaj mi ne havas nur nerdajn agadojn en mia vivo!</p>
+ <p>Efektive, mi amas pendi kun amikoj (nu, mi loĝas en Parizo, la plej bona urbo en la mondo! Ĉu ne? :)), ludas Rugbeon (ĉar mi sentas min kiel Besto tie...), mi spektas multajn televidajn programojn kaj aliajn bonegajn aferojn!</p>",
                 ],
             ],
             'recent-work'   => [
-                'title'         => 'Recent Work',
-                'no-work-found' => 'There are no current Works in the database.',
+                'title'         => 'Plej novaj kreaĵoj',
+                'no-work-found' => 'Ne estas aktualaj kreaĵoj en la datumbazo.',
             ],
             'customers'     => [
-                'title'             => 'Customers',
-                'no-customer-found' => 'There are no Customer to display.',
+                'title'             => 'Klientoj',
+                'no-customer-found' => 'Ne estas Kliento por montri.',
             ],
         ],
         'resume'  => [
-            'page-title'       => 'My Resume',
-            'breadcrumb-title' => 'Resume',
+            'page-title'       => 'Mia Laborresumo',
+            'breadcrumb-title' => 'Resumo',
             'work-experience'  => [
-                'title' => 'Work Experience',
+                'title' => 'Labora Sperto',
                 1       => [
-                    'job-title' => 'Latest position @ <strong>Company, Inc.</strong>',
-                    'dates'     => 'Start day - Today',
+                    'job-title' => 'Plej nova pozicio @ <strong>Firmao</strong>',
+                    'dates'     => 'Komenca tago - Ĝis nun',
                     'details'   => '<ul class="list-arrow-color no-margin">
-                                        <li>Developed Web Applications on Laravel.</li>
-                                        <li>Created and maintained Open Source packages.</li>
+                                        <li>Disvolvitaj Retaj Aplikoj sur Laravel.</li>
+                                        <li>Kreis kaj prizorgis Malfermfontajn pakaĵojn.</li>
                                     </ul>',
                 ],
                 2       => [
-                    'job-title' => 'Previous position 1 @ <strong>Company</strong>',
-                    'dates'     => 'Start date - End date',
+                    'job-title' => 'Antaŭa pozicio 1 @ <strong>Firmao</strong>',
+                    'dates'     => 'Komenca dato - Fina dato',
                     'details'   => '<ul class="list-arrow-color no-margin">
-                                        <li>Developed Web Applications based on Laravel backend.</li>
-                                        <li>Passed the following certifications :
+                                        <li>Disvolvitaj Retaj Aplikoj surbazde Laravel-malfronto.</li>
+                                        <li>Pasis la sekvajn atestojn:
                                             <ul class="list-arrow-color no-margin">
-                                                <li>First certification (AKA Name)</li>
-                                                <li>Second certification</li>
-                                                <li>Third certification</li>
+                                                <li>Unua atestado (Alinome XXX)</li>
+                                                <li>Dua atestado</li>
+                                                <li>Tria atestado</li>
                                             </ul>
                                         </li>
-                                        <li>Deployed projects for customers.</li>
-                                        <li>Search & Development based on solutions related to the position.</li>
+                                        <li>Deplojitaj projektoj por klientoj.</li>
+                                        <li>Serĉo kaj Disvolviĝo bazita sur solvoj rilataj al la pozicio.</li>
                                     </ul>',
                 ],
                 3       => [
-                    'job-title' => 'Previous position 2 @ <strong>Company</strong>',
-                    'dates'     => 'Start date - End date',
+                    'job-title' => 'Antaŭa pozicio 2 @ <strong>Firmao</strong>',
+                    'dates'     => 'Komenca dato - Fina dato',
                     'details'   => '<ul class="list-arrow-color no-margin">
-                                        <li>Developed the company\'s Website backend.</li>
-                                        <li>Developed the company\'s Website frontend.</li>
-                                        <li>Developed the company\'s Mobile App.</li>
+                                        <li>Disvolvis la malfronton de la kompania retejo.</li>
+                                        <li>Disvolvis la fronton de la kompania retejo.</li>
+                                        <li>Disvolvis la Poŝtelefonan Apon de la firmao.</li>
                                     </ul>',
                 ],
                 4       => [
-                    'job-title' => 'Previous position 3 @ <strong>Company</strong>',
+                    'job-title' => 'Antaŭa pozicio 3 @ <strong>Firmao</strong>',
                     'dates'     => 'Start date - End date',
                     'details'   => '<ul class="list-arrow-color no-margin">
-                                        <li>Website Backend development.</li>
-                                        <li>Website Frontend development.</li>
-                                        <li>Website API development.</li>
-                                        <li>Software automated testing.</li>
+                                        <li>Reteja malfronto disvolviĝo.</li>
+                                        <li>Reteja fronto disvolviĝo.</li>
+                                        <li>Reteja API disvolviĝo.</li>
+                                        <li>Programaro aŭtomatigita testado.</li>
                                     </ul>',
                 ],
                 5       => [
-                    'job-title' => 'Previous position 4 @ <strong>Company</strong>',
-                    'dates'     => 'Start date - End date',
+                    'job-title' => 'Antaŭa pozicio 4 @ <strong>Firmao</strong>',
+                    'dates'     => 'Komenca dato - Fina dato',
                     'details'   => '<ul class="list-arrow-color no-margin">
-                                        <li>Developed Websites of the Company.</li>
-                                        <li>Created some tools and technics for SEO and SEM.</li>
+                                        <li>Disvolvitaj Retejoj de la Kompanio.</li>
+                                        <li>Kreis kelkajn ilojn kaj teknikojn por SEO kaj SEM.</li>
                                     </ul>',
                 ],
             ],
             'education'        => [
-                'title' => 'Education',
+                'title' => 'Edukado',
                 1       => [
-                    'title' => 'Master Web & e-Business @ <strong>University</strong>',
-                    'dates' => 'Start date - End date',
+                    'title' => 'Majstra Retejoj kaj E-Komerco @ <strong>Universitato</strong>',
+                    'dates' => 'Komenca dato - Fina dato',
                 ],
                 2       => [
-                    'title' => 'Bachelor Web & Mobile @ <strong>University</strong>',
-                    'dates' => 'Start date - End date',
+                    'title' => 'Fraŭlo Retejoj kaj Poŝtelefono @ <strong>Universitato</strong>',
+                    'dates' => 'Komenca dato - Fina dato',
                 ],
                 3       => [
-                    'title' => 'BTS Sys Admin @ <strong>University</strong>',
-                    'dates' => 'Start date - End date',
+                    'title' => 'BTS Sys Administranto @ <strong>Universitato</strong>',
+                    'dates' => 'Komenca dato - Fina dato',
                 ],
             ],
             'skills'           => [
-                'title' => 'Technical Skills',
+                'title' => 'Teknikaj Kapabloj',
                 1       => [
                     'label' => 'PHP',
-                    'level' => 'Expert',
+                    'level' => 'Fakulo',
                 ],
                 2       => [
                     'label' => 'Laravel',
-                    'level' => 'Expert',
+                    'level' => 'Fakulo',
                 ],
                 3       => [
-                    'label' => 'Symfony 2',
-                    'level' => 'Average',
+                    'label' => 'Symfony 3',
+                    'level' => 'Meza',
                 ],
                 4       => [
-                    'label' => 'Mobile (iOS &amp; Android)',
-                    'level' => 'Initial',
+                    'label' => 'Poŝtelefonoj (iOS &amp; Android)',
+                    'level' => 'Komenca',
                 ],
                 5       => [
-                    'label' => 'HTML &amp; CSS (Bootstrap, Tailwind :: Flexboxes & Grids)',
-                    'level' => 'Expert',
+                    'label' => 'HTML kaj; CSS (Bootstrap, Tailwind :: Flex Boxes kaj Kradoj)',
+                    'level' => 'Fakulo',
                 ],
                 6       => [
-                    'label' => 'Versioning (Git) and Agile',
-                    'level' => "Used daily",
+                    'label' => 'Versiado (Git) kaj Agile',
+                    'level' => "Uzata ĉiutage",
                 ],
                 7       => [
-                    'label' => 'Frontend Design',
-                    'level' => 'Technical',
+                    'label' => 'Fronta Dezajno',
+                    'level' => 'Teknika',
                 ],
             ],
         ],
         'blog'    => [
             'index' => [
-                'page-title'       => 'Blog',
-                'breadcrumb-title' => 'Blog',
-                'no-post-found'    => 'No Posts yet.',
+                'page-title'       => 'Blogo',
+                'breadcrumb-title' => 'Blogo',
+                'no-post-found'    => 'Afiŝoj ankoraǔ mankas',
             ],
             'show'  => [
-                'page-title'       => 'Blog',
-                'breadcrumb-title' => 'Blog',
+                'page-title'       => 'Blogo',
+                'breadcrumb-title' => 'Blogo',
             ],
             'tag'   => [
-                'page-title'       => 'Blog - All Posts with tag ":tag_name"',
-                'breadcrumb-title' => 'Blog',
-                'no-post-found'    => 'No Posts found matching this tag.',
+                'page-title'       => 'Blogo - Ĉiuj afiŝoj kun etikedo ":tag_name"',
+                'breadcrumb-title' => 'Blogo',
+                'no-post-found'    => 'Afiŝoj kun la petita etikedo mankas.',
             ],
         ],
         'works'   => [
             'index' => [
-                'page-title'       => 'My Works',
-                'breadcrumb-title' => 'Works',
-                'no-work-found'    => 'No Works here yet...',
+                'page-title'       => 'Miaj kreaĵoj',
+                'breadcrumb-title' => 'Kreaĵoj',
+                'no-work-found'    => 'Kreaĵoj ankoraŭ mankas...',
             ],
             'show'  => [
-                'page-title'       => 'My Works',
-                'breadcrumb-title' => 'Works',
-                'recent-work'      => 'Recent Work',
+                'page-title'       => 'Miaj Kreaĵoj',
+                'breadcrumb-title' => 'Kreaĵoj',
+                'recent-work'      => 'Plej novaj kreaĵoj',
             ],
             'tag'   => [
-                'page-title'       => 'My Works - All works with tag ":tag_name"',
-                'breadcrumb-title' => 'Works',
-                'no-work-found'    => 'No Works here yet...',
+                'page-title'       => 'Miaj kreaĵoj - Ĉiuj kreaĵoj kun la etikedo ":tag_name"',
+                'breadcrumb-title' => 'Kreaĵoj',
+                'no-work-found'    => 'Kreaĵoj ankoraŭ mankas...',
             ],
         ],
     ],
     'blocks'   => [
         'blog'   => [
             'sidebar'    => [
-                'title' => 'Coding Alchemy',
-                'text'  => "In this blog, I will share my personal views on coding kitchen and share some cool ideas, tools and techniques I learned. It might happen, content won't repeat itself between languages, so please use some translation tools build into modern browsers if you find a thing or two that might interest you.<br />P.S. I will not forget photography too :)",
+                'title' => 'Kodiga Alĥemio',
+                'text'  => "En ĉi tiu blogo, mi dividos miajn personajn opiniojn pri kodigo de kuirejo kaj dividos kelkajn bonegajn ideojn, ilojn kaj teknikojn, kiujn mi lernis. Povas okazi, enhavo ne ripetiĝos inter lingvoj, do bonvolu uzi kelkajn tradukilojn enkonstruitajn en modernajn retumiloj se vi trovas ion aŭ du, kiuj povus interesi vin.<br />P.S. Mi ankaŭ ne forgesos fotadon :)",
             ],
             'last-posts' => [
-                'title'         => 'Latest Posts',
-                'no-post-found' => 'No Posts yet.',
+                'title'         => 'Plej novaj Afiŝoj',
+                'no-post-found' => 'Afiŝoj ankoraŭ mankas',
             ],
             'tags'       => [
-                'title' => 'Tags',
+                'title' => 'Etikedoj',
             ],
         ],
         'common' => [
             'about'      => [
-                'title' => 'About Me',
-                'text'  => "My name is Andrew, I am a software engineer for the last 3 decades specializing in Web Development: full-stack, backend and api. My main tools today are Nginx, Laravel, MySQL/PostgreSQL, Tailwind, Livewire, Alpinejs, Swagger, Postman, Git, PhpStorm.",
-                'link'  => 'Please click here for more info',
+                'title' => 'Pri Mi',
+                'text'  => "Mi nomiĝas Andreo, mi estas programaro-inĝeniero dum la lastaj 3 jardekoj specialiĝanta pri Reta Disvolviĝo: plena stako, backend kaj api. Miaj ĉefaj iloj hodiaŭ estas Nginx, Laravel, MySQL/PostgreSQL, Tailwind, Livewire, Alpinejs, Swagger, Postman, Git, PhpStorm.",
+                'link'  => 'Bonvolu klaki ĉi tie por pliaj informoj',
             ],
             'contact'    => [
-                'title' => 'Get in touch!',
-                'country' => 'Russia',
-                'city' => 'Moscow',
+                'title' => 'Kontaktu!',
+                'country' => 'Rusip',
+                'city' => 'Moskvo',
                 'AndrewGotham' => 'AndrewGotham',
                 'phone' => '+7 (775) 556-92-44',
                 'whatsapp' => 'WhatsApp',
@@ -305,13 +305,13 @@ return [
                 'github' => 'Github',
 
             ],
-            'copyright'  => 'Copyright &copy; :this_year <strong>Sir. Andrew Gotham</strong>. All rights reserved.',
+            'copyright'  => 'Kopirajto &copy; :this_year <strong>Sinjoro Andreo Gotema</strong>. Ĉiuj rajtoj rezervitaj.',
             'last-posts' => [
-                'title'         => 'From the Blog',
-                'no-post-found' => 'No Posts yet.',
+                'title'         => 'De la Blogo',
+                'no-post-found' => 'Afiŝoj ankoraŭ mankas',
             ],
             'social'     => [
-                'title' => 'Social Networks',
+                'title' => 'Sociaj Retoj',
             ],
         ],
     ],

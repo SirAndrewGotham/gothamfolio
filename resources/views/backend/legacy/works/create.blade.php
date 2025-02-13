@@ -59,8 +59,8 @@
     <script type="text/javascript">
         $(document).ready(function() {
 
-            $('.summernote_dessription').summernote();
-            $('.summernote_catalog').summernote();
+            $('.summernote_excerpt').summernote();
+            $('.summernote_content').summernote();
 
         });
     </script>
