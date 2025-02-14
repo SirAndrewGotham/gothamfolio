@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreWorkRequest;
 use App\Http\Requests\UpdateWorkRequest;
+use App\Models\Language;
 use App\Models\Tag;
 use App\Models\Work;
 use Illuminate\Http\Request;
@@ -29,7 +30,9 @@ class WorkController extends Controller
      */
     public function create()
     {
-        return view('backend.legacy.works.create');
+        $languages = auth()->user()->languages;
+
+        return view('backend.legacy.works.create', compact('languages'));
     }
 
     /**
@@ -37,9 +40,11 @@ class WorkController extends Controller
      */
     public function store(StoreWorkRequest $request)
     {
+//        $work = Work::create($request->validated());
         $this->saveWork($request->all());
 
         return redirect()->route('admin.works.index');
+//        return redirect()->back()->with('success', 'Your Work created successfully!');
     }
 
     /**

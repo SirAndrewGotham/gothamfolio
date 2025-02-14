@@ -33,7 +33,7 @@
                         </div>
                     @endif
                     <form role="form" method="POST" action="{{ route('contact.store') }}">
-                        {!! csrf_field() !!}
+                        @csrf
                         <div class="form-group">
                             <input type="text" name="contactName" value="{{ old('contactName') }}" placeholder="{{ trans('app.name') }}" class="form-control">
                         </div>

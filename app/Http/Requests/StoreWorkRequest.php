@@ -23,8 +23,10 @@ class StoreWorkRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'slug' => 'required',
+//            'slug' => 'required',
             'content' => 'required',
+            'language' => 'required|exists:languages,code',
+//            'language' => 'required|in:Work',
         ];
     }
 }

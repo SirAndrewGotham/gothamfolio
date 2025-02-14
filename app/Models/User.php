@@ -41,6 +41,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+//    public function getLanguages()
+//    {
+//    }
+
     /**
      * Get the attributes that should be cast.
      *

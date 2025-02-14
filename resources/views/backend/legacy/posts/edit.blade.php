@@ -18,8 +18,8 @@
 
 @section('content')
     <form role="form" action="{{ route('admin.posts.update', $post->slug) }}" method="POST" enctype="multipart/form-data">
-        {!! csrf_field() !!}
-        <input type="hidden" name="_method" value="PUT">
+        @csrf
+        @method('PUT')
 
         @include('backend.legacy.layouts._formErrors')
 

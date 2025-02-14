@@ -18,7 +18,7 @@
 
 @section('content')
     <form role="form" action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
-        {!! csrf_field() !!}
+        @csrf
 
         @include('backend.legacy.layouts._formErrors')
 

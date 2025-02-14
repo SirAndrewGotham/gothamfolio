@@ -19,10 +19,22 @@
 
 @section('content')
     <form role="form" action="{{ route('admin.works.store') }}" method="POST" enctype="multipart/form-data">
-        {!! csrf_field() !!}
+        @csrf
 
         @include('backend.legacy.layouts._formErrors')
 
+        <div class="form-group">
+            <label for="Languages">{{ __('Language') }}</label>
+            <select class="form-control" id="language" name="language">
+                {{-- in case a prompt needed rather then just language --}}
+                {{-- <option value="">{{ __('Choose your language') }}</option> --}}
+                @foreach($languages as $language)
+                    <option value="{{ $language->code }}" {{ app()->getLocale() == $language->code ? 'selected' : '' }}>
+                        {{ $language->name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
         <div class="form-group">
             <label for="title">{{ __('Title') }}</label>
             <input type="text" name="title" id="title" value="{{ old('title') }}" class="form-control">
