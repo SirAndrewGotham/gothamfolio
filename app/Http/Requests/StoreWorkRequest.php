@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Language;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class StoreWorkRequest extends FormRequest
 {
@@ -22,11 +24,26 @@ class StoreWorkRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required',
-//            'slug' => 'required',
+            'user_id' => 'required|exists:users,id',
+            'language_id' => 'required|integer|exists:languages,id',
+            'title' => 'required|string',
+            'excerpt' => 'nullable|string',
             'content' => 'required',
-            'language' => 'required|exists:languages,code',
-//            'language' => 'required|in:Work',
+            'order' => 'nullable',
+            'published_at' => 'nullable|date'
+//            'published_at' => 'nullable|date|date_format:Y-m-d H:i:s'
         ];
+    }
+
+    protected function prepareForValidation() {
+        if($this->input('excerpt') == null )
+        {
+            $this->merge(['excerpt' => Str::limit($this->input('content'), 50, preserveWords: true)]);
+        }
+        $this->merge([
+            'user_id' => $this->user_id ?? auth()->id(),
+            'language_id' => (int)Language::where('code', $this->language)->first()->id,
+            'order' => $this->order ?? 0,
+        ]);
     }
 }

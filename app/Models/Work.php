@@ -29,11 +29,13 @@ class Work extends Model
                 $slug = $originalSlug . '-' . $count++;
             }
             $model->slug = $slug;
-
-            $language = Language::where('code', app()->getLocale())->first();
-            $model->language_id = $language->id;
         });
     }
+
+    protected $casts = [
+        'excerpt' => 'string',
+        'order' => 'integer',
+    ];
 
     public function getRouteKeyName(): string
     {

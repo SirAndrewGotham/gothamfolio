@@ -1,7 +1,6 @@
 @extends('backend.legacy.layouts.app')
 
 @section('styles')
-{{--    <link rel="stylesheet" href="{{ asset('assets/backend/legacy/css/bootstrap441/bootstrap.min.css') }}">--}}
     <link href="{{ asset('assets/backend/legacy/css/summernote0818/summernote-bs4.min.css') }}" rel="stylesheet">
 @endsection
 
@@ -40,10 +39,6 @@
             <input type="text" name="title" id="title" value="{{ old('title') }}" class="form-control">
         </div>
         <div class="form-group">
-            <label for="slug">{{ __('Slug') }}</label>
-            <input type="text" name="slug" id="slug" value="{{ old('slug') }}" class="form-control">
-        </div>
-        <div class="form-group">
             <label for="excerpt">{{ __('Excerpt') }}</label>
             <textarea name="excerpt" id="excerpt" cols="30" rows="10" class="form-control summernote">{{ old('excerpt') }}</textarea>
         </div>
@@ -63,6 +58,17 @@
             <label for="image">{{ __('Image') }}</label>
             <input type="file" id="image" name="image">
         </div>
+
+        <div class="form-group">
+            <label for="published_at">{{ __('Publication date') }}</label>
+            <input type="datetime-local" name="published_at" class="form-control"
+                   value="{{-- date_format(date_create($productInovoice->date), 'd/m/Y')) --}}">
+
+{{--            <input type="text" name="tags" id="tags" value="{{ old('tags') }}" class="form-control">--}}
+        </div>
+
+{{--        <input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="" im-insert="true" placeholder="dd/mm/yyyy">--}}
+
         <button type="submit" class="btn btn-rw btn-primary">{{ __('Submit') }}</button>
     </form>
 @endsection

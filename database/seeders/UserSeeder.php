@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
                 'name' => 'Admin',
                 'email' => 'admin@admin.com',
             ]);
+        $user->languages()->sync([37,42,215]);
 
         User::factory()
             ->count(15)
