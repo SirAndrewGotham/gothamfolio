@@ -41,10 +41,8 @@ class BlogController
     /**
      * Display the specified resource.
      */
-    public function show(string $post)
+    public function show(PostTranslation $post)
     {
-        $post = PostTranslation::where('slug', $post)->first();
-
         $tags = Tag::all();
 
         return view('frontend.legacy.blogs.show', compact('post', 'tags'));
