@@ -26,7 +26,7 @@
                             </ul>
                             <hr align="left" class="mt15 mb10">
                             <h2>{{ $post->title }}</h2>
-                            {!! $post->content !!}
+                            {!! $post->body !!}
                         </div>
                     </div>
                 </div>

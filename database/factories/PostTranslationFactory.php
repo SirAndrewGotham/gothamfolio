@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PostTranslation>
  */
-class PostFactory extends Factory
+class PostTranslationFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -28,10 +28,10 @@ class PostFactory extends Factory
             'user_id' => $this->faker->randomElement($users),
             'title'     => $title,
             'slug'      => Str::slug($title),
-//            'excerpt'   => '<p>'.$this->faker->text(200).'</p>',
-//            'content'   => '<p>'.$this->faker->text(2000).'</p>',
-//            'image'     => $this->faker->imageUrl(750, 346, 'cats', false),
-//            'published_at' => now(),
+            'excerpt'   => '<p>'.$this->faker->text(200).'</p>',
+            'body'   => '<p>'.$this->faker->text(2000).'</p>',
+            'image'     => $this->faker->imageUrl(750, 346, 'cats', false),
+            'published_at' => now(),
         ];
     }
 }

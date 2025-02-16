@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
+use App\Models\PostTranslation;
 use App\Models\Tag;
 
 class BlogController
@@ -40,8 +41,10 @@ class BlogController
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(string $post)
     {
+        $post = PostTranslation::where('slug', $post)->first();
+
         $tags = Tag::all();
 
         return view('frontend.legacy.blogs.show', compact('post', 'tags'));

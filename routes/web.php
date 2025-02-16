@@ -26,6 +26,7 @@ Route::get('blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('blog/{post}', [BlogController::class, 'show'])->name('blog.show');
 Route::get('blog/tag/{tag}', [TagController::class, 'show'])->name('tag.show');
 
+Route::resource('posts', \App\Http\Controllers\Backend\PostTranslationController::class);
 // Works
 Route::get('works', [WorkController::class, 'index'])->name('works.index');
 Route::get('works/{work}', [WorkController::class, 'show'])->name('works.show');

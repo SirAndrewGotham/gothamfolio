@@ -5,22 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
-class Post extends Model
+class PostTranslation extends Model
 {
-    /** @use HasFactory<\Database\Factories\PostFactory> */
+    /** @use HasFactory<\Database\Factories\PostTranslationFactory> */
     use HasFactory, SoftDeletes;
 
-    protected $fillable = [
-        'language_id',
-        'user_id',
-        'title',
-        'slug',
-    ];
+    protected $guarded = ['id'];
 
     protected static function boot(): void
     {
@@ -42,19 +37,9 @@ class Post extends Model
         return 'slug';
     }
 
-    protected function casts(): array
+    public function post(): BelongsToMany
     {
-        return [
-            'created_at' => 'datetime',
-            'updated_at' => 'datetime',
-            'published_at' => 'datetime',
-            'deleted_at' => 'datetime',
-        ];
-    }
-
-    public function translations(): HasMany
-    {
-        return $this->hasMany(PostTranslation::class);
+        return $this->belongsToMany(Post::class);
     }
 
     public function tags(): MorphToMany

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Actions\WorkSaveAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreWorkRequest;
 use App\Http\Requests\UpdateWorkRequest;
@@ -35,9 +36,9 @@ class WorkController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreWorkRequest $request)
+    public function store(StoreWorkRequest $request, WorkSaveAction $workSaveAction)
     {
-        $work = Work::create($request->validated());
+        $workSaveAction->handle($request->validated());
 
         return redirect()->route('admin.works.index')->with('success', 'Your Work created successfully!');
         // next one if save and create another one
@@ -78,62 +79,5 @@ class WorkController extends Controller
         $work->delete();
 
         return redirect()->route('admin.works.index');
-    }
-
-    protected function saveWork(array $data = [], $work = null)
-    {
-        // Image Handling
-        if (isset($data['image'])) {
-            $data['image'] = $this->buildImage($data['slug'], $data['image']);
-        }
-
-        // We create the Work
-        if ($work === null) {
-            $data['user_id'] = Auth::id();
-
-            $work = Work::create($data);
-        } else {
-            $work->find($work);
-//            $work = Work::where('id', $id->id)->update($data, $work);
-            $work->update($data);
-        }
-
-        $this->saveTags($data, $work);
-    }
-
-    /**
-     * Build the image.
-     *
-     * @param string       $slug
-     * @param UploadedFile $image
-     *
-     * @return string
-     */
-    protected function buildImage($slug, $image)
-    {
-        $filePath = 'uploads/works/'.$slug.'.'.$image->getClientOriginalExtension();
-        Image::read($image)->save(public_path('/'.$filePath));
-
-        return $filePath;
-    }
-
-    /**
-     * Save the tags for the Post.
-     *
-     * @param array $data
-     * @param       $post
-     */
-    protected function saveTags(array $data, $work)
-    {
-        if($data['tags'])
-        {
-            $tagIds = collect();
-            $tags = explode(',', $data['tags']);
-            foreach ($tags as $tag) {
-                $tagId = Tag::firstOrCreate(['name' => $tag]);
-                $tagIds->push($tagId);
-            }
-            $work->tags()->sync($tagIds->pluck('id')->toArray());
-        }
     }
 }

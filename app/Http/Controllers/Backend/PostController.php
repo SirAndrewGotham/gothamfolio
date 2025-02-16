@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Actions\PostSaveAction;
+use App\Actions\TagsSaveAction;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
+use App\Models\PostTranslation;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,7 +21,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::with('translations')->latest()->get();
 
         return view('backend.legacy.posts.index', compact('posts'));
     }
@@ -27,17 +31,19 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('backend.legacy.posts.create');
+        $languages = auth()->user()->languages;
+
+        return view('backend.legacy.posts.create', compact('languages'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request, PostSaveAction $postSaveAction)
     {
-        $this->savePost($request->all());
+        $postSaveAction->handle($request->validated());
 
-        return redirect()->route('admin.posts.index');
+        return redirect()->route('admin.posts.index')->with('message', 'Post created successfully');
     }
 
     /**
@@ -74,55 +80,5 @@ class PostController extends Controller
         $post->delete();
 
         return redirect()->route('admin.posts.index');
-    }
-
-    protected function savePost(array $data = [], $id = null)
-    {
-        // Image Handling
-        if (isset($data['image'])) {
-            $data['image'] = $this->buildImage($data['slug'], $data['image']);
-        }
-
-        // We create the Post
-        if ($id === null) {
-            $data['author_id'] = Auth::id();
-
-            $post = $this->posts->create($data);
-        } else {
-            $post = $this->posts->update($data, $id);
-        }
-
-        $this->saveTags($data, $post);
-    }
-
-    /**
-     * Build the image.
-     *
-     * @param string       $slug
-     * @param UploadedFile $image
-     *
-     * @return string
-     */
-    protected function buildImage($slug, $image)
-    {
-        $filePath = '/uploads/posts/'.$slug.'.'.$image->getClientOriginalExtension();
-        Image::read($image)->save(public_path($filePath));
-
-        return $filePath;
-    }
-
-    /**
-     * Save the tags for the Post.
-     *
-     * @param array $data
-     * @param       $post
-     */
-    protected function saveTags(array $data, $post)
-    {
-        $tags = explode(',', $data['tags']);
-        foreach ($tags as $tag) {
-            Tag::firstOrCreate(['name' => $tag, 'slug' => Str::slug($tag)]);
-        }
-        $post->tags()->sync($this->tags->findWhereIn('name', $tags)->pluck('id')->toArray());
     }
 }

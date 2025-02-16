@@ -30,8 +30,10 @@ class StoreWorkRequest extends FormRequest
             'excerpt' => 'nullable|string',
             'content' => 'required',
             'order' => 'nullable',
-            'published_at' => 'nullable|date'
+            'published_at' => 'nullable|date',
 //            'published_at' => 'nullable|date|date_format:Y-m-d H:i:s'
+            'tags' => 'nullable',
+            'image' => 'nullable',
         ];
     }
 
