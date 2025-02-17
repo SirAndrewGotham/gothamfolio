@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreWorkRequest;
 use App\Http\Requests\UpdateWorkRequest;
+use App\Models\Language;
 use App\Models\Tag;
 use App\Models\Work;
+use App\Models\WorkTranslation;
+use Illuminate\Database\Eloquent\Builder;
 
 class WorkController
 {
@@ -15,8 +18,7 @@ class WorkController
      */
     public function index()
     {
-        $works = Work::where('published_at', '<=', now())->orderBy('order', 'asc')->with('tags')->get();
-        $tags = Tag::has('works')->get();
+        list($works, $tags) = $this->prepareIndex();
 
         return view('frontend.legacy.works.index', compact('works', 'tags'));
     }
@@ -69,5 +71,44 @@ class WorkController
     public function destroy(Work $work)
     {
         //
+    }
+
+    /**
+     * @return array
+     */
+    public function prepareIndex(): array
+    {
+        $languages[] = Language::where('code', app()->getLocale())->first()->id;
+        if (auth()->check()) {
+            $languages = Language::where('id', auth()->user()->language_id)->pluck('id');
+            if (auth()->user()->languages) {
+                $languages = auth()->user()->languages->pluck('id');
+            }
+        }
+
+        $works = WorkTranslation::where(function (Builder $query) {
+            $query->where('status', 'Published')
+                ->where(function (Builder $query) {
+                    $query->whereNull('published_at')
+                        ->orWhere('published_at', '<=', now());
+                })
+                ->where(function (Builder $query) {
+                    $query->whereNull('published_through')
+                        ->orWhere('published_at', '>=', now());
+                });
+        })
+            ->whereIn('language_id', $languages)
+            ->latest()
+            ->with(['tags'])
+            ->paginate(10);
+
+        $tags = collect();
+
+        foreach ($works as $work) {
+            foreach ($work->tags as $tag) {
+                $tags[] = $tag;
+            }
+        }
+        return array($works, $tags);
     }
 }
