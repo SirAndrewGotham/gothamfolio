@@ -8,11 +8,13 @@
         <ul class="list-inline posted-info">
 {{--            <li>{{ trans('app.by') }} <a href="#">{{ $post->user->name }}</a></li>--}}
             <li>{{ $post->created_at->diffForHumans() }}</li>
+            @if(!empty($post->tags))
             <li>
                 @foreach($post->tags as $tag)
-                    <a class="label label-info" href="{{ route('blog.tag', $tag->slug) }}">{{ $tag->name }}</a>
+                    <a class="label label-info" href="{{ route('tag.show', $tag->slug) }}">{{ $tag->name }}</a>
                 @endforeach
             </li>
+            @endif
         </ul>
         <hr align="left" class="mt15 mb10">
         @if($links == true)
