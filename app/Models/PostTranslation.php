@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\PostStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -35,6 +36,18 @@ class PostTranslation extends Model
     public function getRouteKeyName(): string
     {
         return 'slug';
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'status' => PostStatus::class,
+            'published_at' => 'datetime',
+            'published_through' => 'datetime',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+            'deleted_at' => 'datetime',
+        ];
     }
 
     public function post(): BelongsToMany

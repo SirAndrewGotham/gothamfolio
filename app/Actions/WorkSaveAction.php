@@ -2,8 +2,10 @@
 
 namespace App\Actions;
 
+use App\Enums\WorkStatus;
 use App\Models\Work;
 use App\Models\Tag;
+use App\Models\WorkTranslation;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Laravel\Facades\Image;
 
@@ -21,7 +23,7 @@ class WorkSaveAction
         }
         $image = $data['image'] ?? null;
 
-        // We create the Work
+        // Create new Work
         if ($work === null) {
             $data['user_id'] = Auth::id();
             $work = Work::create($data);
@@ -29,17 +31,23 @@ class WorkSaveAction
             {
                 $image = $this->buildImage($work->slug, $image);
             }
-//            WorkTranslation::create([
-//                'work_id' => $work->id,
-//                'language_id' => $data['language_id'],
-//                'user_id' => Auth::id(),
-//                'title' => $data['title'],
-//                'excerpt' => $data['excerpt'],
-//                'body' => $data['body'],
-//                'image' => $image ?? null,
-//                'published_at' => $data['published_at'] ?? null,
-//                'views' => 0,
-//            ]);
+            WorkTranslation::create([
+                'work_id' => $work->id,
+                'language_id' => $data['language_id'],
+                'user_id' => Auth::id(),
+                'title' => $data['title'],
+                'excerpt' => $data['excerpt'],
+                'body' => $data['body'],
+                'image' => $image ?? null,
+                'link' => $data['link'] ?? null,
+                'published_at' => $data['published_at'] ?? null,
+                'published_through' => $data['published_through'] ?? null,
+                'order' => $data['order'] ?? 0,
+                'status' => $data['status'] ?? WorkStatus::Published,
+                'status_by' => $data['status_by'] ?? Auth::id(),
+                'status_note' => 'Initial Work creation',
+                'views' => 0,
+            ]);
         } else {
             $work->find($work);
             $work->update($data);
@@ -51,7 +59,7 @@ class WorkSaveAction
         }
     }
 
-    protected function buildImage($slug, $image)
+    protected function buildImage($slug, $image): string
     {
         $filePath = '/uploads/works/'.$slug.'.'.$image->getClientOriginalExtension();
         Image::read($image)->save(public_path($filePath));

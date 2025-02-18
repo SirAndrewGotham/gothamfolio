@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\WorkStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -31,16 +32,31 @@ class WorkTranslation extends Model
         });
     }
 
-    protected $casts = [
+    protected  $casts = [
         'excerpt' => 'string',
         'body' => 'string',
         'order' => 'integer',
+        'status' => WorkStatus::class,
         'published_at' => 'datetime',
         'published_through' => 'datetime',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime',
     ];
+    protected function casts(): array
+    {
+        return [
+            'excerpt' => 'string',
+            'body' => 'string',
+            'order' => 'integer',
+            'status' => WorkStatus::class,
+            'published_at' => 'datetime',
+            'published_through' => 'datetime',
+            'created_at' => 'datetime',
+            'updated_at' => 'datetime',
+            'deleted_at' => 'datetime',
+        ];
+    }
 
     public function getRouteKeyName(): string
     {

@@ -29,8 +29,9 @@ return new class extends Migration
             $table->timestamp('published_through')->nullable();
             $table->unsignedBigInteger('order')->default(0);
             $table->enum('status', ['Published', 'Draft', 'Pending', 'Rejected'])->default('Published');
-            $table->foreignId('status_by')->nullable()->constrained('users')->on('id')->onDelete('SET NULL');
-            $table->text('status_notes')->nullable();
+            $table->foreignId('status_by')->nullable()->constrained('id')->on('users')->onDelete('SET NULL');
+            $table->text('status_note')->nullable();
+            $table->unsignedBigInteger('views')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

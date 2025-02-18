@@ -2,6 +2,7 @@
 
 namespace App\Actions;
 
+use App\Enums\PostStatus;
 use App\Models\Post;
 use App\Models\PostTranslation;
 use App\Models\Tag;
@@ -34,8 +35,13 @@ class PostSaveAction
                 'title' => $data['title'],
                 'excerpt' => $data['excerpt'],
                 'body' => $data['body'],
+                'order' => $data['order'] ?? 0,
                 'image' => $image ?? null,
                 'published_at' => $data['published_at'] ?? null,
+                'published_through' => $data['published_at'] ?? null,
+                'status' => $data['status'] ?? PostStatus::Published,
+                'status_by' => $data['status_by'] ?? Auth::id(),
+                'status_note' => 'Initial post creation',
                 'views' => 0,
             ]);
         } else {

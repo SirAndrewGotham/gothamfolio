@@ -43,8 +43,8 @@
             <textarea name="excerpt" id="excerpt" cols="30" rows="10" class="form-control summernote">{{ old('excerpt') }}</textarea>
         </div>
         <div class="form-group">
-            <label for="content">{{ __('Content') }}</label>
-            <textarea name="content" id="content" cols="30" rows="10" class="form-control summernote">{{ old('content') }}</textarea>
+            <label for="body">{{ __('Content') }}</label>
+            <textarea name="body" id="body" cols="30" rows="10" class="form-control summernote">{{ old('body') }}</textarea>
         </div>
         <div class="form-group">
             <label for="tags">{{ __('Tags') }}</label>
@@ -78,7 +78,7 @@
         $(document).ready(function() {
 
             $('.summernote_excerpt').summernote();
-            $('.summernote_content').summernote();
+            $('.summernote_body').summernote();
 
         });
     </script>

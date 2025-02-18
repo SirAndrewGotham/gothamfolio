@@ -60,8 +60,15 @@
                                     <a href="{{ route('admin.users.show', auth()->id()) }}" class="btn btn-default btn-flat">{{ __('Profile') }}</a>
                                 </div>
                                 <div class="pull-right">
-                                    <a href="{{ route('logout') }}" class="btn btn-default btn-flat">{{ __('Sign
-                                        out') }}</a>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+
+                                        <x-dropdown-link class="btn btn-default btn-flat" :href="route('logout')"
+                                                         onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                            {{ __('Log Out') }}
+                                        </x-dropdown-link>
+                                    </form>
                                 </div>
                             </li>
                         </ul>

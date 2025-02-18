@@ -15,11 +15,8 @@ class Post extends Model
     /** @use HasFactory<\Database\Factories\PostFactory> */
     use HasFactory, SoftDeletes;
 
-    protected $fillable = [
-        'language_id',
-        'user_id',
-        'title',
-        'slug',
+    protected $guarded = [
+        'id',
     ];
 
     protected static function boot(): void

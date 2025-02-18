@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Enums\WorkStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreWorkRequest;
 use App\Http\Requests\UpdateWorkRequest;
@@ -42,8 +43,9 @@ class WorkController
     /**
      * Display the specified resource.
      */
-    public function show(Work $work)
+    public function show(WorkTranslation $work)
     {
+        //TODO: implement language procedures
         $works = Work::latest()->take(5)->get();
 
         return view('frontend.legacy.works.show', compact('work', 'works'));
@@ -87,7 +89,7 @@ class WorkController
         }
 
         $works = WorkTranslation::where(function (Builder $query) {
-            $query->where('status', 'Published')
+            $query->where('status', WorkStatus::Published)
                 ->where(function (Builder $query) {
                     $query->whereNull('published_at')
                         ->orWhere('published_at', '<=', now());

@@ -27,7 +27,7 @@
                             </ul>
                             <hr align="left" class="mt15 mb10">
                             <h2>{{ $work->title }}</h2>
-                            {!! $work->content !!}
+                            {!! $work->body !!}
                         </div>
                     </div>
                 </div>

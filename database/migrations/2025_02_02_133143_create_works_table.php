@@ -16,17 +16,17 @@ return new class extends Migration
     {
         Schema::create('works', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Language::class)->nullable()->constrained()->onDelete('SET NULL');
+//            $table->foreignIdFor(Language::class)->nullable()->constrained()->onDelete('SET NULL');
             $table->foreignIdFor(User::class)->nullable()->constrained()->onDelete('SET NULL');
-            $table->foreignIdFor(Work::class)->nullable()->constrained()->onDelete('SET NULL');
+//            $table->foreignIdFor(Work::class)->nullable()->constrained()->onDelete('SET NULL');
             $table->string('title');
             $table->string('slug')->unique();
-            $table->text('excerpt')->nullable();
-            $table->text('content');
-            $table->string('image')->nullable();
-            $table->string('link')->nullable();
-            $table->timestamp('published_at')->nullable();
-            $table->unsignedBigInteger('order')->default(0);
+//            $table->text('excerpt')->nullable();
+//            $table->text('body');
+//            $table->string('image')->nullable();
+//            $table->string('link')->nullable();
+//            $table->timestamp('published_at')->nullable();
+//            $table->unsignedBigInteger('order')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -15,7 +15,11 @@ class Work extends Model
     /** @use HasFactory<\Database\Factories\WorkFactory> */
     use HasFactory, SoftDeletes;
 
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'user_id',
+        'title',
+        'slug',
+];
 
     protected static function boot(): void
     {

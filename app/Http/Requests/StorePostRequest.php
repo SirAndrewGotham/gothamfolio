@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\PostStatus;
 use App\Models\Language;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
 
 class StorePostRequest extends FormRequest
 {
@@ -24,6 +26,7 @@ class StorePostRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'post_id' => 'nullable|exists:posts,id',
             'user_id' => 'required|exists:users,id',
             'language_id' => 'required|integer|exists:languages,id',
             'title' => 'required|string',
@@ -31,8 +34,12 @@ class StorePostRequest extends FormRequest
             'body' => 'required',
             'order' => 'nullable',
             'published_at' => 'nullable|date',
+            'published_through' => 'nullable|date',
             'tags' => 'nullable',
             'image' => 'nullable',
+            'status' => [Rule::enum(PostStatus::class)],
+            'status_by' => 'nullable|exists:users,id',
+            'status_note' => 'nullable|string',
         ];
     }
 

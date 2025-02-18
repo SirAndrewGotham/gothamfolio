@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row text-center">
                 <p class="lead mb30">{{ $work->title }}</p>
-                <img class="img-thumbnail" src="/{{ $work->image }}" alt="{{ $work->title }}">
+                <img class="img-thumbnail" src="{{ asset($work->image) }}" alt="{{ $work->title }}">
                 <div class="row mt40">
                     @foreach($work->tags as $tag)
                         <span class="label label-info">{{ $tag->name }}</span>
@@ -17,7 +17,7 @@
             </div>
 
             <div class="row mt40">
-                {!! $work->content !!}
+                {!! $work->body !!}
             </div>
         </div>
     </section>

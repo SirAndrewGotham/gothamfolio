@@ -32,7 +32,9 @@
                                     <div class="mask">
                                         <div class="image-hover-content">
                                             <a href="{{ $work->image }}" class="info image-zoom-link">
-                                                <div class="image-icon-holder"><span class="fa fa-search portfolio-icons"></span></div>
+                                                <div class="image-icon-holder">
+                                                    <span class="fa fa-search portfolio-icons"></span>
+                                                </div>
                                             </a>
                                             <a href="{{ route('works.show', $work->slug) }}" class="info">
                                                 <div class="image-icon-holder"><span class="fa fa-link portfolio-icons"></span></div>
