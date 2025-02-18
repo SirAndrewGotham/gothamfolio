@@ -24,7 +24,6 @@
             <a href="https://wa.me/+77755569244" target="_blank">
                 <small class="address">
                     {{ trans('app.blocks.common.contact.whatsapp') }}
-                    ({{ __('please write') }})
                 </small>
             </a>
         </span>

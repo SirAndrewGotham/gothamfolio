@@ -13,6 +13,8 @@ return [
     'btn-submit'       => 'Submit',
     'btn-read-more'    => 'Read more',
     'all'              => 'All',
+    'Andrew Gotham'    => 'Andrew Gotham',
+    'hello'            => 'Hello',
 
     'menu' => [
         'home'    => 'Home',
@@ -69,7 +71,13 @@ return [
             'breadcrumb-title' => 'Contact',
             'form-heading'     => "Let's get in touch!",
             'form-text'        => "Feel free to use this form and get in touch with me. I'll try to answer as fast as I can.",
-            'confirmMailSent'  => "<strong>Contact Form received!</strong><p>Your request has been successfully processed. I'll try to answer you as soon as possible!<br>Thank you ;)</p>",
+            'confirmMailSent'  => "<strong>Your message sent!</strong><p>Your request has been successfully processed. I will try to answer you as soon as possible.<br>Thank you</p>",
+            'feedback-form'    => "Feedback form",
+            'feedback-mailer'  => "Feedback from the " . config('app.name') . " Web site",
+            'we-ve-got-request' => "We have got a request from you via Feedback form on our site.",
+            'your-request'     => "Submitted request",
+            'we-will-answer'   => "I will try to answer to your request as fast as reasonably possible.",
+            'sincerely'        => 'Sincerely',
         ],
         'home'    => [
             'carousel'      => [
@@ -300,7 +308,7 @@ return [
                 'city' => 'Moscow',
                 'AndrewGotham' => 'AndrewGotham',
                 'phone' => '+7 (775) 556-92-44',
-                'whatsapp' => 'WhatsApp',
+                'whatsapp' => 'WhatsApp (in writing please)',
                 'telegram' => 'Telegram',
                 'github' => 'Github',
 

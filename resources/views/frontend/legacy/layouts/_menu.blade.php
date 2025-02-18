@@ -18,9 +18,10 @@
             <a href="{{ route('blog.index') }}">{{ trans('app.menu.blog') }}</a>
         </li>
         @endif
-        @if(config('gothamfolio.frontend.contact') === 'on')
+        @if(config('gothamfolio.frontend.contacts') === 'on')
         <li{{ Request::is('contact') ? ' class=active' : '' }}>
-            <a href="{{ route('contact.show') }}">{{ trans('app.menu.contact') }}</a>
+{{--            <a href="{{ route('contact.show') }}">{{ trans('app.menu.contact') }}</a>--}}
+            <a href="{{ route('feedback.index') }}">{{ trans('app.menu.contact') }}</a>
         </li>
         @endif
         @if(config('gothamfolio.frontend.languages') === 'on')

@@ -3,7 +3,7 @@
 return [
 
     'by'               => 'Автор',
-    'name'             => 'НИК',
+    'name'             => 'Имя',
     'email'            => 'Email',
     'password'         => 'Пароль',
     'password-confirm' => 'Еще раз пароль для проверки',
@@ -13,6 +13,8 @@ return [
     'btn-submit'       => 'Сохранить',
     'btn-read-more'    => 'Еще...',
     'all'              => 'Все',
+    'Andrew Gotham'    => 'Эндрю Готэм',
+    'hello'            => 'Здравствуйте',
 
     'menu' => [
         'home'    => 'Главная',
@@ -65,11 +67,17 @@ return [
 
     'frontend' => [
         'contact' => [
-            'page-title'       => 'Get in Touch!',
-            'breadcrumb-title' => 'Contact',
-            'form-heading'     => "Let's get in touch!",
-            'form-text'        => "Feel free to use this form and get in touch with me. I'll try to answer as fast as I can.",
-            'confirmMailSent'  => "<strong>Contact Form received!</strong><p>Your request has been successfully processed. I'll try to answer you as soon as possible!<br>Thank you ;)</p>",
+            'page-title'       => 'Форма обратной связи',
+            'breadcrumb-title' => 'Контакты',
+            'form-heading'     => "Мне можно написать",
+            'form-text'        => "Через эту форму можно отправить мне сообщение. Я постараюсь ответить как можно скорее",
+            'confirmMailSent'  => "<strong>Ваше сообщение отправлено.</strong><br />Я постараюсь ответить вам как можно скорее.<br />Спасибо!</p>",
+            'feedback-form'    => "Форма обратной связи сайта ".config('app.name'),
+            'feedback-mailer'  => "Сообщение через форму обратной связи сайта ".config('app.name'),
+            'we-ve-got-request' => "Мне поступил запрос через форму обратной связи моего сайта.",
+            'your-request'     => "Содержание отправленного запроса",
+            'we-will-answer'   => "Я постараюсь ответить на ваш запрос как можно скорее.",
+            'sincerely'        => 'С уважением',
         ],
         'home'    => [
             'carousel'      => [
@@ -292,22 +300,22 @@ return [
             'about'      => [
                 'title' => 'Обо мне',
                 'text'  => "Меня зовут Эндрю, последние тридцать лет я - инженер-программист, специализирующийся на Веб-разработках: полного цикла (full-stack), бэк-ендов и апи. Сегодня мои основные инструменты, это Nginx, Laravel, MySQL/PostgreSQL, Tailwind, Livewire, Alpinejs, Swagger, Postman, Git, PhpStorm.",
-                'link'  => 'По ссылке можно найти больше сведений',
+                'link'  => 'По ссылке - больше информации',
             ],
             'contact'    => [
-                'title' => 'Get in touch!',
+                'title' => 'На связи!',
                 'country' => 'Россия',
                 'city' => 'Москва',
                 'AndrewGotham' => 'AndrewGotham',
                 'phone' => '+7 (775) 556-92-44',
-                'whatsapp' => 'WhatsApp',
+                'whatsapp' => 'WhatsApp (для сообщений)',
                 'telegram' => 'Telegram',
                 'github' => 'Github',
 
             ],
             'copyright'  => 'Copyright &copy; :this_year <strong>Sir. Andrew Gotham</strong>. Права охраняются законом.',
             'last-posts' => [
-                'title'         => 'Из опубликованных статей',
+                'title'         => 'Последние статьи',
                 'no-post-found' => 'Статьи еще не написаны.',
             ],
             'social'     => [

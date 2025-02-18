@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Frontend\BlogController;
 use App\Http\Controllers\Frontend\ContactController;
+use App\Http\Controllers\Frontend\FeedbackController;
 use App\Http\Controllers\Frontend\GalleryController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ImageController;
@@ -18,8 +19,8 @@ Route::get('/', HomeController::class)->name('home');
 Route::get('resume', ResumeController::class)->name('resume');
 
 // Contact
-Route::get('contact', [ContactController::class, 'show'])->name('contact.show');
-Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
+//Route::get('contact', [ContactController::class, 'show'])->name('contact.show');
+//Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
 
 // Blog
 Route::get('blog', [BlogController::class, 'index'])->name('blog.index');
@@ -44,3 +45,7 @@ Route::get('/language/{locale}', LanguageController::class)->name('locale');
 
 Route::get('image-upload', [ImageController::class, 'index']);
 Route::post('image-upload', [ImageController::class, 'store'])->name('image.store');
+
+// Feedback
+Route::get('/contact', [FeedbackController::class, 'index'])->name('feedback.index');
+Route::post('/contact', [FeedbackController::class, 'store'])->name('feedback.store');
