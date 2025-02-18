@@ -61,13 +61,11 @@ class WorkSaveAction
 
     protected function buildImage($slug, $image): string
     {
-        $filePath = '/uploads/works/'.$slug.'.'.$image->getClientOriginalExtension();
-        Image::read($image)->save(public_path($filePath));
+        $imageName = $slug.'.'.$image->extension();
 
-        $image = $filePath;
-        Work::where('slug', $slug)->first()->update(['image' => $image]);
+        $image->move(public_path('uploads/works'), $imageName);
 
-        return $filePath;
+        return $imageName;
     }
 
     private function saveTags($data, $work): void

@@ -57,10 +57,11 @@ class PostSaveAction
 
     protected function buildImage($slug, $image)
     {
-        $filePath = '/uploads/posts/'.$slug.'.'.$image->getClientOriginalExtension();
-        Image::read($image)->save(public_path($filePath));
+        $imageName = $slug.'.'.$image->extension();
 
-        return $filePath;
+        $image->move(public_path('uploads/posts'), $imageName);
+
+        return $imageName;
     }
 
     private function saveTags($data, $post): void
