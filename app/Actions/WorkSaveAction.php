@@ -2,6 +2,7 @@
 
 namespace App\Actions;
 
+use AllowDynamicProperties;
 use App\Enums\WorkStatus;
 use App\Models\Work;
 use App\Models\Tag;
@@ -9,10 +10,11 @@ use App\Models\WorkTranslation;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Laravel\Facades\Image;
 
-class WorkSaveAction
+#[AllowDynamicProperties] class WorkSaveAction
 {
-    public function __construct()
+    public function __construct(private readonly BuildImageAction $buildImage, private readonly TagsSaveAction $saveTags)
     {
+        $this->folder = 'uploads/works';
     }
 
     public function handle(array $data = [], $work = null): void
@@ -29,9 +31,9 @@ class WorkSaveAction
             $work = Work::create($data);
             if (isset($image))
             {
-                $image = $this->buildImage($work->slug, $image);
+                $image = $this->buildImage->handle($this->folder, $work->slug, $image);
             }
-            WorkTranslation::create([
+            $workTranslation = WorkTranslation::create([
                 'work_id' => $work->id,
                 'language_id' => $data['language_id'],
                 'user_id' => Auth::id(),
@@ -55,27 +57,7 @@ class WorkSaveAction
 
         if(isset($tags))
         {
-            $this->saveTags($tags, $work);
+            $this->saveTags->handle($tags, $workTranslation);
         }
-    }
-
-    protected function buildImage($slug, $image): string
-    {
-        $imageName = $slug.'.'.$image->extension();
-
-        $image->move(public_path('uploads/works'), $imageName);
-
-        return $imageName;
-    }
-
-    private function saveTags($data, $work): void
-    {
-        $tagIds = collect();
-        $tags = explode(',', $data);
-        foreach ($tags as $tag) {
-            $tagId = Tag::firstOrCreate(['name' => $tag]);
-            $tagIds->push($tagId);
-        }
-        $work->tags()->sync($tagIds->pluck('id')->toArray());
     }
 }

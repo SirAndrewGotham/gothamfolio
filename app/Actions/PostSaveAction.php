@@ -2,6 +2,7 @@
 
 namespace App\Actions;
 
+use AllowDynamicProperties;
 use App\Enums\PostStatus;
 use App\Models\Post;
 use App\Models\PostTranslation;
@@ -9,10 +10,11 @@ use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Laravel\Facades\Image;
 
-class PostSaveAction
+#[AllowDynamicProperties] class PostSaveAction
 {
-    public function __construct()
+    public function __construct(private readonly BuildImageAction $buildImage, private readonly TagsSaveAction $saveTags)
     {
+        $this->folder = 'uploads/posts';
     }
 
     public function handle(array $data = [], $post = null): void
@@ -26,9 +28,9 @@ class PostSaveAction
             $post = Post::create($data);
             if (isset($image))
             {
-                $image = $this->buildImage($post->slug, $image);
+                $image = $this->buildImage->handle($this->folder, $post->slug, $image);
             }
-            PostTranslation::create([
+            $postTranslation = PostTranslation::create([
                 'post_id' => $post->id,
                 'language_id' => $data['language_id'],
                 'user_id' => Auth::id(),
@@ -51,27 +53,7 @@ class PostSaveAction
 
         if(isset($tags))
         {
-            $this->saveTags($tags, $post);
+            $this->saveTags->handle($tags, $postTranslation);
         }
-    }
-
-    protected function buildImage($slug, $image)
-    {
-        $imageName = $slug.'.'.$image->extension();
-
-        $image->move(public_path('uploads/posts'), $imageName);
-
-        return $imageName;
-    }
-
-    private function saveTags($data, $post): void
-    {
-        $tagIds = collect();
-        $tags = explode(',', $data);
-        foreach ($tags as $tag) {
-            $tagId = Tag::firstOrCreate(['name' => $tag]);
-            $tagIds->push($tagId);
-        }
-        $post->tags()->sync($tagIds->pluck('id')->toArray());
     }
 }
