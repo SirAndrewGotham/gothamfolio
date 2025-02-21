@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->nullable()->constrained()->onDelete('SET NULL');
-            $table->foreignIdFor(Gallery::class)->nullable()->constrained()->onDelete('SET NULL');
+            $table->foreignIdFor(User::class)->nullable()->constrained()->restrictOnDelete();
+            $table->foreignIdFor(Gallery::class)->nullable()->constrained()->restrictOnDelete();
             $table->string('image');
             $table->string('caption')->nullable();
             $table->longText('description')->nullable();

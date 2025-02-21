@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('translates', function (Blueprint $table) {
             $table->id();
             $table->morphs('translatable');
-            $table->foreignIdFor(Language::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(Language::class)->constrained()->restrictOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });

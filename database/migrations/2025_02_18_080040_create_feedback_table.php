@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('feedback', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->nullable()->constrained()->cascadeOnDelete()->comment('For future implementation, when registration is enabled');
-            $table->foreignIdFor(Language::class)->nullable()->constrained()->cascadeOnDelete()->comment('Maybe will be useful for admins');
+            $table->foreignIdFor(User::class)->nullable()->constrained()->restrictOnDelete()->comment('For future implementation, when registration is enabled');
+            $table->foreignIdFor(Language::class)->nullable()->constrained()->restrictOnDelete()->comment('Maybe will be useful for admins');
             $table->string('name');
             $table->string('email');
             $table->longText('message');

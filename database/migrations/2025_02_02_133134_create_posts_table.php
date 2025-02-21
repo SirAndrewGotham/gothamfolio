@@ -16,14 +16,10 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Language::class)->nullable()->constrained()->onDelete('SET NULL');
-            $table->foreignIdFor(User::class)->nullable()->constrained()->onDelete('SET NULL');
+            $table->foreignIdFor(Language::class)->nullable()->constrained()->restrictOnDelete();
+            $table->foreignIdFor(User::class)->nullable()->constrained()->restrictOnDelete();
             $table->string('title');
             $table->string('slug')->unique();
-//            $table->text('excerpt')->nullable();
-//            $table->text('content');
-//            $table->string('image')->nullable();
-//            $table->timestamp('published_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

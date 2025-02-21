@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Language::class)->nullable()->constrained()->onDelete('SET NULL');
+            $table->foreignIdFor(Language::class)->nullable()->constrained()->restrictOnDelete();
             $table->string('label');
             $table->text('description');
             $table->string('image');

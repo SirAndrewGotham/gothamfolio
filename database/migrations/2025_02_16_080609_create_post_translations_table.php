@@ -17,8 +17,8 @@ return new class extends Migration
         Schema::create('post_translations', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Post::class)->constrained()->cascadeOnDelete();
-            $table->foreignIdFor(Language::class)->nullable()->constrained()->onDelete('SET NULL');
-            $table->foreignIdFor(User::class)->nullable()->constrained()->onDelete('SET NULL');
+            $table->foreignIdFor(Language::class)->nullable()->restrictOnDelete();
+            $table->foreignIdFor(User::class)->nullable()->restrictOnDelete();
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('excerpt')->nullable();
