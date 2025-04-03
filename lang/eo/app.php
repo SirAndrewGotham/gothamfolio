@@ -67,6 +67,7 @@ return [
         'contact' => [
             'page-title'       => 'Kontaktu!',
             'breadcrumb-title' => 'Kontaktoj',
+            "name"             => "Via nomo",
             'form-heading'     => "Ni kontaktu!",
             'form-text'        => "Bonvolu uzi ĉi tiun formularon por kontakti min. Mi provos respondi kiel eble plej rapide.",
             'confirmMailSent'  => "<strong>Kontaktformularo ricevita!</strong><p>Via peto estas sukcese procesita. Mi provos respondi al vi kiel eble plej frue!<br>Dankon ;)</p>",

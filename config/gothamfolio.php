@@ -5,6 +5,7 @@ return [
         'theme' => env('FRONT_THEME', 'legacy'),
         'resume' => env('RESUME', 'on'),
         'works' => env('WORKS', 'on'),
+        'customers' => env('CUSTOMERS', 'on'),
         'galleries' => env('GALLERIES', 'on'),
         'blog' => env('BLOG', 'on'),
         'contacts' => env('CONTACTS', 'on'),

@@ -70,6 +70,7 @@ return [
             'page-title'       => 'Get in Touch!',
             'breadcrumb-title' => 'Contact',
             'form-heading'     => "Let's get in touch!",
+            "name"             => "Your name",
             'form-text'        => "Feel free to use this form and get in touch with me. I'll try to answer as fast as I can.",
             'confirmMailSent'  => "<strong>Your message sent!</strong><p>Your request has been successfully processed. I will try to answer you as soon as possible.<br>Thank you</p>",
             'feedback-form'    => "Feedback form",
@@ -150,70 +151,82 @@ return [
             'work-experience'  => [
                 'title' => 'Work Experience',
                 1       => [
-                    'job-title' => 'Latest position @ <strong>Company, Inc.</strong>',
-                    'dates'     => 'Start day - Today',
+                    'job-title' => 'Software Engineer @ <strong>OOO "Taris"</strong>',
+                    'dates'     => '2022 - April 1, 2025',
                     'details'   => '<ul class="list-arrow-color no-margin">
-                                        <li>Developed Web Applications on Laravel.</li>
-                                        <li>Created and maintained Open Source packages.</li>
+                                        <li>Development, architecture design, practical construction of the back-ends for the commercial services in Laravel</li>
+                                        <li>Development, design, construction of front-ends with Angular (at the initial stage of work)</li>
+                                        <li>Development, design, construction of the databases for the company\'s Web projects (PostgreSQL, MySQL, SQLite).</li>
+                                        <li>Projects\' technical documentation for developers: API with Swagger.</li>
+                                        <li>Automated testing (Pest, Unit), API testing via Postman, Insomnia.</li>
+                                        <li>Access and authorization systems development for the API, including automated data collection systems (robots/drones).</li>
+                                    </ul>
+                                    <br />
+                                    <ul class="list-arrow-color no-margin">
+                                        <li>Organization, configuration, administration of the remote (cloud) servers</li>
+                                        <li>DevOps (Ubuntu - Nginx - Postgres)</li>
+                                        <li>Github: development of the policies and rules for the team, code review, approval of commits, etc.</li>
+                                        <li>Development of the internal corporate rules, procedures, regulations for the Web development</li>
+                                        <li>Development planning: setting goals - control - execution of tasks</li>
                                     </ul>',
                 ],
                 2       => [
-                    'job-title' => 'Previous position 1 @ <strong>Company</strong>',
-                    'dates'     => 'Start date - End date',
+                    'job-title' => 'PHP Web Developer @ <strong>Freelance</strong>',
+                    'dates'     => '2011 - 2022',
                     'details'   => '<ul class="list-arrow-color no-margin">
-                                        <li>Developed Web Applications based on Laravel backend.</li>
-                                        <li>Passed the following certifications :
-                                            <ul class="list-arrow-color no-margin">
-                                                <li>First certification (AKA Name)</li>
-                                                <li>Second certification</li>
-                                                <li>Third certification</li>
-                                            </ul>
-                                        </li>
-                                        <li>Deployed projects for customers.</li>
-                                        <li>Search & Development based on solutions related to the position.</li>
+                                        <li>Website development "from scratch", from idea to implementation (project structure, architecture, database design, admin area, RESTfull API, frontend based on ready-made templates.</li>
+                                        <li>Web sites development over ready-made layout/current sites (clones) - full backend + templating</li>
+                                        <li>Bringing other programmers\' code (like third-party CMSs) into working condition, launching, setting up.</li>
+                                        <li>Porting Web sites from one framework to another</li>
+                                        <li>Bug fixes, corrections of other programmers\' code, finalizing existing functionality and developing new one, upgrading components and frameworks to current versions, working (and upgrading) with Legacy Code</li>
+                                        <li>High-quality localization, internationalization of php scripts, from almost any language (for example, Discuz from Chinese)</li>
+                                        <li>VPNs: purchase, installation, setup</li>
+                                        <li>Uploading projects to production servers, setup</li>
+                                        <li>Maintenance of the production sites</li>
                                     </ul>',
                 ],
-                3       => [
-                    'job-title' => 'Previous position 2 @ <strong>Company</strong>',
-                    'dates'     => 'Start date - End date',
-                    'details'   => '<ul class="list-arrow-color no-margin">
-                                        <li>Developed the company\'s Website backend.</li>
-                                        <li>Developed the company\'s Website frontend.</li>
-                                        <li>Developed the company\'s Mobile App.</li>
-                                    </ul>',
-                ],
-                4       => [
-                    'job-title' => 'Previous position 3 @ <strong>Company</strong>',
-                    'dates'     => 'Start date - End date',
-                    'details'   => '<ul class="list-arrow-color no-margin">
-                                        <li>Website Backend development.</li>
-                                        <li>Website Frontend development.</li>
-                                        <li>Website API development.</li>
-                                        <li>Software automated testing.</li>
-                                    </ul>',
-                ],
-                5       => [
-                    'job-title' => 'Previous position 4 @ <strong>Company</strong>',
-                    'dates'     => 'Start date - End date',
-                    'details'   => '<ul class="list-arrow-color no-margin">
-                                        <li>Developed Websites of the Company.</li>
-                                        <li>Created some tools and technics for SEO and SEM.</li>
-                                    </ul>',
-                ],
+//                3       => [
+//                    'job-title' => 'Previous position 2 @ <strong>Company</strong>',
+//                    'dates'     => 'Start date - End date',
+//                    'details'   => '<ul class="list-arrow-color no-margin">
+//                                        <li>Developed the company\'s Website backend.</li>
+//                                        <li>Developed the company\'s Website frontend.</li>
+//                                        <li>Developed the company\'s Mobile App.</li>
+//                                    </ul>',
+//                ],
+//                4       => [
+//                    'job-title' => 'Previous position 3 @ <strong>Company</strong>',
+//                    'dates'     => 'Start date - End date',
+//                    'details'   => '<ul class="list-arrow-color no-margin">
+//                                        <li>Website Backend development.</li>
+//                                        <li>Website Frontend development.</li>
+//                                        <li>Website API development.</li>
+//                                        <li>Software automated testing.</li>
+//                                    </ul>',
+//                ],
+//                5       => [
+//                    'job-title' => 'Previous position 4 @ <strong>Company</strong>',
+//                    'dates'     => 'Start date - End date',
+//                    'details'   => '<ul class="list-arrow-color no-margin">
+//                                        <li>Developed Websites of the Company.</li>
+//                                        <li>Created some tools and technics for SEO and SEM.</li>
+//                                    </ul>',
+//                ],
+                'notes' => 'Note: Full resume covering the entire period of employment (40 years) is available upon request.',
             ],
             'education'        => [
                 'title' => 'Education',
                 1       => [
-                    'title' => 'Master Web & e-Business @ <strong>University</strong>',
-                    'dates' => 'Start date - End date',
+                    'title' => 'Fullstack Web Developer @ <strong>GBOU DPO "Center Professional"</strong>',
+                    'dates' => '2022',
                 ],
                 2       => [
-                    'title' => 'Bachelor Web & Mobile @ <strong>University</strong>',
-                    'dates' => 'Start date - End date',
+                    'title' => 'Mining engineer, D.Sc. @ <strong>Moscow Mining Institue</strong>',
+                    'dates' => '1988 - 1990',
                 ],
                 3       => [
-                    'title' => 'BTS Sys Admin @ <strong>University</strong>',
-                    'dates' => 'Start date - End date',
+                    'title' => 'Mining engineer, bachelor, master @ <strong>Moscow Mining Institute</strong>',
+                    'dates' => '1980 - 1985',
                 ],
             ],
             'skills'           => [
@@ -227,22 +240,34 @@ return [
                     'level' => 'Expert',
                 ],
                 3       => [
-                    'label' => 'Symfony 2',
-                    'level' => 'Average',
+                    'label' => 'Laravel, Livewire, Folio, Volt, Blade, Blade components',
+                    'level' => 'Expert',
                 ],
                 4       => [
-                    'label' => 'Mobile (iOS &amp; Android)',
-                    'level' => 'Initial',
-                ],
-                5       => [
                     'label' => 'HTML &amp; CSS (Bootstrap, Tailwind :: Flexboxes & Grids)',
                     'level' => 'Expert',
                 ],
+                5       => [
+                    'label' => 'Frameworks & CMSs: Laravel,  Yii2, CodeIgniter, PHP-based CMSs (PHPNuke, Discuz, EcShop, WP, и etc.)',
+                    'level' => 'Expert',
+                ],
                 6       => [
-                    'label' => 'Versioning (Git) and Agile',
-                    'level' => "Used daily",
+                    'label' => 'Databases: MySQL/MariaDB, PostgreSQL, SQLite',
+                    'level' => 'Expert',
                 ],
                 7       => [
+                    'label' => 'Versioning (Git) and Agile',
+                    'level' => "Professional",
+                ],
+                8       => [
+                    'label' => 'Postman, Insomnia',
+                    'level' => "Professional",
+                ],
+                9       => [
+                    'label' => 'Project Team Work: Trello, Slack, Telegram',
+                    'level' => "Professional",
+                ],
+                10       => [
                     'label' => 'Frontend Design',
                     'level' => 'Technical',
                 ],
@@ -321,6 +346,7 @@ return [
             'social'     => [
                 'title' => 'Social Networks',
             ],
+            'no-posts' => 'Blog is waiting for the posts to be presented.',
         ],
     ],
 

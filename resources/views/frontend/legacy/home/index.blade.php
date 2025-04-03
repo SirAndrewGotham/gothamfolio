@@ -28,46 +28,50 @@
     {{-- Accordion + IMG --}}
 
     {{-- Recent Work --}}
-    @if($works->count() > 0)
-        <section class="pt40 mb40">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="heading mb30">
-                            @if($works->count() > 0)
-                                <div class="owl-controls">
-                                    <div id="customNav" class="owl-nav"></div>
-                                </div>
-                            @endif
-                            <h4>
-                                {{ trans('app.frontend.home.recent-work.title') }}
-                            </h4>
+    @if(config('gothamfolio.frontend.works') === 'on')
+        @if($works->count() > 0)
+            <section class="pt40 mb40">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="heading mb30">
+                                @if($works->count() > 0)
+                                    <div class="owl-controls">
+                                        <div id="customNav" class="owl-nav"></div>
+                                    </div>
+                                @endif
+                                <h4>
+                                    {{ trans('app.frontend.home.recent-work.title') }}
+                                </h4>
+                            </div>
+                            @include('frontend.legacy.layouts._lastWorks')
                         </div>
-                        @include('frontend.legacy.layouts._lastWorks')
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
     @endif
     {{-- /Recent Work --}}
 
     {{-- Customers --}}
-    @if($customers->count() > 0)
-        <section class="mb40">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="heading mb30">
-                            <h4>{{ trans('app.frontend.home.customers.title') }}</h4>
-                            <div class="owl-controls">
-                                <div id="customNav" class="owl-nav"></div>
+    @if(config('gothamfolio.frontend.customers') === 'on')
+        @if($customers->count() > 0)
+            <section class="mb40">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="heading mb30">
+                                <h4>{{ trans('app.frontend.home.customers.title') }}</h4>
+                                <div class="owl-controls">
+                                    <div id="customNav" class="owl-nav"></div>
+                                </div>
                             </div>
+                            @include('frontend.legacy.layouts._customers')
                         </div>
-                        @include('frontend.legacy.layouts._customers')
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        @endif
     @endif
     {{-- /Customers --}}
 @endsection

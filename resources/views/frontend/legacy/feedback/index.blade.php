@@ -41,7 +41,7 @@
                     <form role="form" method="POST" action="{{ route('feedback.store') }}">
                         @csrf
                         <div class="form-group">
-                            <input type="text" name="name" value="{{ old('name') }}" placeholder="{{ trans('app.name') }}" class="form-control">
+                            <input type="text" name="name" value="{{ old('name') }}" placeholder="{{ trans('app.frontend.contact.name') }}" class="form-control">
                         </div>
                         <div class="form-group">
                             <input type="email" name="email" value="{{ old('email') }}" placeholder="{{ trans('app.email') }}" class="form-control">

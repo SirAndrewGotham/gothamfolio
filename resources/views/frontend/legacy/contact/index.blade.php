@@ -50,7 +50,7 @@
                     <form role="form" method="POST" action="{{ route('contact.store') }}">
                         @csrf
                         <div class="form-group">
-                            <input type="text" name="contactName" value="{{ old('contactName') }}" placeholder="{{ trans('app.name') }}" class="form-control">
+                            <input type="text" name="contactName" value="{{ old('contactName') }}" placeholder="{{ trans('app.frontend.contact.name') }}" class="form-control">
                         </div>
                         <div class="form-group">
                             <input type="email" name="contactEmail" value="{{ old('contactEmail') }}" placeholder="{{ trans('app.email') }}" class="form-control">

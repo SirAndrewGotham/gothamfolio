@@ -6,6 +6,7 @@ use App\Models\Language;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,13 +16,13 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $this->call(LanguageSeeder::class);
-        // User::factory(10)->create();
 
-//        User::factory()
+//        $user = User::factory()
 //            ->create([
 //                'language_id' => 37,
-//                'name' => 'Admin',
-//                'email' => 'admin@admin.com',
+//                'name' => 'Andrew Gotham',
+//                'slug' => 'andrew-gotham',
+//                'email' => 'andreogotema@gmail.com',
 //            ]);
 
         $this->call([

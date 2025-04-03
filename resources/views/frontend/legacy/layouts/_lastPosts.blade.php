@@ -11,7 +11,11 @@
     </div>
 @else
     <div class="col-sm-3 hidden-xs">
-        <div class="heading-footer"><h4>{{ trans('app.blocks.common.last-posts.title') }}</h4></div>
-        Blog is waiting for the posts to be presented.
+        <div class="heading-footer">
+            <h4>
+                {{ trans('app.blocks.common.last-posts.title') }}
+            </h4>
+        </div>
+        {{ trans('app.blocks.common.no-posts') }}
     </div>
 @endif
