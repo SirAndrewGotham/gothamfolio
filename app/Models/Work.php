@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
@@ -19,7 +19,7 @@ class Work extends Model
         'user_id',
         'title',
         'slug',
-];
+    ];
 
     protected static function boot(): void
     {
@@ -30,7 +30,7 @@ class Work extends Model
             $originalSlug = $slug;
             $count = 2;
             while (static::whereSlug($slug)->exists()) {
-                $slug = $originalSlug . '-' . $count++;
+                $slug = $originalSlug.'-'.$count++;
             }
             $model->slug = $slug;
         });
@@ -54,5 +54,10 @@ class Work extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function translations(): HasMany
+    {
+        return $this->hasMany(WorkTranslation::class, 'work_id', 'id');
     }
 }

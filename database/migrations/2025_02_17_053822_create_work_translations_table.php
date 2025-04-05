@@ -34,6 +34,8 @@ return new class extends Migration
             $table->unsignedBigInteger('views')->default(0);
             $table->timestamps();
             $table->softDeletes();
+
+            $table->unique('language_id', 'work_id');
         });
     }
 

@@ -8,7 +8,7 @@ use App\Models\Work;
 use App\Models\WorkTranslation;
 use Illuminate\Support\Facades\Auth;
 
-#[AllowDynamicProperties] class WorkSaveAction
+#[AllowDynamicProperties] class WorkTranslationSaveAction
 {
     public function __construct(private readonly BuildImageAction $buildImage, private readonly TagsSaveAction $saveTags)
     {
@@ -22,9 +22,10 @@ use Illuminate\Support\Facades\Auth;
         }
         $image = $data['image'] ?? null;
 
-        // Create new Work
+        // Create new Work Translation
         if ($work === null) {
             $data['user_id'] = Auth::id();
+            $work->find($work);
             $work = Work::create($data);
             if (isset($image)) {
                 $image = $this->buildImage->handle($this->folder, $work->slug, $image);

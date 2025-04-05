@@ -15,13 +15,13 @@
 @section('content')
     <table class="table table-bordered">
         <thead>
-        <tr>
-            <th>{{ __('Title') }}</th>
-            <th>{{ __('URL') }}</th>
-            <th>{{ __('Author') }}</th>
-            <th>{{ __('Updated') }}</th>
-            <th>{{ __('Actions') }}</th>
-        </tr>
+            <tr>
+                <th>{{ __('Title') }}</th>
+                <th>{{ __('URL') }}</th>
+                <th>{{ __('Author') }}</th>
+                <th>{{ __('Updated') }}</th>
+                <th>{{ __('Actions') }}</th>
+            </tr>
         </thead>
         @forelse($works as $work)
             <tr>
@@ -38,7 +38,7 @@
             </tr>
         @empty
             <tr>
-                <td colspan="6">{{ __('No Work were found.') }}</td>
+                <td colspan="6">{{ __('No Works found.') }}</td>
             </tr>
         @endforelse
     </table>

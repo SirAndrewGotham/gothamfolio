@@ -6,10 +6,7 @@ use App\Actions\WorkSaveAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreWorkRequest;
 use App\Http\Requests\UpdateWorkRequest;
-use App\Models\Tag;
 use App\Models\Work;
-use Illuminate\Support\Facades\Auth;
-use Intervention\Image\Laravel\Facades\Image;
 
 class WorkController extends Controller
 {
@@ -42,7 +39,7 @@ class WorkController extends Controller
 
         return redirect()->route('admin.works.index')->with('success', 'Your Work created successfully!');
         // next one if save and create another one
-//        return redirect()->back()->with('success', 'Your Work created successfully!');
+        //        return redirect()->back()->with('success', 'Your Work created successfully!');
     }
 
     /**

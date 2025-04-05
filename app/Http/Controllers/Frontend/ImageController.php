@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
-use App\Http\Controllers\View;
 use App\Http\Requests\StoreImageRequest;
 use App\Http\Requests\UpdateImageRequest;
 use App\Models\Image;
+use Illuminate\View\View;
 
 class ImageController
 {
@@ -31,9 +30,10 @@ class ImageController
      */
     public function store(StoreImageRequest $request): \Illuminate\Http\RedirectResponse
     {
-        $this->validate($request, [
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+        // validation moved to StoreImageRequest
+//        $this->validate($request, [
+//            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+//        ]);
 
         $image = Image::read($request->file('image'));
 
@@ -44,7 +44,7 @@ class ImageController
 
         // Generate Thumbnail Image Upload on Folder Code
         $destinationPathThumbnail = public_path('images/thumbnail/');
-        $image->resize(100,100);
+        $image->resize(100, 100);
         $image->save($destinationPathThumbnail.$imageName);
 
         /**
@@ -56,8 +56,8 @@ class ImageController
          */
 
         return back()
-            ->with('success','Photo Upload successful')
-            ->with('imageName',$imageName);
+            ->with('success', 'Photo Upload successful')
+            ->with('imageName', $imageName);
     }
 
     /**

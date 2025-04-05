@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Enums\WorkStatus;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreWorkRequest;
 use App\Http\Requests\UpdateWorkRequest;
 use App\Models\Language;
-use App\Models\Tag;
 use App\Models\Work;
 use App\Models\WorkTranslation;
 use Illuminate\Database\Eloquent\Builder;
@@ -19,7 +17,7 @@ class WorkController
      */
     public function index()
     {
-        list($works, $tags) = $this->prepareIndex();
+        [$works, $tags] = $this->prepareIndex();
 
         return view('frontend.legacy.works.index', compact('works', 'tags'));
     }
@@ -45,7 +43,7 @@ class WorkController
      */
     public function show(WorkTranslation $work)
     {
-        //TODO: implement language procedures
+        // TODO: implement language procedures
         $works = Work::latest()->take(5)->get();
 
         return view('frontend.legacy.works.show', compact('work', 'works'));
@@ -75,9 +73,6 @@ class WorkController
         //
     }
 
-    /**
-     * @return array
-     */
     public function prepareIndex(): array
     {
         $languages[] = Language::where('code', app()->getLocale())->first()->id;
@@ -96,7 +91,7 @@ class WorkController
                 })
                 ->where(function (Builder $query) {
                     $query->whereNull('published_through')
-                        ->orWhere('published_at', '>=', now());
+                        ->orWhere('published_through', '>=', now());
                 });
         })
             ->whereIn('language_id', $languages)
@@ -111,6 +106,7 @@ class WorkController
                 $tags[] = $tag;
             }
         }
-        return array($works, $tags);
+
+        return [$works, $tags];
     }
 }

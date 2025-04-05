@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Work;
 
@@ -14,6 +13,6 @@ class HomeController
         $works = Work::latest()->get();
         $customers = Customer::all();
 
-        return view('frontend.'. config('gothamfolio.frontend.theme') .'.home.index', compact('works', 'customers'));
+        return view('frontend.'.config('gothamfolio.frontend.theme').'.home.index', compact('works', 'customers'));
     }
 }

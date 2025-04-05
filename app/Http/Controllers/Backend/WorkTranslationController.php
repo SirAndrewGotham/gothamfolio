@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Actions\WorkTranslationSaveAction;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreWorkRequest;
 use App\Http\Requests\StoreWorkTranslationRequest;
 use App\Http\Requests\UpdateWorkTranslationRequest;
 use App\Models\WorkTranslation;
@@ -28,9 +30,11 @@ class WorkTranslationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreWorkTranslationRequest $request)
+    public function store(StoreWorkRequest $request, WorkTranslationSaveAction $workTranslationSaveAction)
     {
-        //
+        $workTranslationSaveAction->handle($request->validated());
+
+        return redirect()->route('admin.works.index')->with('success', 'Your Work created successfully!');
     }
 
     /**

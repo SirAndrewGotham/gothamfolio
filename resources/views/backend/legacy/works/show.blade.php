@@ -13,25 +13,65 @@
 @endsection
 
 @section('content')
-    <section class="mt40 mb40">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="blog-post mb40">
-                        {{dd($work->image)}}
-                        <img class="img-responsive full-width" src="{{ $work->image }}" alt="">
-                        <div class="blog-post-holder">
-                            <ul class="list-inline posted-info">
-                                <li>By <a href="#">{{ $work->user->name }}</a></li>
-                                <li>{{ $work->created_at->diffForHumans() }}</li>
-                            </ul>
-                            <hr align="left" class="mt15 mb10">
-                            <h2>{{ $work->title }}</h2>
-                            {!! $work->body !!}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="mb-4">
+        <a href="{{ route('admin.works.edit', $work->slug) }}" class="btn btn-default">
+            <i class="fa fa-pencil"></i>
+            {{ __('Add translation') }}
+        </a>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>{{ __('Cover') }}</th>
+            <th>{{ __('Title') }}</th>
+            <th>{{ __('Language') }}</th>
+            <th>{{ __('Author') }}</th>
+            <th>{{ __('Updated') }}</th>
+            <th>{{ __('Actions') }}</th>
+        </tr>
+        </thead>
+        @forelse($work->translations as $work)
+            <tr>
+                <td>
+                    <img src="{{ asset('uploads/works/'.$work->image) }}" height="50px" >
+                </td>
+                <td>
+                    {{ $work->title }}
+                </td>
+                <td>
+                    {{ $work->language->name }}
+                </td>
+                <td>
+                    <a href="{{ route('admin.users.show', $work->user->slug) }}" target="_blank">
+                        {{ $work->user->name }}
+                    </a>
+                </td>
+                <td>
+                    {{ $work->updated_at->diffForHumans() }}
+                </td>
+                <td>
+                    <a href="{{ route('admin.works.show', $work->slug) }}" class="btn btn-info" target="_blank">
+                        <i class="fa fa-eye"></i>
+                        {{ __('View') }}
+                    </a>
+                    <a href="{{ route('admin.works.edit', $work->slug) }}" class="btn btn-warning">
+                        <i class="fa fa-pencil"></i>
+                        {{ __('Edit') }}
+                    </a>
+                    <a href="{{ route('admin.works.edit', $work->slug) }}" class="btn btn-default">
+                        <i class="fa fa-pencil"></i>
+                        {{ __('Translate') }}
+                    </a>
+                    <a href="{{ route('admin.works.destroy', $work->slug) }}" class="btn btn-danger">
+                        <i class="fa fa-trash-o"></i>
+                        {{ __('Delete') }}
+                    </a>
+                </td>
+            </tr>
+        @empty
+            <tr>
+                <td colspan="6">{{ __('No Works found.') }}</td>
+            </tr>
+        @endforelse
+    </table>
 @endsection

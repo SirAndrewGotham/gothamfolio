@@ -72,4 +72,14 @@ class WorkTranslation extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function work(): BelongsTo
+    {
+        return $this->belongsTo(Work::class, 'work_id', 'id', 'work_translations');
+    }
+
+    public function language(): BelongsTo
+    {
+        return $this->belongsTo(Language::class);
+    }
 }

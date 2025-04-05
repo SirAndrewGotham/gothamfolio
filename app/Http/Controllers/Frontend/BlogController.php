@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Actions\PostIndexAction;
-use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Language;
 use App\Models\Post;
 use App\Models\PostTranslation;
 use App\Models\Tag;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 
 class BlogController
@@ -20,7 +17,7 @@ class BlogController
      */
     public function index()
     {
-        list($posts, $tags) = $this->prepareIndex();
+        [$posts, $tags] = $this->prepareIndex();
 
         return view('frontend.legacy.blogs.index', compact('posts', 'tags'));
     }
@@ -93,7 +90,7 @@ class BlogController
                 })
                 ->where(function (Builder $query) {
                     $query->whereNull('published_through')
-                        ->orWhere('published_at', '>=', now());
+                        ->orWhere('published_through', '>=', now());
                 });
         })
             ->whereIn('language_id', $languages)
@@ -108,6 +105,7 @@ class BlogController
                 $tags[] = $tag;
             }
         }
-        return array($posts, $tags);
+
+        return [$posts, $tags];
     }
 }
