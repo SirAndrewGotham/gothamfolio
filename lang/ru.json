@@ -119,7 +119,9 @@
     "Your email address is unverified.": "Ваш адрес электронной почты не подтверждён.",
 
 
+    "Technologies used": "Используемые технологии",
     "Comma-separated without spaces if several": "Если несколько, через запятую без пробелов",
     "To be displayed in portfolio index, repeat in \"content\" if needed in a work view as well": "Отображается на странице списка работ. Если нужно, чтобы также отображалось на странице конкретной работы, повторите в соответствующем поле",
-    "Blade components": "Компоненты Blade"
+    "Blade components": "Компоненты Blade",
+    "Livewire components": "Компоненты Livewire"
 }

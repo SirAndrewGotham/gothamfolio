@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
 //                'name' => 'Andrew Gotham',
 //                'slug' => 'andrew-gotham',
 //                'email' => 'andreogotema@gmail.com',
+//                'password' => Hash::make('password'),
 //            ]);
 
         $this->call([

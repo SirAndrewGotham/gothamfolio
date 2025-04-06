@@ -35,7 +35,7 @@
                             <div id="customNav" class="owl-nav"></div>
                         </div>
                     </div>
-                    @include('frontend.legacy.layouts._lastWorks')
+                    @include('frontend.legacy.layouts._lastWorks', ['works' => $works])
                 </div>
             </div>
         </div>

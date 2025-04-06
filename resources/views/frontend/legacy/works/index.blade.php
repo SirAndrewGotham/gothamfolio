@@ -10,7 +10,7 @@
                 <div class="row mb30" style="visibility: visible; ">
                     <ul class="nav nav-pills col-xs-12 text-center">
                         <li class="filter active" data-filter=".all">{{ trans('app.all') }}</li>
-                        @foreach($tags as $tag)
+                        @foreach($tags->sortBy('name') as $tag)
                             @if($tag->name)
                                 <li class="filter" data-filter=".{{ $tag->slug }}">{{ __($tag->name) }}</li>
                             @endif

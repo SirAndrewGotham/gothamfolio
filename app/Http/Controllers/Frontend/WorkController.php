@@ -44,7 +44,7 @@ class WorkController
     public function show(WorkTranslation $work)
     {
         // TODO: implement language procedures
-        $works = Work::latest()->take(5)->get();
+        $works = WorkTranslation::where('work_id','!=',$work->id)->latest()->take(5)->get();
 
         return view('frontend.legacy.works.show', compact('work', 'works'));
     }
@@ -95,7 +95,8 @@ class WorkController
                 });
         })
             ->whereIn('language_id', $languages)
-            ->latest()
+//            ->latest()
+            ->orderBy('order', 'asc')
             ->with(['tags'])
             ->paginate(10);
 
@@ -103,7 +104,9 @@ class WorkController
 
         foreach ($works as $work) {
             foreach ($work->tags as $tag) {
-                $tags[] = $tag;
+                if($tags->doesntContain('id', $tag->id)) {
+                    $tags->push($tag);
+                }
             }
         }
 

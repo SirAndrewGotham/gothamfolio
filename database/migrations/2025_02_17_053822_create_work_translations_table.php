@@ -35,7 +35,7 @@ return new class extends Migration
             $table->timestamps();
             $table->softDeletes();
 
-            $table->unique('language_id', 'work_id');
+            $table->unique(['language_id', 'work_id']);
         });
     }
 
