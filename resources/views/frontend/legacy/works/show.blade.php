@@ -10,6 +10,7 @@
                 <p class="lead mb30">{{ $work->title }}</p>
                 <img class="img-thumbnail" src="{{ asset('uploads/works/'.$work->work_id.'/'.$work->image) }}" alt="{{ $work->title }}">
                 <div class="row mt40">
+                    {{ __('Technologies used') }}:
                     @foreach($work->tags as $tag)
                         <span class="label label-info">{{ $tag->name }}</span>
                     @endforeach

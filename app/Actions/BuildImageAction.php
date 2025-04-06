@@ -6,7 +6,7 @@ class BuildImageAction
 {
     public function handle($folder, $slug, $image): string
     {
-        $imageName = $slug.'.'.$image->extension();
+        $imageName = $slug.'-'.now()->format('YmdHis').'.'.$image->extension();
 
         $image->move(public_path($folder), $imageName);
 
