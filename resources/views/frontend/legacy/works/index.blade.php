@@ -12,7 +12,7 @@
                         <li class="filter active" data-filter=".all">{{ trans('app.all') }}</li>
                         @foreach($tags as $tag)
                             @if($tag->name)
-                                <li class="filter" data-filter=".{{ $tag->slug }}">{{ $tag->name }}</li>
+                                <li class="filter" data-filter=".{{ $tag->slug }}">{{ __($tag->name) }}</li>
                             @endif
                         @endforeach
                     </ul>
@@ -27,11 +27,11 @@
                             <div class="border">
                                 <div class="view port-borderless image-hover-1">
                                     <center>
-                                        <img class="img-responsive" src="{{ asset('uploads/works/'.$work->image) }}" alt="{{ $work->title }}" style="width: auto; height: 200px;" />
+                                        <img class="img-responsive" src="{{ asset('uploads/works/'.$work->work_id.'/'.$work->image) }}" alt="{{ $work->title }}" style="width: auto; height: 200px;" />
                                     </center>
                                     <div class="mask">
                                         <div class="image-hover-content">
-                                            <a href="{{ asset('uploads/works/'.$work->image) }}" class="info image-zoom-link">
+                                            <a href="{{ asset('uploads/works/'.$work->work_id.'/'.$work->image) }}" class="info image-zoom-link">
                                                 <div class="image-icon-holder">
                                                     <span class="fa fa-search portfolio-icons"></span>
                                                 </div>
@@ -43,8 +43,15 @@
                                     </div>
                                 </div>
                                 <div class="portfolio-text background-white">
-                                    <h3 class="portfolio-title"><a href="{{ route('works.show', $work->slug) }}">{{ $work->title }}</a></h3>
-                                    <div class="project-category">{{ $work->tags->count() > 0 ? ucfirst($work->tags->first()->name) : '' }}</div>
+                                    <h3 class="portfolio-title">
+                                        <a href="{{ route('works.show', $work->slug) }}">
+                                            {{ $work->title }}
+                                        </a>
+                                    </h3>
+                                    <div>
+                                        {!! $work->excerpt !!}
+                                    </div>
+{{--                                    <div class="project-category">{{ $work->tags->count() > 0 ? ucfirst($work->tags->first()->name) : '' }}</div>--}}
                                 </div>
                             </div>
                         </li>

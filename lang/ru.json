@@ -116,5 +116,10 @@
     "Whoops!": "Упс!",
     "You are receiving this email because we received a password reset request for your account.": "Вы получили это письмо, потому что мы получили запрос на сброс пароля для Вашей учётной записи.",
     "You're logged in!": "Вы уже вошли.",
-    "Your email address is unverified.": "Ваш адрес электронной почты не подтверждён."
+    "Your email address is unverified.": "Ваш адрес электронной почты не подтверждён.",
+
+
+    "Comma-separated without spaces if several": "Если несколько, через запятую без пробелов",
+    "To be displayed in portfolio index, repeat in \"content\" if needed in a work view as well": "Отображается на странице списка работ. Если нужно, чтобы также отображалось на странице конкретной работы, повторите в соответствующем поле",
+    "Blade components": "Компоненты Blade"
 }

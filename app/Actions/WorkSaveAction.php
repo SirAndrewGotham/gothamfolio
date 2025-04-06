@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Auth;
             $data['user_id'] = Auth::id();
             $work = Work::create($data);
             if (isset($image)) {
-                $image = $this->buildImage->handle($this->folder, $work->slug, $image);
+                $image = $this->buildImage->handle($this->folder.'/'.$work->id, $work->slug, $image);
             }
             $workTranslation = WorkTranslation::create([
                 'work_id' => $work->id,

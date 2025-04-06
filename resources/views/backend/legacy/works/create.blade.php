@@ -41,6 +41,7 @@
         <div class="form-group">
             <label for="excerpt">{{ __('Excerpt') }}</label>
             <textarea name="excerpt" id="excerpt" cols="30" rows="10" class="form-control summernote">{{ old('excerpt') }}</textarea>
+            <p class="text-xs">{{ __('To be displayed in portfolio index, repeat in "content" if needed in a work view as well') }}</p>
         </div>
         <div class="form-group">
             <label for="body">{{ __('Content') }}</label>
@@ -49,6 +50,7 @@
         <div class="form-group">
             <label for="tags">{{ __('Tags') }}</label>
             <input type="text" name="tags" id="tags" value="{{ old('tags') }}" class="form-control">
+            <p class="text-xs">{{ __('Comma-separated without spaces if several') }}</p>
         </div>
         <div class="form-group">
             <label for="order">{{ __('Order') }}</label>
