@@ -46,6 +46,9 @@ class WorkController
         // TODO: implement language procedures
         $works = WorkTranslation::where('work_id','!=',$work->id)->latest()->take(5)->get();
 
+        $work->increment('views');
+        $work->saveQuietly();
+
         return view('frontend.legacy.works.show', compact('work', 'works'));
     }
 

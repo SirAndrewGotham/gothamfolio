@@ -8,7 +8,7 @@ Here comes the need for a personal portfolio Web site to display the skills, kno
 
 **GothamFolio** is a personal portfolio Web site reflecting skills and portfolios.
 
-The site is being built with the current version of Laravel (11 at the time of start) and Blade with some of Alipnejs at the front-end.
+The site is being built with the current version of Laravel (11, and then 12 at the time of start) and Blade with some of Alipnejs at the front-end.
 
 **GothamFolio** is about to include:
 
@@ -36,7 +36,7 @@ Here is how it looks like with the **Legacy** theme throughout (to be changable 
 
 ![Frontend](./docs/img/frontend.png)
 
-## Bakcned
+## Backend
 
 ![Backend](./docs/img/backend.png)
 

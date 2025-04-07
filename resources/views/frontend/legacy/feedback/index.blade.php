@@ -69,7 +69,7 @@
                                     @unless(app()->getLocale() === 'ru')
                                         <small class="address">{{ trans('app.blocks.common.contact.country') }}</small>
                                     @else
-                                        <small class="address">{{ trans('app.blocks.common.contact.city') }}</small>
+                                        <small class="address">{{ trans('app.blocks.common.contact.country') }}</small>
                                     @endunless
                                 </p>
                                 <p>

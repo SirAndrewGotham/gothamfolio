@@ -329,6 +329,7 @@ return [
             ],
             'contact'    => [
                 'title' => 'На связи!',
+                'permit' => 'Work permit',
                 'country' => 'Россия',
                 'city' => 'Москва',
                 'AndrewGotham' => 'AndrewGotham',
