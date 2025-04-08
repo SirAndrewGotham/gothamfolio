@@ -5,7 +5,7 @@
 
     <section class="mt40 mb10">
         <div id="portfolio" class="container">
-            <!-- Portfolio Filter -->
+             <!-- Portfolio Filter -->
             @if($tags->count() > 0)
                 <div class="row mb30" style="visibility: visible; ">
                     <ul class="nav nav-pills col-xs-12 text-center">
@@ -27,11 +27,11 @@
                             <div class="border">
                                 <div class="view port-borderless image-hover-1">
                                     <center>
-                                        <img class="img-responsive" src="{{ asset('uploads/works/'.$work->work_id.'/'.$work->image) }}" alt="{{ $work->title }}" style="width: auto; height: 200px;" />
+                                        <img class="img-responsive" src="{{ asset('uploads/works/'.$work->id.'/'.$work->image) }}" alt="{{ $work->title }}" style="width: auto; height: 200px;" />
                                     </center>
                                     <div class="mask">
                                         <div class="image-hover-content">
-                                            <a href="{{ asset('uploads/works/'.$work->work_id.'/'.$work->image) }}" class="info image-zoom-link">
+                                            <a href="{{ asset('uploads/works/'.$work->id.'/'.$work->image) }}" class="info image-zoom-link">
                                                 <div class="image-icon-holder">
                                                     <span class="fa fa-search portfolio-icons"></span>
                                                 </div>

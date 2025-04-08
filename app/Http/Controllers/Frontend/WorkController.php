@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Enums\WorkStatus;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreWorkRequest;
 use App\Http\Requests\UpdateWorkRequest;
 use App\Models\Language;
@@ -10,14 +11,14 @@ use App\Models\Work;
 use App\Models\WorkTranslation;
 use Illuminate\Database\Eloquent\Builder;
 
-class WorkController
+class WorkController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        [$works, $tags] = $this->prepareIndex();
+        [$works, $tags] = $this->prepareView();
 
         return view('frontend.legacy.works.index', compact('works', 'tags'));
     }
@@ -44,7 +45,9 @@ class WorkController
     public function show(WorkTranslation $work)
     {
         // TODO: implement language procedures
-        $works = WorkTranslation::where('work_id','!=',$work->id)->latest()->take(5)->get();
+//        $works = WorkTranslation::where('work_id','!=',$work->id)->latest()->take(5)->get();
+
+        [$works, $tags] = $this->prepareView($work);
 
         $work->increment('views');
         $work->saveQuietly();
@@ -76,15 +79,9 @@ class WorkController
         //
     }
 
-    public function prepareIndex(): array
+    public function prepareView($work = null): array
     {
-        $languages[] = Language::where('code', app()->getLocale())->first()->id;
-        if (auth()->check()) {
-            $languages = Language::where('id', auth()->user()->language_id)->pluck('id');
-            if (auth()->user()->languages) {
-                $languages = auth()->user()->languages->pluck('id');
-            }
-        }
+        $languages = $this->getLanguages();
 
         $works = WorkTranslation::where(function (Builder $query) {
             $query->where('status', WorkStatus::Published)
@@ -96,9 +93,11 @@ class WorkController
                     $query->whereNull('published_through')
                         ->orWhere('published_through', '>=', now());
                 });
-        })
+            })
+            ->whereHas('work', function (Builder $query) use($work) {
+                $query->where('work_id', '!=', '$work->id');
+            })
             ->whereIn('language_id', $languages)
-//            ->latest()
             ->orderBy('order', 'asc')
             ->with(['tags'])
             ->paginate(10);

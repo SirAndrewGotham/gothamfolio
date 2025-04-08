@@ -6,12 +6,13 @@
                     <div class="caption">
                         <div class="thumbnail-caption-holder">
                             <h4 class="text-white">{{ $work->title }}</h4>
-                            <a href="{{ route('works.show', $work->slug) }}" class="btn btn-rw btn-clear"><span class="ion-android-search"></span> View</a>
+                            <a href="{{ route('works.show', $work->slug) }}" class="btn btn-rw btn-clear"><span class="ion-android-search"></span>
+                                {{ __('View') }}</a>
                         </div>
                     </div>
 {{--                    {{ dd($work) }}--}}
 {{--                    <img src="{{ asset($work->image) }}" alt="...">--}}
-                    <img class="img-responsive" src="{{ asset('uploads/works/'.$work->work_id.'/'.$work->image) }}" alt="{{ $work->title }}" style="width: auto; height: 200px;" />
+                    <img class="img-responsive" src="{{ asset('uploads/works/'.$work->id.'/'.$work->image) }}" alt="{{ $work->title }}" style="width: auto; height: 200px;" />
                 </div>
             </div>
         @endforeach
