@@ -17,7 +17,9 @@ class FeedbackFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => $this->faker->name(),
+            'email' => $this->faker->safeEmail(),
+            'message' => $this->faker->realText(),
         ];
     }
 }

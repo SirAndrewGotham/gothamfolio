@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\CustomerController;
 use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\FeedbackController;
 use App\Http\Controllers\Backend\LanguageController;
 use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Backend\ProfileController;
@@ -36,6 +37,13 @@ Route::resource('tags', TagController::class);
 
 // Languages
 Route::resource('languages', LanguageController::class);
+
+// Feedback
+Route::get('feedback/read', [FeedbackController::class, 'read'])->name('feedback.read');
+Route::get('forceDelete/{feedback}', [FeedbackController::class, 'forceDelete'])->name('feedback.forceDelete');
+Route::get('feedback/{feedback}/mark-as-read', [FeedbackController::class, 'markAsRead'])->name('feedback.mark-as-read');
+Route::get('feedback/{feedback}/unread', [FeedbackController::class, 'unread'])->name('feedback.unread');
+Route::resource('feedback', FeedbackController::class)->only(['index', 'show', 'destroy']);
 
 // Profile
 Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');

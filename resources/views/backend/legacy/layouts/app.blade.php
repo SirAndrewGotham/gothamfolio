@@ -140,6 +140,22 @@
                         <span>{{ __('Languages') }}</span>
                     </a>
                 </li>
+{{--                <li>--}}
+{{--                    <a href="{{ route('admin.feedback.index') }}">--}}
+{{--                        <i class='fa fa-comments'></i>--}}
+{{--                        <span>{{ __('Feedback') }}</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
+                <li class="treeview">
+                    <a href="{{ route('admin.feedback.index') }}">
+                        <i class="fa fa-comments"></i> <span>{{ __('Feedback') }}</span> <i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ route('admin.feedback.index') }}"><i class="fa fa-comments-o"></i> {{ __('New Feedback') }}</a></li>
+                        <li><a href="{{ route('admin.feedback.read') }}"><i class="fa fa-comments"></i> {{ __('Read Feedback') }}</a></li>
+
+                    </ul>
+                </li>
                 <li class="treeview">
                     <a href="{{ route('admin.users.index') }}">
                         <i class="fa fa-users"></i>
