@@ -19,7 +19,7 @@
                 <div class="col-sm-12">
                     <div class="feedback mb40">
 {{--                        <img class="img-responsive full-width" src="{{ $post->image }}" alt="">--}}
-                        <div class="blog-post-holder">
+                        <div class="feedback-holder">
                             <ul class="list-inline posted-info">
                                 <li>{{ __('By') }} {{ $feedback->name }}</li>
                                 <li>{{ $feedback->email }}</a></li>

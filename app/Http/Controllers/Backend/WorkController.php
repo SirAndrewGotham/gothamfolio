@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Actions\WorkSaveAction;
+use App\Actions\WorkUpdateAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreWorkRequest;
 use App\Http\Requests\UpdateWorkRequest;
@@ -63,7 +64,7 @@ class WorkController extends Controller
      */
     public function update(UpdateWorkRequest $request, Work $work)
     {
-        $this->saveWork($request->all(), $work);
+        (new WorkUpdateAction())->handle($request->validated(), $work);
 
         return redirect()->route('admin.works.index');
     }

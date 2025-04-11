@@ -15,42 +15,43 @@ use Illuminate\Support\Facades\Auth;
         $this->folder = 'uploads/works';
     }
 
-    public function handle(array $data = [], $work = null): void
+    public function handle(array $data = []): void
     {
+//        dd($data);
         if (isset($data['tags'])) {
             $tags = $data['tags'];
         }
         $image = $data['image'] ?? null;
 
         // Create new Work Translation
-        if ($work === null) {
-            $data['user_id'] = Auth::id();
-            $work->find($work);
-            $work = Work::create($data);
-            if (isset($image)) {
-                $image = $this->buildImage->handle($this->folder, $work->slug, $image);
-            }
-            $workTranslation = WorkTranslation::create([
-                'work_id' => $work->id,
-                'language_id' => $data['language_id'],
-                'user_id' => Auth::id(),
-                'title' => $data['title'],
-                'excerpt' => $data['excerpt'],
-                'body' => $data['body'],
-                'image' => $image ?? null,
-                'link' => $data['link'] ?? null,
-                'published_at' => $data['published_at'] ?? null,
-                'published_through' => $data['published_through'] ?? null,
-                'order' => $data['order'] ?? 0,
-                'status' => $data['status'] ?? WorkStatus::Published,
-                'status_by' => $data['status_by'] ?? Auth::id(),
-                'status_note' => 'Initial Work creation',
-                'views' => 0,
-            ]);
-        } else {
-            $work->find($work);
-            $work->update($data);
+//        if ($work === null) {
+//            $data['user_id'] = Auth::id();
+//            $work->find($work);
+//            $work = Work::create($data);
+        $workTranslation = WorkTranslation::create([
+            'work_id' => $data['work_id'],
+            'language_id' => $data['language_id'],
+            'user_id' => Auth::id(),
+            'title' => $data['title'],
+            'excerpt' => $data['excerpt'],
+            'body' => $data['body'],
+            'image' => $image ?? null,
+            'link' => $data['link'] ?? null,
+            'published_at' => $data['published_at'] ?? null,
+            'published_through' => $data['published_through'] ?? null,
+            'order' => $data['order'] ?? 0,
+            'status' => $data['status'] ?? WorkStatus::Published,
+            'status_by' => $data['status_by'] ?? Auth::id(),
+            'status_note' => 'Initial Work creation',
+            'views' => 0,
+        ]);
+        if (isset($image)) {
+            $image = $this->buildImage->handle($this->folder, $work->slug, $image);
         }
+//        } else {
+//            $work->find($work);
+//            $work->update($data);
+//        }
 
         if (isset($tags)) {
             $this->saveTags->handle($tags, $workTranslation);

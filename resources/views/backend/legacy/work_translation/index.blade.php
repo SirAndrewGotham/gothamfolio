@@ -14,7 +14,7 @@
 
 @section('content')
     <div class="mb-4">
-        <a href="{{ route('admin.workTranslations.create') }}" class="btn btn-default">
+        <a href="{{ route('admin.workTranslations.create', $work) }}" class="btn btn-default">
             <i class="fa fa-pencil"></i>
             {{ __('Add translation') }}
         </a>
@@ -24,6 +24,7 @@
         <tr>
             <th>{{ __('Cover') }}</th>
             <th>{{ __('Title') }}</th>
+            <th>{{ __('Excerpt') }}</th>
             <th>{{ __('Language') }}</th>
             <th>{{ __('Author') }}</th>
             <th>{{ __('Updated') }}</th>
@@ -33,10 +34,18 @@
         @forelse($work->translations as $work)
             <tr>
                 <td>
-                    <img src="{{ asset('uploads/works/'.$work->id.'/'.$work->image) }}" height="50px" >
+{{--                    @if (Storage::disk('public')->exists('uploads/works/'.$work->id.'/'.$work->image)) {--}}
+                    @if (file_exists( public_path() . '/uploads/works/'.$work->id.'/'.$work->image)) {
+                        <img src="{{ asset('uploads/works/'.$work->id.'/'.$work->image) }}" height="50px" >
+                    @else
+                        {{-- Put a placeholder here --}}
+                    @endif
                 </td>
                 <td>
                     {{ $work->title }}
+                </td>
+                <td>
+                    {!! $work->excerpt !!}
                 </td>
                 <td>
                     {{ $work->language->name }}
@@ -52,7 +61,7 @@
                 <td>
                     <div class="row btn-group">
                         <div class="col-md-3">
-                            <a href="{{ route('admin.workTranslations.show', $work->slug) }}" class="btn btn-info">
+                            <a href="{{ route('admin.workTranslations.show', $work) }}" class="btn btn-info">
                                 <i class="fa fa-eye"></i>
                                 {{ __('View') }}
                             </a>

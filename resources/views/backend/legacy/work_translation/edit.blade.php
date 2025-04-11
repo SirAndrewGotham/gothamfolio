@@ -18,7 +18,7 @@
 @endsection
 
 @section('content')
-    <form role="form" action="{{ route('admin.works.update', $workTranslation->slug) }}" method="POST" enctype="multipart/form-data">
+    <form role="form" action="{{ route('admin.workTranslations.update', $workTranslation->slug) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 

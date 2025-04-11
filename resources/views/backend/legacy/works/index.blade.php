@@ -29,12 +29,32 @@
                 <td>/works/{{ $work->slug }}</td>
                 <td><a href="{{ route('admin.users.show', $work->user->slug) }}" target="_blank">{{ $work->user->name }}</a></td>
                 <td>{{ $work->updated_at->diffForHumans() }}</td>
-                <td><a href="{{ route('admin.workTranslations.index', $work->slug) }}" class="btn btn-info"><i class="fa fa-eye"></i>
-                    {{ __('View') }}</a>
-                    <a href="{{ route('admin.works.edit', $work->slug) }}" class="btn btn-warning"><i class="fa fa-pencil"></i>
-                        {{ __('Edit') }}</a>
-                    <a href="{{ route('admin.works.destroy', $work->slug) }}" class="btn btn-danger"><i class="fa fa-trash-o"></i>
-                        {{ __('Delete') }}</a></td>
+                <td>
+                    <div class="row btn-group">
+                        <div class="col-md-4">
+                            <a href="{{ route('admin.workTranslations.index', $work->slug) }}" class="btn btn-info">
+                                <i class="fa fa-eye"></i>
+                                {{ __('View') }}
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <a href="{{ route('admin.works.edit', $work->slug) }}" class="btn btn-warning">
+                                <i class="fa fa-pencil"></i>
+                                {{ __('Edit') }}
+                            </a>
+                        </div>
+                        <div class="col-md-4">
+                            <form action="{{ route('admin.works.destroy', $work) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fa fa-trash-o"></i> {{ __('Delete') }}
+                                </button>
+                            </form>
+                        </div>
+{{--                    <a href="{{ route('admin.works.destroy', $work->slug) }}" class="btn btn-danger"><i class="fa fa-trash-o"></i>--}}
+{{--                        {{ __('Delete') }}</a></td>--}}
+                </td>
             </tr>
         @empty
             <tr>

@@ -5,6 +5,7 @@ namespace App\Http\Requests;
 use App\Enums\WorkStatus;
 use App\Models\Language;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
@@ -15,7 +16,7 @@ class StoreWorkTranslationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -26,7 +27,7 @@ class StoreWorkTranslationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'work_id' => 'nullable|exists:works,id',
+            'work_id' => 'required|exists:works,id',
             'user_id' => 'required|exists:users,id',
             'language_id' => 'required|integer|exists:languages,id',
             'title' => 'required|string',
@@ -56,6 +57,7 @@ class StoreWorkTranslationRequest extends FormRequest
             'user_id' => $this->user_id ?? auth()->id(),
             'language_id' => (int)Language::where('code', $this->language)->first()->id,
             'order' => $this->order ?? 0,
+            'work_id' => Crypt::decrypt($this->input('work_id')),
         ]);
     }
 }

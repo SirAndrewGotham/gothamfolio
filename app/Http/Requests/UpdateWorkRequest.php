@@ -24,7 +24,7 @@ class UpdateWorkRequest extends FormRequest
         return [
             'title' => 'required',
 //            'slug' => 'required',
-            'content' => 'required',
+//            'content' => 'required',
         ];
     }
 }

@@ -17,10 +17,12 @@
 @endsection
 
 @section('content')
-    <form role="form" action="{{ route('admin.works.store') }}" method="POST" enctype="multipart/form-data">
+    <form role="form" action="{{ route('admin.workTranslations.store', $work) }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         @include('backend.legacy.layouts._formErrors')
+
+        <input name="work_id" type="hidden" value="{{ Crypt::encrypt($work->id) }}">
 
         <div class="form-group">
             <label for="Languages">{{ __('Language') }}</label>

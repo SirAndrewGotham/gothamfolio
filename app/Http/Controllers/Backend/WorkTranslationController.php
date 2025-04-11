@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Actions\WorkSaveAction;
 use App\Actions\WorkTranslationSaveAction;
+use App\Actions\WorkTranslationUpdateAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreWorkRequest;
 use App\Http\Requests\StoreWorkTranslationRequest;
@@ -11,6 +12,7 @@ use App\Http\Requests\UpdateWorkTranslationRequest;
 use App\Models\Language;
 use App\Models\Work;
 use App\Models\WorkTranslation;
+use JetBrains\PhpStorm\NoReturn;
 
 class WorkTranslationController extends Controller
 {
@@ -26,11 +28,15 @@ class WorkTranslationController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Work $work)
     {
-        $languages = auth()->user()->languages;
+        $user_languages = auth()->user()->languages;
 
-        return view('backend.legacy.work_translation.translate', compact('languages'));
+        $already_used_languages = collect(WorkTranslation::where('work_id', $work->id)->get()->pluck('language_id'));
+
+        $languages = $user_languages->whereNotIn('id', $already_used_languages);
+
+        return view('backend.legacy.work_translation.create', compact(['languages', 'work']));
     }
 
     /**
@@ -42,8 +48,6 @@ class WorkTranslationController extends Controller
 
         $already_used_languages = collect($workTranslation::where('work_id', $workTranslation->work_id)->get()->pluck('language_id'));
 
-//        dd($used);
-
         $languages = $user_languages->whereNotIn('id', $already_used_languages);
 
         return view('backend.legacy.work_translation.translate', compact(['languages', 'workTranslation']));
@@ -52,11 +56,13 @@ class WorkTranslationController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreWorkTranslationRequest $request, WorkSaveAction $workTranslationSaveAction)
+    public function store(StoreWorkTranslationRequest $request, WorkTranslationSaveAction $workTranslationSaveAction)
     {
         $workTranslationSaveAction->handle($request->validated());
 
-        return redirect()->route('admin.work_translation.index', ['work_id', $request->work_id])->with('success', 'Your Work created successfully!');
+        $slug = Work::where('id', $request->work_id)->first();
+
+        return redirect()->route('admin.workTranslations.index', $slug)->with('success', 'Your Work Translation created successfully!');
     }
 
     /**
@@ -64,7 +70,7 @@ class WorkTranslationController extends Controller
      */
     public function show(WorkTranslation $workTranslation)
     {
-        //
+        return view('backend.legacy.work_translation.show', compact('workTranslation'));
     }
 
     /**
@@ -78,9 +84,12 @@ class WorkTranslationController extends Controller
     /**
      * Update the specified resource in storage.
      */
+//    #[NoReturn] public function update(UpdateWorkTranslationRequest $request, WorkTranslation $workTranslation)
     public function update(UpdateWorkTranslationRequest $request, WorkTranslation $workTranslation)
     {
-        //
+        (new WorkTranslationUpdateAction())->handle($request->validated(), $workTranslation);
+
+        return redirect()->route('admin.workTranslations.index')->with('success', 'Your Work Translation updated successfully!');
     }
 
     /**
@@ -88,6 +97,17 @@ class WorkTranslationController extends Controller
      */
     public function destroy(WorkTranslation $workTranslation)
     {
-        //
+        $workTranslation->delete();
+
+        return redirect()->back();
+
+//        return redirect()->route('admin.work_translation.index');
+    }
+
+    public function forceDelete(WorkTranslation $workTranslation)
+    {
+        $workTranslation->forceDelete();
+
+        return redirect()->back();
     }
 }
