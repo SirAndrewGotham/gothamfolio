@@ -6,51 +6,52 @@
 @endsection
 
 @section('meta-title')
-    {{ __('Translating Work') }} "{{ $work->title }}"
+    {{ __('Editing Work Translation') }} "{{ $workTranslation->title }}"
 @endsection
 
 @section('page-title')
-    {{ __('Translating Work') }} "{{ $work->title }}"
+    {{ __('Editing Work Translation') }} "{{ $workTranslation->title }}"
 @endsection
 
 @section('breadcrumb-title')
-    {{ __('Translate Work') }}
+    {{ __('Edit Work Translation') }}
 @endsection
 
 @section('content')
-    <form role="form" action="{{ route('admin.works.store') }}" method="POST" enctype="multipart/form-data">
+    <form role="form" action="{{ route('admin.works.update', $workTranslation->slug) }}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
 
         @include('backend.legacy.layouts._formErrors')
 
         <div class="form-group">
             <label for="title">{{ __('Title') }}</label>
-            <input type="text" name="title" value="{{ old('title', $work->title) }}" class="form-control">
+            <input type="text" name="title" value="{{ old('title', $workTranslation->title) }}" class="form-control">
         </div>
         <div class="form-group">
             <label for="slug">{{ __('Slug') }}</label>
-            <input type="text" name="slug" id="slug" value="{{ $work->slug }}" class="form-control" disabled="disabled">
+            <input type="text" name="slug" id="slug" value="{{ $workTranslation->slug }}" class="form-control" disabled="disabled">
         </div>
         <div class="form-group">
             <label for="excerpt">{{ __('Excerpt') }}</label>
-            <textarea name="excerpt" id="excerpt" cols="30" rows="10" class="form-control summernote">{{ old('excerpt', $work->excerpt) }}</textarea>
+            <textarea name="excerpt" id="excerpt" cols="30" rows="10" class="form-control summernote">{{ old('excerpt', $workTranslation->excerpt) }}</textarea>
         </div>
         <div class="form-group">
             <label for="body">{{ __('Content') }}</label>
-            <textarea name="body" id="body" cols="30" rows="10" class="form-control summernote">{{ old('body', $work->body) }}</textarea>
+            <textarea name="body" id="body" cols="30" rows="10" class="form-control summernote">{{ old('body', $workTranslation->body) }}</textarea>
         </div>
         <div class="form-group">
             <label for="tags">{{ __('Tags') }}</label>
-            <input type="text" name="tags" id="tags" value="{{ old('tags', $work->tags->implode('name', ',')) }}" class="form-control">
+            <input type="text" name="tags" id="tags" value="{{ old('tags', $workTranslation->tags->implode('name', ',')) }}" class="form-control">
         </div>
         <div class="form-group">
             <label for="order">{{ __('Order') }}</label>
-            <input type="text" name="order" id="order" value="{{ $work->order }}" class="form-control">
+            <input type="text" name="order" id="order" value="{{ $workTranslation->order }}" class="form-control">
         </div>
         <div class="form-group">
             <div>
-                @if ($work->image)
-                    <img src="{{ asset($work->image) }}" alt="" height="100">
+                @if ($workTranslation->image)
+                    <img src="{{ asset($workTranslation->image) }}" alt="" height="100">
                 @endif
             </div>
             <label for="image">{{ __('Image') }}</label>

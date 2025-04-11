@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\TagController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\WorkController;
+use App\Http\Controllers\Backend\WorkTranslationController;
 use Illuminate\Support\Facades\Route;
 
 // Dashboard
@@ -24,6 +25,16 @@ Route::resource('posts', PostController::class);
 
 // Works
 Route::resource('works', WorkController::class);
+
+// Works Translations
+Route::get('workTranslations/{work}', [WorkTranslationController::class, 'index'])->name('workTranslations.index');
+Route::get('workTranslations', [WorkTranslationController::class, 'create'])->name('workTranslations.create');
+Route::get('workTranslations/{workTranslation}/translate', [WorkTranslationController::class, 'translate'])->name('workTranslations.translate');
+Route::post('workTranslations', [WorkTranslationController::class, 'store'])->name('workTranslations.store');
+Route::get('workTranslations/{workTranslation}/edit', [WorkTranslationController::class, 'edit'])->name('workTranslations.edit');
+Route::put('workTranslations/{workTranslation}', [WorkTranslationController::class, 'update'])->name('workTranslations.update');
+Route::get('workTranslations/{workTranslation}', [WorkTranslationController::class, 'show'])->name('workTranslations.show');
+Route::delete('workTranslations/{workTranslation}', [WorkTranslationController::class, 'destroy'])->name('workTranslations.destroy');
 
 // Customers
 Route::resource('customers', CustomerController::class);

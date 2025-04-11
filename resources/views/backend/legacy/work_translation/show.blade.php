@@ -42,7 +42,7 @@
                     {{ $work->language->name }}
                 </td>
                 <td>
-                    <a href="{{ route('admin.users.show', $work->user->slug) }}">
+                    <a href="{{ route('admin.users.show', $work->user->slug) }}" target="_blank">
                         {{ $work->user->name }}
                     </a>
                 </td>
@@ -50,11 +50,11 @@
                     {{ $work->updated_at->diffForHumans() }}
                 </td>
                 <td>
-                    <a href="{{ route('admin.workTranslations.show', $work->slug) }}" class="btn btn-info">
+                    <a href="{{ route('admin.workTranslations.show', $work->slug) }}" class="btn btn-info" target="_blank">
                         <i class="fa fa-eye"></i>
                         {{ __('View') }}
                     </a>
-                    <a href="{{ route('admin.work.edit', $work->slug) }}" class="btn btn-warning">
+                    <a href="{{ route('admin.workTranslations.edit', $work->slug) }}" class="btn btn-warning">
                         <i class="fa fa-pencil"></i>
                         {{ __('Edit') }}
                     </a>
@@ -62,7 +62,7 @@
                         <i class="fa fa-pencil"></i>
                         {{ __('Translate') }}
                     </a>
-                    <a href="{{ route('admin.work.destroy', $work->slug) }}" class="btn btn-danger">
+                    <a href="{{ route('admin.workTranslations.destroy', $work->slug) }}" class="btn btn-danger">
                         <i class="fa fa-trash-o"></i>
                         {{ __('Delete') }}
                     </a>
