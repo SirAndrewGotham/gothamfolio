@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreFeedbackRequest;
 use App\Mail\FeedbackMailer;
 use App\Models\Feedback;
+use Exception;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
@@ -26,7 +27,7 @@ class FeedbackController extends Controller
         if (config('gothamfolio.frontend.feedback-to-requester') == 'on') {
             try {
                 Mail::to($request->validated()['email'])->send(new FeedbackMailer($request->validated()));
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 echo $e->getMessage();
                 Log::info('Feedback mail not sent'.$e->getMessage());
             }
@@ -36,7 +37,7 @@ class FeedbackController extends Controller
         if (config('gothamfolio.frontend.feedback-to-admin') == 'on') {
             try {
                 Mail::to(config('mail.from.reply_to.address'))->send(new FeedbackMailer($request->validated()));
-            } catch (\Exception $e) {
+            } catch (Exception $e) {
                 echo $e->getMessage();
                 Log::info('Feedback mail not sent'.$e->getMessage());
             }

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\LanguageFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -10,7 +11,7 @@ use Illuminate\Support\Str;
 
 class Language extends Model
 {
-    /** @use HasFactory<\Database\Factories\LanguageFactory> */
+    /** @use HasFactory<LanguageFactory> */
     use HasFactory, SoftDeletes;
 
     protected $guarded = ['id'];

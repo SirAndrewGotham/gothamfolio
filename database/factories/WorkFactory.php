@@ -4,11 +4,12 @@ namespace Database\Factories;
 
 use App\Models\Language;
 use App\Models\User;
+use App\Models\Work;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Work>
+ * @extends Factory<Work>
  */
 class WorkFactory extends Factory
 {

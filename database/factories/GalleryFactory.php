@@ -2,12 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\Gallery;
 use App\Models\Language;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Gallery>
+ * @extends Factory<Gallery>
  */
 class GalleryFactory extends Factory
 {

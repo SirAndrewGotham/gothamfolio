@@ -5,10 +5,11 @@ namespace Database\Factories;
 use App\Models\Language;
 use App\Models\User;
 use App\Models\Work;
+use App\Models\WorkTranslation;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\WorkTranslation>
+ * @extends Factory<WorkTranslation>
  */
 class WorkTranslationFactory extends Factory
 {

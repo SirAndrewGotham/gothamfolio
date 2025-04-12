@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\WorkStatus;
+use Database\Factories\WorkTranslationFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,7 +13,7 @@ use Illuminate\Support\Str;
 
 class WorkTranslation extends Model
 {
-    /** @use HasFactory<\Database\Factories\WorkTranslationFactory> */
+    /** @use HasFactory<WorkTranslationFactory> */
     use HasFactory, SoftDeletes;
 
     protected $guarded = ['id'];

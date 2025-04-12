@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\Translate;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Translate>
+ * @extends Factory<Translate>
  */
 class TranslateFactory extends Factory
 {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Requests\StoreImageRequest;
 use App\Http\Requests\UpdateImageRequest;
 use App\Models\Image;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class ImageController
@@ -28,7 +29,7 @@ class ImageController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreImageRequest $request): \Illuminate\Http\RedirectResponse
+    public function store(StoreImageRequest $request): RedirectResponse
     {
         // validation moved to StoreImageRequest
 //        $this->validate($request, [

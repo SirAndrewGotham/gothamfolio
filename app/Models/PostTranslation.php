@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Enums\PostStatus;
+use Database\Factories\PostTranslationFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -13,7 +14,7 @@ use Illuminate\Support\Str;
 
 class PostTranslation extends Model
 {
-    /** @use HasFactory<\Database\Factories\PostTranslationFactory> */
+    /** @use HasFactory<PostTranslationFactory> */
     use HasFactory, SoftDeletes;
 
     protected $guarded = ['id'];

@@ -4,12 +4,13 @@ namespace Database\Factories;
 
 use App\Models\Language;
 use App\Models\Post;
+use App\Models\PostTranslation;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\PostTranslation>
+ * @extends Factory<PostTranslation>
  */
 class PostTranslationFactory extends Factory
 {
