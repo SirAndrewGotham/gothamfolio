@@ -24,6 +24,10 @@
 
         @include('backend.legacy.layouts._formErrors')
 
+        <input name="work_id" type="hidden" value="{{ Crypt::encrypt($workTranslation->work->id) }}">
+
+        <input name="language" type="hidden" value="{{ Crypt::encrypt($workTranslation->language_id) }}">
+
         <div class="form-group">
             <label for="title">{{ __('Title') }}</label>
             <input type="text" name="title" value="{{ old('title', $workTranslation->title) }}" class="form-control">

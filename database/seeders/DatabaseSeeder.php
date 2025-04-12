@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
             TagSeeder::class,
             GallerySeeder::class,
             ImageSeeder::class,
+            FeedbackSeeder::class,
         ]);
     }
 }

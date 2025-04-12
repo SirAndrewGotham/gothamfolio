@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Actions\WorkSaveAction;
 use App\Actions\WorkTranslationSaveAction;
 use App\Actions\WorkTranslationUpdateAction;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreWorkRequest;
 use App\Http\Requests\StoreWorkTranslationRequest;
 use App\Http\Requests\UpdateWorkTranslationRequest;
-use App\Models\Language;
 use App\Models\Work;
 use App\Models\WorkTranslation;
 use JetBrains\PhpStorm\NoReturn;
@@ -22,6 +19,7 @@ class WorkTranslationController extends Controller
     public function index(Work $work)
     {
         $work_translations = WorkTranslation::where('work_id', $work->id)->get();
+
         return view('backend.legacy.work_translation.index', compact(['work', 'work_translations']));
     }
 
@@ -84,12 +82,12 @@ class WorkTranslationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-//    #[NoReturn] public function update(UpdateWorkTranslationRequest $request, WorkTranslation $workTranslation)
+    //    #[NoReturn] public function update(UpdateWorkTranslationRequest $request, WorkTranslation $workTranslation)
     public function update(UpdateWorkTranslationRequest $request, WorkTranslation $workTranslation)
     {
-        (new WorkTranslationUpdateAction())->handle($request->validated(), $workTranslation);
+        (new WorkTranslationUpdateAction)->handle($request->validated(), $workTranslation);
 
-        return redirect()->route('admin.workTranslations.index')->with('success', 'Your Work Translation updated successfully!');
+        return redirect()->route('admin.workTranslations.index', $workTranslation->work->slug)->with('success', 'Your Work Translation updated successfully!');
     }
 
     /**
@@ -101,7 +99,7 @@ class WorkTranslationController extends Controller
 
         return redirect()->back();
 
-//        return redirect()->route('admin.work_translation.index');
+        //        return redirect()->route('admin.work_translation.index');
     }
 
     public function forceDelete(WorkTranslation $workTranslation)
