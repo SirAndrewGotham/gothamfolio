@@ -5,6 +5,7 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\FeedbackController;
 use App\Http\Controllers\Backend\LanguageController;
 use App\Http\Controllers\Backend\PostController;
+use App\Http\Controllers\Backend\PostTranslationController;
 use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\TagController;
@@ -22,6 +23,16 @@ Route::put('settings', [SettingController::class, 'update'])->name('settings.upd
 
 // Posts
 Route::resource('posts', PostController::class);
+
+// Posts Translations
+Route::get('postTranslations/{postTranslation}', [PostTranslationController::class, 'show'])->name('postTranslations.show');
+Route::get('post/translations/{post}', [PostTranslationController::class, 'index'])->name('postTranslations.index');
+Route::get('postTranslations/{post}/create', [PostTranslationController::class, 'create'])->name('postTranslations.create');
+Route::post('postTranslations/{post}', [PostTranslationController::class, 'store'])->name('postTranslations.store');
+Route::get('postTranslations/{postTranslation}/translate', [PostTranslationController::class, 'translate'])->name('postTranslations.translate');
+Route::get('postTranslations/{postTranslation}/edit', [PostTranslationController::class, 'edit'])->name('postTranslations.edit');
+Route::put('postTranslations/{postTranslation}', [PostTranslationController::class, 'update'])->name('postTranslations.update');
+Route::delete('postTranslations/{postTranslation}', [PostTranslationController::class, 'destroy'])->name('postTranslations.destroy');
 
 // Works
 Route::resource('works', WorkController::class);

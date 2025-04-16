@@ -81,6 +81,8 @@ return [
             'sincerely'        => 'Sincerely',
         ],
         'home'    => [
+            'status'        => 'Status',
+            'looking'       => 'Looking for a job',
             'carousel'      => [
                 'slides' => '3',
                 1 => [

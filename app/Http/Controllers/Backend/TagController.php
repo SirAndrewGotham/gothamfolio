@@ -15,7 +15,7 @@ class TagController extends Controller
     {
         $tags = Tag::all();
 
-        return view('backend..legacy.tags.index', compact('tags'));
+        return view('backend.legacy.tags.index', compact('tags'));
     }
 
     public function indexRaw()

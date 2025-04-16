@@ -12,6 +12,7 @@ return [
         'languages' => env('LANGUAGES', 'on'),
         'socials' => env('SOCIALS', 'on'),
         'footer' => env('FOOTER', 'on'),
+        'status' => env('STATUS', 'off'),
         'registration' => env('REGISTRATION', 'off'),
         'feedback-to-db' => env('FEEDBACK_TO_DB', 'on'),
         'feedback-to-requester' => env('FEEDBACK_TO_REQUESTER', 'off'),

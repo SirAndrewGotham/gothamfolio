@@ -37,11 +37,6 @@ class Work extends Model
         });
     }
 
-    protected $casts = [
-        'excerpt' => 'string',
-        'order' => 'integer',
-    ];
-
     public function getRouteKeyName(): string
     {
         return 'slug';

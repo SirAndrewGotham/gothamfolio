@@ -38,10 +38,25 @@ class PostTranslation extends Model
     {
         return 'slug';
     }
+    
+    protected  $casts = [
+        'excerpt' => 'string',
+        'body' => 'string',
+        'order' => 'integer',
+        'status' => WorkStatus::class,
+        'published_at' => 'datetime',
+        'published_through' => 'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+        'deleted_at' => 'datetime',
+    ];
 
     protected function casts(): array
     {
         return [
+            'excerpt' => 'string',
+            'body' => 'string',
+            'order' => 'integer',
             'status' => PostStatus::class,
             'published_at' => 'datetime',
             'published_through' => 'datetime',
@@ -53,7 +68,7 @@ class PostTranslation extends Model
 
     public function post(): BelongsToMany
     {
-        return $this->belongsToMany(Post::class);
+        return $this->belongsToMany(Post::class, 'post_id', 'id', 'post_translations');
     }
 
     public function tags(): MorphToMany
@@ -64,5 +79,10 @@ class PostTranslation extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+    
+    public function language(): BelongsTo
+    {
+        return $this->belongsTo(Language::class);
     }
 }

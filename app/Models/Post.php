@@ -16,8 +16,10 @@ class Post extends Model
     /** @use HasFactory<PostFactory> */
     use HasFactory, SoftDeletes;
 
-    protected $guarded = [
-        'id',
+    protected $fillable = [
+        'user_id',
+        'title',
+        'slug',
     ];
 
     protected static function boot(): void
@@ -40,19 +42,9 @@ class Post extends Model
         return 'slug';
     }
 
-    protected function casts(): array
-    {
-        return [
-            'created_at' => 'datetime',
-            'updated_at' => 'datetime',
-            'published_at' => 'datetime',
-            'deleted_at' => 'datetime',
-        ];
-    }
-
     public function translations(): HasMany
     {
-        return $this->hasMany(PostTranslation::class);
+        return $this->hasMany(PostTranslation::class, 'post_id', 'id');
     }
 
     public function tags(): MorphToMany

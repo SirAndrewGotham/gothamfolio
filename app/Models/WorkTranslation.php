@@ -44,6 +44,7 @@ class WorkTranslation extends Model
         'updated_at' => 'datetime',
         'deleted_at' => 'datetime',
     ];
+
     protected function casts(): array
     {
         return [

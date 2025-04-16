@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Enums\GalleryStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreGalleryRequest;
 use App\Http\Requests\UpdateGalleryRequest;
 use App\Models\Gallery;
+use Illuminate\Database\Eloquent\Builder;
 
-class GalleryController
+class GalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        [$galleries, $tags] = $this->prepareView();
+
+        return view('frontend.legacy.galleries.index', compact('galleries', 'tags'));
     }
 
     /**
@@ -63,5 +67,29 @@ class GalleryController
     public function destroy(Gallery $gallery)
     {
         //
+    }
+
+    public function prepareView($gallery = null): array
+    {
+        $languages = $this->getLanguages();
+
+        $galleries = Gallery::where(function (Builder $query) {
+            $query->where('status', GalleryStatus::Published);
+            })
+            ->orderBy('order', 'asc')
+            ->with(['tags'])
+            ->paginate(10);
+
+        $tags = collect();
+
+        foreach ($galleries as $gallery) {
+            foreach ($gallery->tags as $tag) {
+                if($tags->doesntContain('id', $tag->id)) {
+                    $tags->push($tag);
+                }
+            }
+        }
+
+        return [$galleries, $tags];
     }
 }

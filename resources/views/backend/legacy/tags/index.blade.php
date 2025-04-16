@@ -25,8 +25,8 @@
         @forelse($tags as $tag)
             <tr>
                 <td>{{ $tag->name }}</td>
-                <td><a href="{{ route('works.tag', $tag->slug) }}" target="_blank">/works/tag/{{ $tag->slug }}</a></td>
-                <td>{{ $tag->updated_at->diffForHumans() }}</td>
+                <td><a href="{{-- route('works.tag', $tag->slug) --}}" target="_blank">/works/tag/{{ $tag->slug }}</a></td>
+                <td>{{-- $tag->updated_at->diffForHumans() --}}</td>
                 <td><a href="{{ route('admin.tags.show', $tag->id) }}" class="btn btn-info" target="_blank"><i class="fa fa-eye"></i>
                     {{ __('View') }}</a>
                     <a href="{{ route('admin.tags.edit', $tag->id) }}" class="btn btn-warning"><i class="fa fa-pencil"></i>

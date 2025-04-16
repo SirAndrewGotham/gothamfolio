@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Gallery;
+use App\Models\Image;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -15,6 +16,7 @@ class GallerySeeder extends Seeder
     public function run(): void
     {
         Gallery::factory()
+            ->has(Image::factory()->count(5))
             ->count(7)
             ->create();
 

@@ -74,7 +74,7 @@
 {{--                </li>--}}
             </ul>
 
-            <p>{{ trans('app.frontend.resume.work-experience.notes') }}</p>
+            <p>{!! trans('app.frontend.resume.work-experience.notes') !!}</p>
 
             <div class="heading no-margin-bottom pt15">
                 <h2>{{ trans('app.frontend.resume.education.title') }}</h2>

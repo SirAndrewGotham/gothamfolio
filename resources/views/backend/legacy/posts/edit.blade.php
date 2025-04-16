@@ -31,38 +31,10 @@
             <label for="slug">{{ __('Slug') }}</label>
             <input type="text" name="slug" id="slug" value="{{ $post->slug }}" class="form-control" disabled="disabled">
         </div>
-        <div class="form-group">
-            <label for="excerpt">{{ __('Excerpt') }}</label>
-            <textarea name="excerpt" id="excerpt" cols="30" rows="10" class="form-control summernote">{{ old('excerpt', $post->excerpt) }}</textarea>
-        </div>
-        <div class="form-group">
-            <label for="body">{{ __('Body') }}</label>
-            <textarea name="body" id="body" cols="30" rows="10" class="form-control summernote">{{ old('body', $post->body) }}</textarea>
-        </div>
-        <div class="form-group">
-            <label for="tags">{{ __('Tags') }}</label>
-            <input type="text" name="tags" id="tags" value="{{ old('tags', $post->tags->implode('name', ',')) }}" class="form-control">
-        </div>
-        <div class="form-group">
-            <div>
-                @if ($post->image)
-                    <img src="{{ asset($post->image) }}" alt="" height="100">
-                @endif
-            </div>
-            <label for="image">{{ __('Image') }}</label>
-            <input type="file" name="image" id="image">
-        </div>
         <button type="submit" class="btn btn-rw btn-primary">{{ __('Submit') }}</button>
     </form>
 @endsection
 
 @section('scripts')
-    <script type="text/javascript">
-        $(document).ready(function() {
 
-            $('.summernote_excerpt').summernote();
-            $('.summernote_body').summernote();
-
-        });
-    </script>
 @endsection

@@ -17,10 +17,12 @@
 @endsection
 
 @section('content')
-    <form role="form" action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
+    <form role="form" action="{{ route('admin.postTranslations.store', $post) }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         @include('backend.legacy.layouts._formErrors')
+
+        <input name="post_id" type="hidden" value="{{ Crypt::encrypt($post->id) }}">
 
         <div class="form-group">
             <label for="Languages">{{ __('Language') }}</label>
@@ -41,7 +43,7 @@
         <div class="form-group">
             <label for="excerpt">{{ __('Excerpt') }}</label>
             <textarea name="excerpt" id="excerpt" cols="30" rows="10" class="form-control summernote">{{ old('excerpt') }}</textarea>
-            <p class="text-xs">{{ __('To be displayed in portfolio index, repeat in "content" if needed in a work view as well') }}</p>
+            <p class="text-xs">{{ __('To be displayed in portfolio index, repeat in "content" if needed in a post view as well') }}</p>
         </div>
         <div class="form-group">
             <label for="body">{{ __('Content') }}</label>
@@ -50,19 +52,28 @@
         <div class="form-group">
             <label for="tags">{{ __('Tags') }}</label>
             <input type="text" name="tags" id="tags" value="{{ old('tags') }}" class="form-control">
+            <p class="text-xs">{{ __('Comma-separated without spaces if several') }}</p>
+        </div>
+        <div class="form-group">
+            <label for="order">{{ __('Order') }}</label>
+            <input type="text" name="order" id="order" value="{{ old('order') }}" class="form-control">
         </div>
         <div class="form-group">
             <label for="image">{{ __('Image') }}</label>
-            <input type="file" name="image" id="image">
+            <input type="file" id="image" name="image">
         </div>
+
         <div class="form-group">
             <label for="published_at">{{ __('Publication date') }}</label>
             <input type="datetime-local" name="published_at" class="form-control"
                    value="{{-- date_format(date_create($productInovoice->date), 'd/m/Y')) --}}">
 
-            {{--            <input type="text" name="tags" id="tags" value="{{ old('tags') }}" class="form-control">--}}
+{{--            <input type="text" name="tags" id="tags" value="{{ old('tags') }}" class="form-control">--}}
         </div>
-	<button type="submit" class="btn btn-rw btn-primary">{{ __('Submit') }}</button>
+
+{{--        <input type="text" class="form-control" data-inputmask="'alias': 'dd/mm/yyyy'" data-mask="" im-insert="true" placeholder="dd/mm/yyyy">--}}
+
+        <button type="submit" class="btn btn-rw btn-primary">{{ __('Submit') }}</button>
     </form>
 @endsection
 

@@ -16,7 +16,7 @@ class WorkController extends Controller
      */
     public function index()
     {
-        $works = Work::latest()->paginate(15);
+        $works = Work::with('translations')->latest()->paginate(15);
 
         return view('backend.legacy.works.index', compact('works'));
     }

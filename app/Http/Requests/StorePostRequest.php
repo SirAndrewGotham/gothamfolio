@@ -44,7 +44,8 @@ class StorePostRequest extends FormRequest
         ];
     }
 
-    protected function prepareForValidation() {
+    protected function prepareForValidation(): void
+    {
         if($this->input('excerpt') == null )
         {
             $this->merge(['excerpt' => Str::limit($this->input('body'), 50, preserveWords: true)]);

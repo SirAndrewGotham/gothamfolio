@@ -21,7 +21,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('translations')->latest()->get();
+        $posts = Post::with('translations')->latest()->paginate(15);
 
         return view('backend.legacy.posts.index', compact('posts'));
     }
@@ -65,9 +65,9 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(UpdatePostRequest $request, Post $post)
     {
-        $this->savePost($request->all(), $post);
+	(new PostUpdateAction())->handle($request->validated(), $post);
 
         return redirect()->route('admin.posts.index');
     }

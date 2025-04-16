@@ -81,6 +81,8 @@ return [
             'sincerely'        => 'С уважением',
         ],
         'home'    => [
+            'status'        => 'Статус',
+            'looking'       => 'Ищу работу',
             'carousel'      => [
                 'slides' => '3',
                 1 => [
@@ -109,11 +111,11 @@ return [
                 ],
                 2 => [
                     'title'   => 'Никогда не перестаю учиться',
-                    'content' => "Technologies develop at a steady and very fast pace. Something new comes up every day. Compliance, ISO-9000, Scrum, Agile, Git, Tailwind, Frontend, Backend, API, you name it...<br />It's so interesting and engaging! Studying something new has long become my daily routine.",
+                    'content' => "Современные технологии постоянно развиваются, и очень быстро. Что-то новое появляется каждый день: комплаенс, ISO-9000, Scrum, Agile, Git, Tailwind, Frontend, Backend, API, и многое другое...<br />Как это впечатляет и захватывакт! Изучение нового становится ежедневным приключением.",
                 ],
                 3 => [
                     'title'   => 'Фотография - мое второе имя',
-                    'content' => "I've always been shooting. My early childhood pictures often depict me playing around with cameras and - in those days - film. Then, i've been a school photographer at school. Then it went on and on. And I still shoot, now on a pro level.<br />Please have a look at my galleries, it would be great if you will find something for yourself there.",
+                    'content' => "Я фотографировал всегда. На фотографиях из моего раннего детства я уже вполне осознанно обращаюсь с фотоаппаратом. Позже, в школе, я был официальным фотографом школы. Затем... Все развивалось, и никогда не заканчивалось.<br />Посмотрите мои галереи, мне будет приятно, если вы увидите в них что-то, находящее в вас отклик.",
                 ],
             ],
             'about-me'      => [
@@ -212,7 +214,7 @@ return [
 //                                        <li>Created some tools and technics for SEO and SEM.</li>
 //                                    </ul>',
 //                ],
-                    'notes' => 'Примечание: полное резюме за весь период трудовой деятельности (40 лет) предоставляется по запросу.',
+                    'notes' => 'Примечание: полное резюме за весь период трудовой деятельности (40 лет) <a href="/contact">предоставляется по запросу</a>.',
             ],
             'education'        => [
                 'title' => 'Образование',
