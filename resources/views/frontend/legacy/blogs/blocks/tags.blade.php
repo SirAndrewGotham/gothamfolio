@@ -4,7 +4,7 @@
     </div>
     <p class="mb30">
         @foreach($tags as $tag)
-            <a href="{{ route('tag.show', $tag->slug) }}"><span class="label label-info">{{ $tag->name }}</span></a>
+            <a href="{{ route('blog.tag.show', $tag->slug) }}"><span class="label label-info">{{ $tag->name }}</span></a>
         @endforeach
     </p>
 @endif

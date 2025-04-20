@@ -9,7 +9,7 @@
                 <!-- Blog Posts -->
                 <div class="col-sm-8">
                     @forelse($posts as $post)
-                        @include('frontend.legacy.blogs.post', ['links' => true])
+                        @include('frontend.legacy.blogs.blocks.post', ['links' => true])
                     @empty
                         <p>
                             {{ trans('app.frontend.blog.tag.no-post-found') }}

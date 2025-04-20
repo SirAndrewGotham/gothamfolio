@@ -45,7 +45,7 @@ class WorkController extends Controller
     public function show(WorkTranslation $work)
     {
         // TODO: implement language procedures
-//        $works = WorkTranslation::where('work_id','!=',$work->id)->latest()->take(5)->get();
+        //        $works = WorkTranslation::where('work_id','!=',$work->id)->latest()->take(5)->get();
 
         [$works, $tags] = $this->prepareView($work);
 
@@ -93,8 +93,8 @@ class WorkController extends Controller
                     $query->whereNull('published_through')
                         ->orWhere('published_through', '>=', now());
                 });
-            })
-            ->whereHas('work', function (Builder $query) use($work) {
+        })
+            ->whereHas('work', function (Builder $query) {
                 $query->where('work_id', '!=', '$work->id');
             })
             ->whereIn('language_id', $languages)
@@ -106,7 +106,7 @@ class WorkController extends Controller
 
         foreach ($works as $work) {
             foreach ($work->tags as $tag) {
-                if($tags->doesntContain('id', $tag->id)) {
+                if ($tags->doesntContain('id', $tag->id)) {
                     $tags->push($tag);
                 }
             }

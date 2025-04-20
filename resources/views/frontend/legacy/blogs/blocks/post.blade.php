@@ -21,7 +21,12 @@
             @endif
         </ul>
         <hr align="left" class="mt15 mb10">
+        @if($links == true)
+            <h2><a href="{{ route('blog.show', $post->slug) }}">{{ $post->title }}</a></h2>
+        @else
             <h2>{{ $post->title }}</h2>
-        {!! $post->body !!}
+        @endif
+        {!! $post->excerpt !!}
+        <a href="{{ route('blog.show', $post->slug) }}" class="btn btn-rw btn-primary mt10">{{ trans('app.btn-read-more') }}</a>
     </div>
 </div>

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Actions\PostTranslationSaveAction;
+use App\Actions\PostTranslationUpdateAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostTranslationRequest;
 use App\Http\Requests\UpdatePostTranslationRequest;
+use App\Models\Post;
 use App\Models\PostTranslation;
 
 class PostTranslationController extends Controller

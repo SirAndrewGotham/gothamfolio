@@ -3,16 +3,9 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Actions\PostSaveAction;
-use App\Actions\TagsSaveAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
-use App\Models\PostTranslation;
-use App\Models\Tag;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
-use Intervention\Image\Laravel\Facades\Image;
 
 class PostController extends Controller
 {
@@ -67,7 +60,7 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-	(new PostUpdateAction())->handle($request->validated(), $post);
+        (new PostUpdateAction)->handle($request->validated(), $post);
 
         return redirect()->route('admin.posts.index');
     }

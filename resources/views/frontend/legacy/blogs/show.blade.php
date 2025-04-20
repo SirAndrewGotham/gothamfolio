@@ -1,7 +1,7 @@
 @extends('frontend.legacy.layouts.app')
 
 @section('content')
-    @include('frontend.legacy.layouts._headerPage', ['pageName' => trans('app.frontend.show.index.page-title', ['post_title' => $post->title]), 'pageNameBreadcrumb' => trans('app.frontend.blog.show.breadcrumb-title')])
+    @include('frontend.legacy.layouts._headerPage', ['pageName' => trans('app.frontend.blog.show.page-title', ['post_title' => $post->title]), 'pageNameBreadcrumb' => trans('app.frontend.blog.show.breadcrumb-title')])
 
     <section class="mt40 mb40">
         <div class="container">

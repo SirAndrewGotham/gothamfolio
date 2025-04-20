@@ -41,7 +41,7 @@ return [
             'contact-heading'    => 'Hello Master,',
             'contact-info-text'  => 'A Contact form has been filled on the website <a href=":website_url">:website_url</a>!',
             'here-are-the-infos' => 'Here are the informations:',
-            'bottom-message'     => 'Sincerely,<br>BB8',
+            'bottom-message'     => 'Sincerely,<br>Andrew',
         ],
         'password' => [
             'password-reset'    => 'Password Reset',

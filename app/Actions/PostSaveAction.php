@@ -6,9 +6,7 @@ use AllowDynamicProperties;
 use App\Enums\PostStatus;
 use App\Models\Post;
 use App\Models\PostTranslation;
-use App\Models\Tag;
 use Illuminate\Support\Facades\Auth;
-use Intervention\Image\Laravel\Facades\Image;
 
 #[AllowDynamicProperties] class PostSaveAction
 {
@@ -26,8 +24,7 @@ use Intervention\Image\Laravel\Facades\Image;
         if ($post === null) {
             $data['user_id'] = Auth::id();
             $post = Post::create($data);
-            if (isset($image))
-            {
+            if (isset($image)) {
                 $image = $this->buildImage->handle($this->folder, $post->slug, $image);
             }
             $postTranslation = PostTranslation::create([
@@ -51,8 +48,7 @@ use Intervention\Image\Laravel\Facades\Image;
             $post->update($data);
         }
 
-        if(isset($tags))
-        {
+        if (isset($tags)) {
             $this->saveTags->handle($tags, $postTranslation);
         }
     }

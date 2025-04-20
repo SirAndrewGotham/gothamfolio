@@ -26,7 +26,8 @@ Route::get('resume', ResumeController::class)->name('resume');
 // Blog
 Route::get('blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('blog/{post}', [BlogController::class, 'show'])->name('blog.show');
-Route::get('blog/tag/{tag}', [TagController::class, 'show'])->name('tag.show');
+//Route::get('blog/tag/{tag}', [TagController::class, 'show'])->name('tag.show');
+Route::get('blog/tag/{tag}', [BlogController::class, 'tagShow'])->name('blog.tag.show');
 
 Route::resource('posts', PostTranslationController::class);
 // Works
