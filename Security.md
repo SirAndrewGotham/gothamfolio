@@ -26,3 +26,12 @@ WIth this, good luck in your Web development journey.
 
 Sincerely,    
 Sir. Andrew
+
+P.S. Official security bulletins
+
+Eah, just a reminder on where to look for official infos on security problems:
+
+- github.com/laravel/framework/security/advisories
+- nvd.nist.gov/vuln/search
+- cve.mitre.org
+- snyk.io/vuln
