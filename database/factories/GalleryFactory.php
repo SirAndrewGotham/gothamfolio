@@ -29,10 +29,10 @@ class GalleryFactory extends Factory
             'slug' => Str::slug($title),
             'description' => '<p>'.$this->faker->text(2000).'</p>',
             'cover' => $this->faker->imageUrl,
-            'published_at' => now(),
+            'published_at' => $this->faker->dateTimeBetween('-20 days', now()),
+            'published_through' => $this->faker->dateTimeBetween(now(), '+20 days'),
             'order' => $this->faker->randomDigit(),
-            'created_at' => now(),
-            'updated_at' => now(),
+            'status' => $this->faker->randomElement(['Published', 'Draft', 'Pending', 'Rejected']),
         ];
     }
 }

@@ -10,7 +10,7 @@
                 <p class="lead mb30">{{ $gallery->title }}</p>
                 <img class="img-thumbnail" src="{{ asset('uploads/galleries/'.$gallery->id.'/'.$gallery->image) }}" alt="{{ $gallery->title }}">
                 <div class="row mt40">
-                    {{ __('Technologies used') }}:
+                    {{ __('Tags') }}:
                     @foreach($gallery->tags as $tag)
                         <span class="label label-info">{{ $tag->name }}</span>
                     @endforeach
@@ -18,8 +18,14 @@
             </div>
 
             <div class="row mt40">
-                {!! $gallery->body !!}
+                {!! $gallery->description !!}
             </div>
+
+            <hr />
+
+            @foreach($images as $image)
+                {{ $image->caption }}<br />
+            @endforeach
         </div>
     </section>
     <!-- /Project Details -->
@@ -35,7 +41,7 @@
                             <div id="customNav" class="owl-nav"></div>
                         </div>
                     </div>
-                    @include('frontend.legacy.layouts._lastGalleries', ['galleries' => $galleries])
+                    @include('frontend.legacy.gallery._lastGalleries', ['galleries' => $galleries])
                 </div>
             </div>
         </div>

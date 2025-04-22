@@ -308,6 +308,23 @@ return [
                 'no-work-found' => 'Работ с таким тегом не найдено.',
             ],
         ],
+        'galleries' => [
+            'index' => [
+                'page-title' => 'Фотогалереи',
+                'breadcrumb-title' => 'Галереи',
+                'no-gallery-found' => 'Пока фотогалерей на сайте нет.',
+            ],
+            'show' => [
+                'page-title' => 'Фотогалерея',
+                'breadcrumb-title' => 'Галерея',
+                'recent-gallery' => 'Свежие фотогалереи',
+            ],
+            'tag' => [
+                'page-title' => 'Фотогалереи - все галереи с тегом ":tag_name"',
+                'breadcrumb-title' => 'Галереи',
+                'no-gallery-found' => 'Фотогалерей с таким тегом не найдено.',
+            ],
+        ],
     ],
     'blocks' => [
         'blog' => [

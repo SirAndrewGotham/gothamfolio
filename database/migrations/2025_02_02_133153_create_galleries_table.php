@@ -23,7 +23,10 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->string('cover')->nullable();
             $table->timestamp('published_at')->nullable();
+            $table->timestamp('published_through')->nullable();
+            $table->enum('status', ['Published', 'Draft', 'Pending', 'Rejected'])->default('Published');
             $table->unsignedBigInteger('order')->default(0);
+            $table->unsignedBigInteger('views')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

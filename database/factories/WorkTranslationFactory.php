@@ -21,6 +21,7 @@ class WorkTranslationFactory extends Factory
     public function definition(): array
     {
         $languages = Language::all();
+
         return [
             'language_id' => Language::factory()->recycle($languages),
             'user_id' => User::factory(),
@@ -34,7 +35,7 @@ class WorkTranslationFactory extends Factory
             'published_at' => null,
             'published_through' => null,
             'order' => 0,
-            'status' => 'Published', //['Published', 'Draft', 'Pending', 'Rejected'])->default('Published')
+            'status' => 'Published', // ['Published', 'Draft', 'Pending', 'Rejected'])->default('Published')
             'status_by' => User::factory(),
             'status_note' => null,
             'views' => 0,

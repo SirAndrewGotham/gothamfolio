@@ -48,4 +48,8 @@ class Gallery extends Model
         return $this->hasMany(Image::class);
     }
 
+    public function galleries(): BelongsTo
+    {
+        return $this->belongsTo(Gallery::class, 'gallery_id', 'id');
+    }
 }

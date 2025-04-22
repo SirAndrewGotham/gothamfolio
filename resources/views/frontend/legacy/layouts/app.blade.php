@@ -18,6 +18,11 @@
     </style>
     {{-- Scripts --}}
 {{--    @vite(['resources/css/app.css', 'resources/js/app.js'])--}}
+    <script src="{{ asset('assets/frontend/legacy/js/fancybox.umd.js') }}"></script>
+    <link
+        rel="stylesheet"
+        href="{{ asset('assets/frontend/legacy/css/fancybox.css') }}"
+    />
 </head>
 <body>
 

@@ -4,9 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Gallery;
 use App\Models\Image;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class GallerySeeder extends Seeder
 {
@@ -21,8 +19,7 @@ class GallerySeeder extends Seeder
             ->create();
 
         $galleries = Gallery::where('gallery_id', null)->get();
-        foreach($galleries as $gallery)
-        {
+        foreach ($galleries as $gallery) {
             Gallery::factory()
                 ->count(11)
                 ->create([

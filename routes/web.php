@@ -35,6 +35,7 @@ Route::get('works', [WorkController::class, 'index'])->name('works.index');
 Route::get('works/{work}', [WorkController::class, 'show'])->name('works.show');
 
 // Galleries
+Route::redirect('/gallery', '/galleries');
 Route::get('galleries', [GalleryController::class, 'index'])->name('galleries.index');
 Route::get('galleries/{gallery}', [GalleryController::class, 'show'])->name('galleries.show');
 

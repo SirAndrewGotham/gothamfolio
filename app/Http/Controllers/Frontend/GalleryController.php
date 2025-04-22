@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Enums\GalleryStatus;
+use App\Enums\ImageStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreGalleryRequest;
 use App\Http\Requests\UpdateGalleryRequest;
@@ -18,7 +19,7 @@ class GalleryController extends Controller
     {
         [$galleries, $tags] = $this->prepareView();
 
-        return view('frontend.legacy.galleries.index', compact('galleries', 'tags'));
+        return view('frontend.legacy.gallery.index', compact('galleries', 'tags'));
     }
 
     /**
@@ -42,7 +43,15 @@ class GalleryController extends Controller
      */
     public function show(Gallery $gallery)
     {
-        //
+        // TODO: implement language procedures
+        //        $galleries = Gallery::where('gallery_id','!=',$gallery->id)->latest()->take(5)->get();
+
+        [$galleries, $tags, $images] = $this->prepareView($gallery);
+
+        $gallery->increment('views');
+        $gallery->saveQuietly();
+
+        return view('frontend.legacy.gallery.show', compact('gallery', 'galleries', 'tags', 'images'));
     }
 
     /**
@@ -69,27 +78,81 @@ class GalleryController extends Controller
         //
     }
 
-    public function prepareView($gallery = null): array
+    public function prepareView($gallery = null, $tags = null, $images = null): array
     {
-        $languages = $this->getLanguages();
+        //        $languages = $this->getLanguages();
 
-        $galleries = Gallery::where(function (Builder $query) {
-            $query->where('status', GalleryStatus::Published);
-            })
-            ->orderBy('order', 'asc')
-            ->with(['tags'])
-            ->paginate(10);
+        if ($gallery == null) {
+            $galleries = $this->prepareIndexGalleries();
+        } else {
+            $images = collect();
+            foreach ($gallery->images as $image) {
+                if ($image->status == ImageStatus::Published->value) {
+                    $images->push($image);
+                }
+            }
+            $galleries = $this->prepareShowGalleries($gallery->id);
+            foreach ($galleries as $gallery) {
+                foreach ($gallery->images as $image) {
+                    if ($image->status === ImageStatus::Published->value) {
+                        $images->push($image);
+                    }
+                }
+            }
+        }
 
         $tags = collect();
 
         foreach ($galleries as $gallery) {
             foreach ($gallery->tags as $tag) {
-                if($tags->doesntContain('id', $tag->id)) {
+                if ($tags->doesntContain('id', $tag->id)) {
                     $tags->push($tag);
                 }
             }
         }
 
-        return [$galleries, $tags];
+        return [$galleries, $tags, $images];
+    }
+
+    public function prepareIndexGalleries()
+    {
+        $galleries = Gallery::where('gallery_id', null)
+            ->where(function (Builder $query) {
+                $query->where('status', GalleryStatus::Published)
+                    ->where(function (Builder $query) {
+                        $query->whereNull('published_at')
+                            ->orWhere('published_at', '<=', now());
+                    })
+                    ->where(function (Builder $query) {
+                        $query->whereNull('published_through')
+                            ->orWhere('published_through', '>=', now());
+                    });
+            })
+            ->orderBy('order', 'asc')
+            ->with(['tags', 'images'])
+            ->paginate(9);
+
+        return $galleries;
+    }
+
+    public function prepareShowGalleries($id)
+    {
+        $galleries = Gallery::where('status', GalleryStatus::Published)
+            ->where('gallery_id', $id)
+            ->where(function (Builder $query) {
+                $query->where(function (Builder $query) {
+                    $query->whereNull('published_at')
+                        ->orWhere('published_at', '<=', now());
+                })
+                    ->where(function (Builder $query) {
+                        $query->whereNull('published_through')
+                            ->orWhere('published_through', '>=', now());
+                    });
+            })
+            ->orderBy('order', 'asc')
+            ->with(['tags', 'images'])
+            ->get();
+
+        return $galleries;
     }
 }
