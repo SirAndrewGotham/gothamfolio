@@ -16,13 +16,15 @@
             display: none !important;
         }
     </style>
+    {{-- Styles --}}
+    {{-- i've got everything i need in frontend.css, use bootstrap if you need to customize --}}
+{{--    <link href="--}}{{-- asset('assets/frontend/legacy/css/bootstrap.min.css') --}}{{--" rel="stylesheet">--}}
+
     {{-- Scripts --}}
 {{--    @vite(['resources/css/app.css', 'resources/js/app.js'])--}}
-    <script src="{{ asset('assets/frontend/legacy/js/fancybox.umd.js') }}"></script>
-    <link
-        rel="stylesheet"
-        href="{{ asset('assets/frontend/legacy/css/fancybox.css') }}"
-    />
+
+    @stack('styles')
+
 </head>
 <body>
 
@@ -46,7 +48,16 @@
 
 <a href="#" class="scroll-top"><div class="scrolltop-holder"><i class="fa fa-arrow-up scrolltop"></i></div></a>
 
+{{-- jQuery --}}
+<script src="{{ asset('assets/frontend/legacy/js/jquery-3.2.1.min.js') }}"></script>
+{{-- Popper --}}
+{{--<script src="{{ asset('assets/frontend/legacy/js/popper.min.js') }}"></script>--}}
+{{-- Bootstrap JS --}}
+{{-- this conflicts with language drop-down, change mechanics if need to use the following --}}
+{{--<script src="{{ asset('assets/frontend/legacy/js/bootstrap.min.js') }}"></script>--}}
+
 <script src="{{ asset('assets/frontend/legacy/js/frontend.js') }}"></script>
 @include('frontend.legacy.layouts._analytics')
+@stack('scripts')
 </body>
 </html>

@@ -20,6 +20,7 @@ return [
         'home' => 'Главная',
         'resume' => 'Резюме',
         'works' => 'Портфолио',
+        'galleries' => 'Фото',
         'blog' => 'Блог',
         'contact' => 'Контакты',
     ],
@@ -345,6 +346,9 @@ return [
                 'title' => 'Обо мне',
                 'text' => 'Меня зовут Эндрю, последние тридцать лет я - инженер-программист, специализирующийся на Веб-разработках: полного цикла (full-stack), бэк-ендов и апи. Сегодня мои основные инструменты, это Nginx, Laravel, MySQL/PostgreSQL, Tailwind, Livewire, Alpinejs, Swagger, Postman, Git, PhpStorm.',
                 'link' => 'По ссылке - больше информации',
+            ],
+            'last-galleries' => [
+                'title' => 'Последние обновления',
             ],
             'contact' => [
                 'title' => 'На связи!',

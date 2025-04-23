@@ -17,6 +17,7 @@ return [
         'feedback-to-db' => env('FEEDBACK_TO_DB', 'on'),
         'feedback-to-requester' => env('FEEDBACK_TO_REQUESTER', 'off'),
         'feedback-to-admin' => env('FEEDBACK_TO_ADMIN', 'on'),
+        'galleries_per_page' => env('GALLERIES_PER_PAGE', 9),
     ],
 
     'backend' => [

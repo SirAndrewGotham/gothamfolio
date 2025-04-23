@@ -128,9 +128,12 @@ class GalleryController extends Controller
                             ->orWhere('published_through', '>=', now());
                     });
             })
+            ->whereHas('images', function (Builder $query) {
+                $query->where('status', ImageStatus::Published);
+            })
             ->orderBy('order', 'asc')
             ->with(['tags', 'images'])
-            ->paginate(9);
+            ->paginate(config('gothamfolio.frontend.galleries_per_page'));
 
         return $galleries;
     }

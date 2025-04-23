@@ -20,6 +20,7 @@ return [
         'home' => 'Home',
         'resume' => 'Resume',
         'works' => 'Works',
+        'galleries' => 'Galleries',
         'blog' => 'Blog',
         'contact' => 'Contact',
     ],
@@ -345,6 +346,9 @@ return [
                 'title' => 'About Me',
                 'text' => 'My name is Andrew, I am a software engineer for the last 3 decades specializing in Web Development: full-stack, backend and api. My main tools today are Nginx, Laravel, MySQL/PostgreSQL, Tailwind, Livewire, Alpinejs, Swagger, Postman, Git, PhpStorm.',
                 'link' => 'Please click here for more info',
+            ],
+            'last-galleries' => [
+                'title' => 'Last updates',
             ],
             'contact' => [
                 'title' => 'Get in touch!',

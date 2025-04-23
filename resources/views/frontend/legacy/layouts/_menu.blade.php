@@ -1,4 +1,4 @@
-@php use App\Models\Post;use App\Models\Work; @endphp
+@php use App\Models\PostTranslation;use App\Models\Work;use App\Models\Gallery; @endphp
 <div class="navbar-collapse collapse navHeaderCollapse" role="navigation">
     <ul class="nav navbar-nav navbar-right">
         <li{{ Request::is('/') ? ' class=active' : '' }}>
@@ -14,7 +14,12 @@
                 <a href="{{ route('works.index') }}">{{ trans('app.menu.works') }}</a>
             </li>
         @endif
-        @if(config('gothamfolio.frontend.blog') === 'on' && Post::count() >= 1)
+        @if(config('gothamfolio.frontend.galleries') === 'on' && Gallery::count() >= 1)
+            <li{{ Request::segment(1) == 'galleries' ? ' class=active' : '' }}>
+                <a href="{{ route('galleries.index') }}">{{ trans('app.menu.galleries') }}</a>
+            </li>
+        @endif
+        @if(config('gothamfolio.frontend.blog') === 'on' && PostTranslation::count() >= 1)
             <li{{ Request::segment(1) == 'blog' ? ' class=active' : '' }}>
                 <a href="{{ route('blog.index') }}">{{ trans('app.menu.blog') }}</a>
             </li>

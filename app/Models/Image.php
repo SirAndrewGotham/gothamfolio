@@ -24,4 +24,9 @@ class Image extends Model
     {
         return $this->morphToMany(Translate::class, 'translatable');
     }
+
+    public function gallery(): BelongsTo
+    {
+        return $this->belongsTo(Gallery::class);
+    }
 }
