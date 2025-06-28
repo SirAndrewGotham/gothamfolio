@@ -17,18 +17,26 @@
         <thead>
             <tr>
                 <th>{{ __('Title') }}</th>
-                <th>{{ __('URL') }}</th>
                 <th>{{ __('Author') }}</th>
                 <th>{{ __('Updated') }}</th>
+                <th>{{ __('Languages') }}</th>
                 <th>{{ __('Actions') }}</th>
             </tr>
         </thead>
         @forelse($works as $work)
             <tr>
                 <td>{{ $work->title }}</td>
-                <td>/works/{{ $work->slug }}</td>
                 <td><a href="{{ route('admin.users.show', $work->user->slug) }}" target="_blank">{{ $work->user->name }}</a></td>
                 <td>{{ $work->updated_at->diffForHumans() }}</td>
+                <td>
+                    @foreach($work->translations as $translation)
+                        <a href="{{ route('admin.workTranslations.show', $translation->slug) }}">
+                            <i class="fa fa-eye"></i>&nbsp;
+                            {{ $translation->language->code }}
+                            <br />
+                        </a>
+                    @endforeach
+                </td>
                 <td>
                     <div class="row btn-group">
                         <div class="col-md-4">

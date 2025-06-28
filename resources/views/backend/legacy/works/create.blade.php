@@ -76,11 +76,16 @@
 @endsection
 
 @section('scripts')
+    <!-- include summernote lang file -->
+{{--    <script src="{{ asset('assets/backend/legacy/js/backend.js') }}"></script>--}}
+    <script src="{{ asset('assets/backend/legacy/js/lang/' . app()->getLocale() . '.js') }}></script>
     <script type="text/javascript">
         $(document).ready(function() {
 
             $('.summernote_excerpt').summernote();
-            $('.summernote_body').summernote();
+            $('.summernote_body').summernote({
+                lang: app()->getLocale() // default: 'en-US'
+            });
 
         });
     </script>
