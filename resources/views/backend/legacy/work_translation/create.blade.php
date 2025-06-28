@@ -30,7 +30,7 @@
                 {{-- in case a prompt needed rather then just language --}}
                 {{-- <option value="">{{ __('Choose your language') }}</option> --}}
                 @foreach($languages as $language)
-                    <option value="{{ $language->code }}" {{ app()->getLocale() == $language->code ? 'selected' : '' }}>
+                    <option value="{{ \Illuminate\Support\Facades\Crypt::encrypt($language->id) }}" {{ app()->getLocale() == $language->code ? 'selected' : '' }}>
                         {{ $language->name }}
                     </option>
                 @endforeach

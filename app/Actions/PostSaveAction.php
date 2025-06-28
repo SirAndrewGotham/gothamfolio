@@ -17,8 +17,10 @@ use Illuminate\Support\Facades\Auth;
 
     public function handle(array $data = [], $post = null): void
     {
-        $tags = $data['tags'];
-        $image = $data['image'];
+        if (isset($data['tags'])) {
+            $tags = $data['tags'];
+        }
+        $image = $data['image'] ?? null;
 
         // We create the Post
         if ($post === null) {

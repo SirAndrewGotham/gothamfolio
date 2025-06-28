@@ -43,6 +43,7 @@
             @include('backend.legacy.layouts._formErrors')
 
             <input name="post_id" type="hidden" value="{{ Crypt::encrypt($postTranslation->post->id) }}">
+{{--            <input name="post_id" type="hidden" value="{{ $postTranslation->post->id }}">--}}
 
             <div class="form-group">
                 <label for="title">{{ __('Translating from') }}: {{ $postTranslation->language->name }}</label>
@@ -54,7 +55,7 @@
                     {{-- in case a prompt needed rather then just language --}}
     {{--                <option value="selected">{{ __('Choose your language') }}</option>--}}
                     @foreach($languages as $language)
-                        <option value="{{ $language->code }}" {{ app()->getLocale() == $language->code ? 'selected' : '' }}>
+                        <option value="{{ \Illuminate\Support\Facades\Crypt::encrypt($language->id) }}" {{ app()->getLocale() == $language->code ? 'selected' : '' }}>
                             {{ $language->name }}
                         </option>
                     @endforeach

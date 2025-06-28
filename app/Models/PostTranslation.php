@@ -38,7 +38,7 @@ class PostTranslation extends Model
     {
         return 'slug';
     }
-    
+
     protected  $casts = [
         'excerpt' => 'string',
         'body' => 'string',
@@ -66,9 +66,9 @@ class PostTranslation extends Model
         ];
     }
 
-    public function post(): BelongsToMany
+    public function post(): BelongsTo
     {
-        return $this->belongsToMany(Post::class, 'post_id', 'id', 'post_translations');
+        return $this->belongsTo(Post::class, 'post_id', 'id', 'post_translations');
     }
 
     public function tags(): MorphToMany
@@ -80,7 +80,7 @@ class PostTranslation extends Model
     {
         return $this->belongsTo(User::class);
     }
-    
+
     public function language(): BelongsTo
     {
         return $this->belongsTo(Language::class);

@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Enums\WorkStatus;
-use App\Models\Language;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Crypt;
@@ -38,7 +37,7 @@ class StoreWorkTranslationRequest extends FormRequest
             'link' => 'nullable',
             'published_at' => 'nullable|date',
             'published_through' => 'nullable|date',
-//            'published_at' => 'nullable|date|date_format:Y-m-d H:i:s'
+            //            'published_at' => 'nullable|date|date_format:Y-m-d H:i:s'
             'order' => 'nullable|integer',
             'status' => [Rule::enum(WorkStatus::class)],
             'status_by' => 'nullable|exists:users,id',
@@ -50,15 +49,14 @@ class StoreWorkTranslationRequest extends FormRequest
 
     protected function prepareForValidation(): void
     {
-        if($this->input('excerpt') == null )
-        {
+        if ($this->input('excerpt') == null) {
             $this->merge(['excerpt' => Str::limit($this->input('body'), 50, preserveWords: true)]);
         }
         $this->merge([
+            'work_id' => Crypt::decrypt($this->work_id),
             'user_id' => $this->user_id ?? auth()->id(),
-            'language_id' => (int)Language::where('code', $this->language)->first()->id,
+            'language_id' => (int) Crypt::decrypt($this->language),
             'order' => $this->order ?? 0,
-            'work_id' => Crypt::decrypt($this->input('work_id')),
         ]);
     }
 }

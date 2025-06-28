@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Enums\PostStatus;
-use App\Models\Language;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Crypt;
@@ -47,13 +46,13 @@ class UpdatePostTranslationRequest extends FormRequest
 
     protected function prepareForValidation(): void
     {
-        if($this->input('excerpt') == null )
-        {
+        if ($this->input('excerpt') == null) {
             $this->merge(['excerpt' => Str::limit($this->input('body'), 50, preserveWords: true)]);
         }
         $this->merge([
+            'post_id' => Crypt::decrypt($this->post_id),
             'user_id' => $this->user_id ?? auth()->id(),
-            'language_id' => (int)Language::where('code', $this->language)->first()->id,
+            'language_id' => (int) Crypt::decrypt($this->language),
             'order' => $this->order ?? 0,
         ]);
     }

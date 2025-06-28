@@ -52,8 +52,9 @@ class StorePostTranslationRequest extends FormRequest
             $this->merge(['excerpt' => Str::limit($this->input('body'), 50, preserveWords: true)]);
         }
         $this->merge([
+            'post_id' => Crypt::decrypt($this->post_id),
             'user_id' => $this->user_id ?? auth()->id(),
-            'language_id' => (int)Language::where('code', $this->language)->first()->id,
+            'language_id' => (int) Crypt::decrypt($this->language),
             'order' => $this->order ?? 0,
         ]);
     }
