@@ -23,4 +23,25 @@ return [
     'backend' => [
         'theme' => env('BACK_THEME', 'legacy'),
     ],
+
+    'multilingual' => [
+        /*
+         * Set whether or not the multilingual is supported by the BREAD input.
+         */
+        'enabled' => true,
+
+        /*
+         * Select default language
+         */
+        'default' => env('APP_LOCALE', 'ru'),
+
+        /*
+         * Select languages that are supported.
+         */
+        'locales' => [
+            'en',
+            'eo',
+            'ru',
+        ],
+    ],
 ];
