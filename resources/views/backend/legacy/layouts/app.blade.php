@@ -8,8 +8,8 @@
     <link href="{{ asset('assets/backend/legacy/css/backend.css') }}" rel="stylesheet">
 
     <!--[if lt IE 9]>
-    <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+{{--    <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>--}}
+{{--    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>--}}
     <![endif]-->
 
     @yield('styles')
@@ -29,26 +29,52 @@
 
         <!-- Header Navbar -->
         <nav class="navbar navbar-static-top" role="navigation">
-            <!-- Sidebar toggle button-->
-            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-                <span class="sr-only">Toggle navigation</span>
-            </a>
-            <!-- Navbar Right Menu -->
-            <div class="navbar-custom-menu">
+                <span class="col-md-8">
+            <span style="display: flex; align-items: center;">
+                <!-- Sidebar toggle button -->
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">
+                        {{ __('Toggle navigation') }}
+                    </span>
+                </a>
+                <!-- Go to the site button -->
+                <a href="{{ route('home') }}" class="btn btn-sm btn-primary" target="_blank" role="button">
+                    <span class="align-content-center">
+                        {{ __('View Site') }}
+                    </span>
+                </a>
+{{--            <span class="d-flex align-items-center me-3">--}}
+                {{--                <x-button--}}
+                {{--                    tag="a"--}}
+                {{--                    color="white"--}}
+                {{--                    :href="url('/')"--}}
+                {{--                    icon="ti ti-world"--}}
+                {{--                    target="_blank"--}}
+                {{--                >--}}
+                {{--                    {{ __('View Site') }}--}}
+                {{--                </x-button>--}}
+                {{--            </span>--}}
+                </span>
+                </span>
+            <span class="col-md-4">
+                <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu text-right">
                 <ul class="nav navbar-nav">
                     <!-- User Account Menu -->
                     <li class="dropdown user user-menu">
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
-                            <img src="//www.gravatar.com/avatar/{{ md5(auth()->user()->email) }}?s=25" class="user-image" alt="User Image">
+                            <img src="//www.gravatar.com/avatar/{{ md5(auth()->user()->email) }}?s=25"
+                                 class="user-image" alt="User Image">
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
                             <span class="hidden-xs">{{ auth()->user()->name }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-                                <img src="//www.gravatar.com/avatar/{{ md5(auth()->user()->email) }}?s=90" class="img-circle" alt="User Image">
+                                <img src="//www.gravatar.com/avatar/{{ md5(auth()->user()->email) }}?s=90"
+                                     class="img-circle" alt="User Image">
 
                                 <p>
                                     {{ auth()->user()->name }}
@@ -57,7 +83,8 @@
                             <!-- Menu Footer-->
                             <li class="user-footer">
                                 <div class="pull-left">
-                                    <a href="{{ route('admin.users.show', auth()->id()) }}" class="btn btn-default btn-flat">{{ __('Profile') }}</a>
+                                    <a href="{{ route('admin.users.show', auth()->id()) }}"
+                                       class="btn btn-default btn-flat">{{ __('Profile') }}</a>
                                 </div>
                                 <div class="pull-right">
                                     <form method="POST" action="{{ route('logout') }}">
@@ -75,6 +102,7 @@
                     </li>
                 </ul>
             </div>
+                </span>
         </nav>
     </header>
     <!-- /Main Header -->
@@ -88,7 +116,8 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="//www.gravatar.com/avatar/{{ md5(auth()->user()->email) }}?s=45" class="img-circle" alt="User Image">
+                    <img src="//www.gravatar.com/avatar/{{ md5(auth()->user()->email) }}?s=45" class="img-circle"
+                         alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>{{ auth()->user()->name }}</p>
@@ -106,31 +135,37 @@
                     </a>
                 </li>
                 <li class="treeview">
-                    <a href="{{ route('admin.posts.index') }}"><i class="fa fa-files-o"></i> <span>Posts</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <a href="{{ route('admin.posts.index') }}"><i class="fa fa-files-o"></i> <span>Posts</span> <i
+                            class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu">
                         <li><a href="{{ route('admin.posts.index') }}"><i class="fa fa-eye"></i> List Posts</a></li>
                         <li><a href="{{ route('admin.posts.create') }}"><i class="fa fa-plus"></i> Add a Post</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
-                    <a href="{{ route('admin.works.index') }}"><i class="fa fa-files-o"></i> <span>Works</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <a href="{{ route('admin.works.index') }}"><i class="fa fa-files-o"></i> <span>Works</span> <i
+                            class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu">
                         <li><a href="{{ route('admin.works.index') }}"><i class="fa fa-eye"></i> List Works</a></li>
                         <li><a href="{{ route('admin.works.create') }}"><i class="fa fa-plus"></i> Add a Work</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
-                    <a href="{{ route('admin.tags.index') }}"><i class="fa fa-tags"></i> <span>Tags</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <a href="{{ route('admin.tags.index') }}"><i class="fa fa-tags"></i> <span>Tags</span> <i
+                            class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu">
                         <li><a href="{{ route('admin.tags.index') }}"><i class="fa fa-eye"></i> List Tags</a></li>
                         <li><a href="{{ route('admin.tags.create') }}"><i class="fa fa-plus"></i> Add a Tag</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
-                    <a href="{{ route('admin.customers.index') }}"><i class="fa fa-files-o"></i> <span>Customers</span> <i class="fa fa-angle-left pull-right"></i></a>
+                    <a href="{{ route('admin.customers.index') }}"><i class="fa fa-files-o"></i> <span>Customers</span>
+                        <i class="fa fa-angle-left pull-right"></i></a>
                     <ul class="treeview-menu">
-                        <li><a href="{{ route('admin.customers.index') }}"><i class="fa fa-eye"></i> List Customers</a></li>
-                        <li><a href="{{ route('admin.customers.create') }}"><i class="fa fa-plus"></i> Add a Cusotmer</a></li>
+                        <li><a href="{{ route('admin.customers.index') }}"><i class="fa fa-eye"></i> List Customers</a>
+                        </li>
+                        <li><a href="{{ route('admin.customers.create') }}"><i class="fa fa-plus"></i> Add a
+                                Cusotmer</a></li>
 
                     </ul>
                 </li>
@@ -140,19 +175,22 @@
                         <span>{{ __('Languages') }}</span>
                     </a>
                 </li>
-{{--                <li>--}}
-{{--                    <a href="{{ route('admin.feedback.index') }}">--}}
-{{--                        <i class='fa fa-comments'></i>--}}
-{{--                        <span>{{ __('Feedback') }}</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
+                {{--                <li>--}}
+                {{--                    <a href="{{ route('admin.feedback.index') }}">--}}
+                {{--                        <i class='fa fa-comments'></i>--}}
+                {{--                        <span>{{ __('Feedback') }}</span>--}}
+                {{--                    </a>--}}
+                {{--                </li>--}}
                 <li class="treeview">
                     <a href="{{ route('admin.feedback.index') }}">
-                        <i class="fa fa-comments"></i> <span>{{ __('Feedback') }}</span> <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-comments"></i> <span>{{ __('Feedback') }}</span> <i
+                            class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="{{ route('admin.feedback.index') }}"><i class="fa fa-comments-o"></i> {{ __('New Feedback') }}</a></li>
-                        <li><a href="{{ route('admin.feedback.read') }}"><i class="fa fa-comments"></i> {{ __('Read Feedback') }}</a></li>
+                        <li><a href="{{ route('admin.feedback.index') }}"><i
+                                    class="fa fa-comments-o"></i> {{ __('New Feedback') }}</a></li>
+                        <li><a href="{{ route('admin.feedback.read') }}"><i
+                                    class="fa fa-comments"></i> {{ __('Read Feedback') }}</a></li>
 
                     </ul>
                 </li>
@@ -176,8 +214,8 @@
                     </ul>
                 </li>
                 {{--                <li>--}}
-{{--                    <a href="{{ route('admin.settings.edit') }}"><i class="fa fa-cogs"></i> <span>Settings</span></a>--}}
-{{--                </li>--}}
+                {{--                    <a href="{{ route('admin.settings.edit') }}"><i class="fa fa-cogs"></i> <span>Settings</span></a>--}}
+                {{--                </li>--}}
             </ul>
         </section>
     </aside>
@@ -203,10 +241,11 @@
     <footer class="main-footer">
         <!-- To the right -->
         <div class="pull-right hidden-xs">
-{{--            Powered by Laravel &amp; AdminLTE--}}
+            {{--            Powered by Laravel &amp; AdminLTE--}}
         </div>
         <!-- Default to the left -->
-        <strong>Copyright &copy; {{ date('Y') }} <a href="https://t.me/sirandrewgotham">Sir. Andrew Gotham</a>.</strong> All rights reserved.
+        <strong>Copyright &copy; {{ date('Y') }} <a href="https://t.me/sirandrewgotham">Sir. Andrew Gotham</a>.</strong>
+        All rights reserved.
     </footer>
 </div>
 

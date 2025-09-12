@@ -2,19 +2,17 @@
 
 namespace App\Models;
 
-use App\Enums\PostStatus;
-use Database\Factories\PostTranslationFactory;
+use App\Enums\CompetenceStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
 
-class PostTranslation extends Model
+class CompetenceTranslation extends Model
 {
-    /** @use HasFactory<PostTranslationFactory> */
+    /** @use HasFactory<\Database\Factories\CompetenceTranslationFactory> */
     use HasFactory, SoftDeletes;
 
     protected $guarded = ['id'];
@@ -43,7 +41,7 @@ class PostTranslation extends Model
         'excerpt' => 'string',
         'body' => 'string',
         'order' => 'integer',
-        'status' => PostStatus::class,
+        'status' => CompetenceStatus::class,
         'published_at' => 'datetime',
         'published_through' => 'datetime',
         'created_at' => 'datetime',
@@ -57,7 +55,7 @@ class PostTranslation extends Model
             'excerpt' => 'string',
             'body' => 'string',
             'order' => 'integer',
-            'status' => PostStatus::class,
+            'status' => CompetenceStatus::class,
             'published_at' => 'datetime',
             'published_through' => 'datetime',
             'created_at' => 'datetime',
@@ -66,9 +64,9 @@ class PostTranslation extends Model
         ];
     }
 
-    public function post(): BelongsTo
+    public function competence(): BelongsTo
     {
-        return $this->belongsTo(Post::class, 'post_id', 'id', 'post_translations');
+        return $this->belongsTo(Competence::class, 'competence_id', 'id', 'competence_translations');
     }
 
     public function tags(): MorphToMany
