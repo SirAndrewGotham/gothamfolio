@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions;
 
 use App\Models\Language;
@@ -10,12 +12,14 @@ use App\Models\WorkTranslation;
 use Illuminate\Database\Eloquent\Builder;
 use phpDocumentor\Reflection\Types\Collection;
 
-class CompetenceIndexAction
+final readonly class CompetenceIndexAction
 {
-    public $competences = Collection::class;
-    public $tags = Collection::class;
+    public string $competences;
+    public string $tags;
     public function __construct()
     {
+        $this->competences = Collection::class;
+        $this->tags = Collection::class;
     }
 
     public function handle()

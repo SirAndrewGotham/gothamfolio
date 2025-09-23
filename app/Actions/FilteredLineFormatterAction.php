@@ -1,11 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions;
 
 use Illuminate\Support\Str;
 use Monolog\Formatter\LineFormatter;
 
-class FilteredLineFormatterAction extends LineFormatter
+final  class FilteredLineFormatterAction extends LineFormatter
 {
     protected const FILTERED_REPLACEMENT = '[FILTERED]';
 

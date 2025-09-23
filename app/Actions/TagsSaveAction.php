@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions;
 
 use App\Models\Tag;
 
-class TagsSaveAction
+final readonly class TagsSaveAction
 {
     public function handle($data, $model)
     {

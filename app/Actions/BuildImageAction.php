@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions;
 
-class BuildImageAction
+final readonly class BuildImageAction
 {
     public function handle($folder, $slug, $image): string
     {

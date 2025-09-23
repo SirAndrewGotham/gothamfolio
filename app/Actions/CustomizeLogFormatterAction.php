@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions;
 
-class CustomizeLogFormatterAction
+final readonly class CustomizeLogFormatterAction
 {
     public function __invoke($logger)
     {

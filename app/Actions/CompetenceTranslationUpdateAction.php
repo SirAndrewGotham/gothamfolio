@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions;
 
 use AllowDynamicProperties;
@@ -8,7 +10,7 @@ use App\Models\Competence;
 use App\Models\CompetenceTranslation;
 use Illuminate\Support\Facades\Auth;
 
-#[AllowDynamicProperties] class CompetenceTranslationUpdateAction
+#[AllowDynamicProperties] final class CompetenceTranslationUpdateAction
 {
     public function __construct(private readonly BuildImageAction $buildImage, private readonly TagsSaveAction $saveTags)
     {

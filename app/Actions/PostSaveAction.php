@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions;
 
 use AllowDynamicProperties;
@@ -8,7 +10,7 @@ use App\Models\Post;
 use App\Models\PostTranslation;
 use Illuminate\Support\Facades\Auth;
 
-#[AllowDynamicProperties] class PostSaveAction
+#[AllowDynamicProperties] final class PostSaveAction
 {
     public function __construct(private readonly BuildImageAction $buildImage, private readonly TagsSaveAction $saveTags)
     {

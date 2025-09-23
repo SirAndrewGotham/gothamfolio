@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions;
 
 use App\Models\Language;
@@ -10,12 +12,14 @@ use App\Models\WorkTranslation;
 use Illuminate\Database\Eloquent\Builder;
 use phpDocumentor\Reflection\Types\Collection;
 
-class PostIndexAction
+final readonly class PostIndexAction
 {
-    public $posts = Collection::class;
-    public $tags = Collection::class;
+    public string $posts;
+    public string $tags;
     public function __construct()
     {
+        $this->posts = Collection::class;
+        $this->tags = Collection::class;
     }
 
     public function handle()

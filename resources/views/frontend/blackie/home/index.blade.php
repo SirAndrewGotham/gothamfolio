@@ -4,7 +4,7 @@
     <div class="pointer-events-none fixed top-0 h-screen w-screen bg-primary" style="opacity: 0;"></div>
     <div class="container mx-auto flex flex-col py-12 xl:justify-center">
         <div class="flex flex-col items-center justify-between xl:flex-row">
-            <div class="order-2 text-center xl:order-none xl:text-left">
+            <div class="order-2 text-center xl:order-0 xl:text-left">
                 <span class="text-xl">Software Engineer</span>
                 <h1 class="h1 mb-6">
                     Hello I am<br><span class="text-accent">Andrew Gotham</span>
@@ -86,7 +86,7 @@
                     </div>
                 </div>
             </div>
-            <div class="order-1 mb-8 xl:order-none xl:mb-0">
+            <div class="order-1 mb-8 xl:order-0 xl:mb-0">
                 <div class="relative size-full">
                     {{--                    <div style="opacity: 1;">--}}
                     {{--                        <div class="absolute ml-2 mt-2 size-[284px] xl:ml-4 xl:mt-4 xl:size-[474px]">--}}
