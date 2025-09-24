@@ -29,7 +29,7 @@ class LanguageFactory extends Factory
             'english' => 'Achinese',
             'slug' => 'achinese',
             'is_active' => false,
-            'is_available' => true
+            'is_available' => true,
         ];
     }
 }

@@ -32,7 +32,7 @@ class Competence extends Model
             $originalSlug = $slug;
             $count = 2;
             while (static::whereSlug($slug)->exists()) {
-                $slug = $originalSlug . '-' . $count++;
+                $slug = $originalSlug.'-'.$count++;
             }
             $model->slug = $slug;
         });

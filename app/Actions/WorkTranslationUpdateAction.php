@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Auth;
 //    {
 //        $this->folder = 'uploads/works';
 //    }
+    public function __construct()
+    {
+        $this->folder = 'uploads/works';
+    }
 
     public function handle(array $data = [], $workTranslation = null): void
     {
@@ -33,23 +37,23 @@ use Illuminate\Support\Facades\Auth;
             if (isset($image)) {
                 $image = $this->buildImage->handle($this->folder, $workTranslation->slug, $image);
             }
-//            $workTranslation = WorkTranslation::create([
-//                'work_id' => $work->id,
-//                'language_id' => $data['language_id'],
-//                'user_id' => Auth::id(),
-//                'title' => $data['title'],
-//                'excerpt' => $data['excerpt'],
-//                'body' => $data['body'],
-//                'image' => $image ?? null,
-//                'link' => $data['link'] ?? null,
-//                'published_at' => $data['published_at'] ?? null,
-//                'published_through' => $data['published_through'] ?? null,
-//                'order' => $data['order'] ?? 0,
-//                'status' => $data['status'] ?? WorkStatus::Published,
-//                'status_by' => $data['status_by'] ?? Auth::id(),
-//                'status_note' => 'Initial Work creation',
-//                'views' => 0,
-//            ]);
+            //            $workTranslation = WorkTranslation::create([
+            //                'work_id' => $work->id,
+            //                'language_id' => $data['language_id'],
+            //                'user_id' => Auth::id(),
+            //                'title' => $data['title'],
+            //                'excerpt' => $data['excerpt'],
+            //                'body' => $data['body'],
+            //                'image' => $image ?? null,
+            //                'link' => $data['link'] ?? null,
+            //                'published_at' => $data['published_at'] ?? null,
+            //                'published_through' => $data['published_through'] ?? null,
+            //                'order' => $data['order'] ?? 0,
+            //                'status' => $data['status'] ?? WorkStatus::Published,
+            //                'status_by' => $data['status_by'] ?? Auth::id(),
+            //                'status_note' => 'Initial Work creation',
+            //                'views' => 0,
+            //            ]);
         } else {
             $workTranslation->find($workTranslation);
             $data['status_note'] = 'Work Translation updated';

@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Auth;
 
     public function handle(array $data = [], $workTranslation = null): void
     {
-//        dd($workTranslation);
-//        dd($data);
+        //        dd($workTranslation);
+        //        dd($data);
         if (isset($data['tags'])) {
             $tags = $data['tags'];
         }
@@ -29,8 +29,8 @@ use Illuminate\Support\Facades\Auth;
         // Create new Work Translation
         if ($workTranslation === null) {
             $data['user_id'] = Auth::id();
-//            $workTranslation->find($workTranslation);
-//            $work = Work::create($data);
+            //            $workTranslation->find($workTranslation);
+            //            $work = Work::create($data);
             $workTranslation = WorkTranslation::create([
                 'work_id' => $data['work_id'],
                 'language_id' => $data['language_id'],

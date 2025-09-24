@@ -28,11 +28,11 @@ class PostTranslationFactory extends Factory
             'language_id' => $this->faker->randomElement($languages),
             'user_id' => User::factory(),
             'post_id' => Post::factory(),
-            'title'     => $title,
-            'slug'      => Str::slug($title),
-            'excerpt'   => '<p>'.$this->faker->realText(200).'</p>',
-            'body'   => '<p>'.$this->faker->realText(2000).'</p>',
-            'image'     => $this->faker->imageUrl(750, 346, 'cats', false),
+            'title' => $title,
+            'slug' => Str::slug($title),
+            'excerpt' => '<p>'.$this->faker->realText(200).'</p>',
+            'body' => '<p>'.$this->faker->realText(2000).'</p>',
+            'image' => $this->faker->imageUrl(750, 346, 'cats', false),
             'published_at' => now(),
         ];
     }

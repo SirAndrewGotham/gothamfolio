@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\Customer;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,9 +20,9 @@ class CustomerFactory extends Factory
         $label = substr($this->faker->sentence(rand(3, 7)), 0, -1);
 
         return [
-            'label'       => $label,
+            'label' => $label,
             'description' => '<p>'.$this->faker->text(2000).'</p>',
-            'image'       => $this->faker->imageUrl(750, 346, 'cats', false),
+            'image' => $this->faker->imageUrl(750, 346, 'cats', false),
             'published_at' => now(),
         ];
     }

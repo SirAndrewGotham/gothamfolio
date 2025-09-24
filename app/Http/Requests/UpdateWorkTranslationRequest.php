@@ -55,7 +55,7 @@ class UpdateWorkTranslationRequest extends FormRequest
         $this->merge([
             'work_id' => Crypt::decrypt($this->work_id),
             'user_id' => $this->user_id ?? auth()->id(),
-            'language_id' => (int)Crypt::decrypt($this->language),
+            'language_id' => (int) Crypt::decrypt($this->language),
             'order' => $this->order ?? 0,
         ]);
     }

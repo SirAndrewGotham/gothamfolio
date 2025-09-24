@@ -5,7 +5,6 @@ namespace App\Http\Requests;
 use App\Models\Language;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Str;
 
 class StoreFeedbackRequest extends FormRequest
 {
@@ -32,9 +31,10 @@ class StoreFeedbackRequest extends FormRequest
         ];
     }
 
-    protected function prepareForValidation() {
+    protected function prepareForValidation()
+    {
         $this->merge([
-            'language_id' => (int)Language::where('code', app()->getLocale())->first()->id,
+            'language_id' => (int) Language::query()->where('code', app()->getLocale())->first()->id,
         ]);
     }
 }

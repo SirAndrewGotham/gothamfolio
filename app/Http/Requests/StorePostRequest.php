@@ -46,13 +46,12 @@ class StorePostRequest extends FormRequest
 
     protected function prepareForValidation(): void
     {
-        if($this->input('excerpt') == null )
-        {
+        if ($this->input('excerpt') == null) {
             $this->merge(['excerpt' => Str::limit($this->input('body'), 50, preserveWords: true)]);
         }
         $this->merge([
             'user_id' => $this->user_id ?? auth()->id(),
-            'language_id' => (int)Language::where('code', $this->language)->first()->id,
+            'language_id' => (int) Language::query()->where('code', $this->language)->first()->id,
             'order' => $this->order ?? 0,
         ]);
     }

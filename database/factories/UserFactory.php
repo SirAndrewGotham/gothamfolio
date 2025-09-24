@@ -27,10 +27,11 @@ class UserFactory extends Factory
     {
         $languages = Language::where('is_active', true)->pluck('id')->toArray();
         $name = $this->faker->unique()->name();
+
         return [
             'language_id' => $this->faker->randomElement($languages),
             'name' => $name,
-            "slug" => Str::slug($name),
+            'slug' => Str::slug($name),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),

@@ -33,23 +33,23 @@ use Illuminate\Support\Facades\Auth;
             if (isset($image)) {
                 $image = $this->buildImage->handle($this->folder, $competenceTranslation->slug, $image);
             }
-//            $competenceTranslation = CompetenceTranslation::create([
-//                'competence_id' => $competence->id,
-//                'language_id' => $data['language_id'],
-//                'user_id' => Auth::id(),
-//                'title' => $data['title'],
-//                'excerpt' => $data['excerpt'],
-//                'body' => $data['body'],
-//                'image' => $image ?? null,
-//                'link' => $data['link'] ?? null,
-//                'published_at' => $data['published_at'] ?? null,
-//                'published_through' => $data['published_through'] ?? null,
-//                'order' => $data['order'] ?? 0,
-//                'status' => $data['status'] ?? competenceStatus::Published,
-//                'status_by' => $data['status_by'] ?? Auth::id(),
-//                'status_note' => 'Initial Competence creation',
-//                'views' => 0,
-//            ]);
+            //            $competenceTranslation = CompetenceTranslation::create([
+            //                'competence_id' => $competence->id,
+            //                'language_id' => $data['language_id'],
+            //                'user_id' => Auth::id(),
+            //                'title' => $data['title'],
+            //                'excerpt' => $data['excerpt'],
+            //                'body' => $data['body'],
+            //                'image' => $image ?? null,
+            //                'link' => $data['link'] ?? null,
+            //                'published_at' => $data['published_at'] ?? null,
+            //                'published_through' => $data['published_through'] ?? null,
+            //                'order' => $data['order'] ?? 0,
+            //                'status' => $data['status'] ?? competenceStatus::Published,
+            //                'status_by' => $data['status_by'] ?? Auth::id(),
+            //                'status_note' => 'Initial Competence creation',
+            //                'views' => 0,
+            //            ]);
         } else {
             $competenceTranslation->find($competenceTranslation);
             $data['status_note'] = 'Competence Translation updated';

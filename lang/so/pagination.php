@@ -3,6 +3,6 @@
 declare(strict_types=1);
 
 return [
-    'next'     => 'Xiga',
+    'next' => 'Xiga',
     'previous' => '\" Hore',
 ];

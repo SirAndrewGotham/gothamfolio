@@ -116,7 +116,7 @@ class GalleryController extends Controller
 
     public function prepareIndexGalleries()
     {
-        $galleries = Gallery::where('gallery_id', null)
+        $galleries = Gallery::query()->where('gallery_id', null)
             ->where(function (Builder $query) {
                 $query->where('status', GalleryStatus::Published)
                     ->where(function (Builder $query) {
@@ -140,7 +140,7 @@ class GalleryController extends Controller
 
     public function prepareShowGalleries($id)
     {
-        $galleries = Gallery::where('status', GalleryStatus::Published)
+        $galleries = Gallery::query()->where('status', GalleryStatus::Published)
             ->where('gallery_id', $id)
             ->where(function (Builder $query) {
                 $query->where(function (Builder $query) {

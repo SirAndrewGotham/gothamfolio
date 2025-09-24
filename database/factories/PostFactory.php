@@ -26,8 +26,8 @@ class PostFactory extends Factory
         return [
             'language_id' => $this->faker->randomElement($languages),
             'user_id' => User::factory(),
-            'title'     => $title,
-            'slug'      => Str::slug($title),
+            'title' => $title,
+            'slug' => Str::slug($title),
         ];
     }
 }

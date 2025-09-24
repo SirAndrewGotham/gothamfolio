@@ -28,7 +28,7 @@ class CompetenceTranslation extends Model
             $originalSlug = $slug;
             $count = 2;
             while (static::whereSlug($slug)->exists()) {
-                $slug = $originalSlug . '-' . $count++;
+                $slug = $originalSlug.'-'.$count++;
             }
             $model->slug = $slug;
         });
@@ -39,7 +39,7 @@ class CompetenceTranslation extends Model
         return 'slug';
     }
 
-    protected  $casts = [
+    protected $casts = [
         'excerpt' => 'string',
         'body' => 'string',
         'order' => 'integer',

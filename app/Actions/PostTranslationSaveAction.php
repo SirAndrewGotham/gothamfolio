@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Auth;
 
     public function handle(array $data = [], $postTranslation = null): void
     {
-//        dd($postTranslation);
-//        dd($data);
+        //        dd($postTranslation);
+        //        dd($data);
         if (isset($data['tags'])) {
             $tags = $data['tags'];
         }
@@ -29,8 +29,8 @@ use Illuminate\Support\Facades\Auth;
         // Create new Post Translation
         if ($postTranslation === null) {
             $data['user_id'] = Auth::id();
-//            $postTranslation->find($postTranslation);
-//            $post = Post::create($data);
+            //            $postTranslation->find($postTranslation);
+            //            $post = Post::create($data);
             $postTranslation = PostTranslation::create([
                 'post_id' => $data['post_id'],
                 'language_id' => $data['language_id'],

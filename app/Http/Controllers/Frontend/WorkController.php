@@ -83,7 +83,7 @@ class WorkController extends Controller
     {
         $languages = $this->getLanguages();
 
-        $works = WorkTranslation::where(function (Builder $query) {
+        $works = WorkTranslation::query()->where(function (Builder $query) {
             $query->where('status', WorkStatus::Published)
                 ->where(function (Builder $query) {
                     $query->whereNull('published_at')

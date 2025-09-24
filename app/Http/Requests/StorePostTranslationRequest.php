@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Enums\PostStatus;
-use App\Models\Language;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Crypt;
@@ -47,8 +46,7 @@ class StorePostTranslationRequest extends FormRequest
 
     protected function prepareForValidation(): void
     {
-        if($this->input('excerpt') == null )
-        {
+        if ($this->input('excerpt') == null) {
             $this->merge(['excerpt' => Str::limit($this->input('body'), 50, preserveWords: true)]);
         }
         $this->merge([

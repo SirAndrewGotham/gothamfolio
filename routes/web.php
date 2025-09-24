@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\Backend\PostTranslationController;
 use App\Http\Controllers\Frontend\BlogController;
-use App\Http\Controllers\Frontend\ContactController;
+//use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\FeedbackController;
 use App\Http\Controllers\Frontend\GalleryController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -22,13 +22,13 @@ Route::get('/', HomeController::class)->name('home');
 Route::get('resume', ResumeController::class)->name('resume');
 
 // Contact
-//Route::get('contact', [ContactController::class, 'show'])->name('contact.show');
-//Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
+// Route::get('contact', [ContactController::class, 'show'])->name('contact.show');
+// Route::post('contact', [ContactController::class, 'store'])->name('contact.store');
 
 // Blog
 Route::get('blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('blog/{post}', [BlogController::class, 'show'])->name('blog.show');
-//Route::get('blog/tag/{tag}', [TagController::class, 'show'])->name('tag.show');
+// Route::get('blog/tag/{tag}', [TagController::class, 'show'])->name('tag.show');
 Route::get('blog/tag/{tag}', [BlogController::class, 'tagShow'])->name('blog.tag.show');
 
 Route::resource('posts', PostTranslationController::class);

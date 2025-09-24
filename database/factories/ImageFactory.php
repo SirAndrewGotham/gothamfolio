@@ -19,6 +19,7 @@ class ImageFactory extends Factory
     public function definition(): array
     {
         $galleries = Gallery::pluck('id')->toArray();
+
         return [
             'gallery_id' => $this->faker->randomElement($galleries),
             'is_cover' => $this->faker->randomElement([true, false]),

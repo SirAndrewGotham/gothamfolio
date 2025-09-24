@@ -45,10 +45,8 @@ class Menu extends Model
     /**
      * Display menu.
      *
-     * @param string      $menuName
-     * @param string|null $type
-     * @param array       $options
-     *
+     * @param  string  $menuName
+     * @param  string|null  $type
      * @return string
      */
     public static function display($menuName, $type = null, array $options = [])
@@ -63,11 +61,11 @@ class Menu extends Model
         });
 
         // Check for Menu Existence
-        if (!isset($menu)) {
+        if (! isset($menu)) {
             return false;
         }
 
-        event(new MenuDisplay($menu));
+//        event(new MenuDisplay($menu));
 
         // Convert options array into object
         $options = (object) $options;
@@ -83,12 +81,12 @@ class Menu extends Model
         } else {
             if (is_null($type)) {
                 $type = 'menu.default';
-            } elseif ($type == 'bootstrap' && !view()->exists($type)) {
+            } elseif ($type == 'bootstrap' && ! view()->exists($type)) {
                 $type = 'menu.bootstrap';
             }
         }
 
-        if (!isset($options->locale)) {
+        if (! isset($options->locale)) {
             $options->locale = app()->getLocale();
         }
 
@@ -137,7 +135,7 @@ class Menu extends Model
             if ($item->children->count() > 0) {
                 $item->setRelation('children', static::processItems($item->children));
 
-                if (!$item->children->where('active', true)->isEmpty()) {
+                if (! $item->children->where('active', true)->isEmpty()) {
                     $item->active = true;
                 }
             }
@@ -147,7 +145,7 @@ class Menu extends Model
 
         // Filter items by permission
         $items = $items->filter(function ($item) {
-            return !$item->children->isEmpty() || Auth::user()->can('browse', $item);
+            return ! $item->children->isEmpty() || Auth::user()->can('browse', $item);
         })->filter(function ($item) {
             // Filter out empty menu-items
             if ($item->url == '' && $item->route == '' && $item->children->count() == 0) {

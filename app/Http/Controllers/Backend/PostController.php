@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Actions\PostSaveAction;
+use App\Actions\PostUpdateAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 
 class PostController extends Controller

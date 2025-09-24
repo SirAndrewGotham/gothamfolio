@@ -9,7 +9,10 @@ class FeedbackController extends Controller
 {
     public function index()
     {
-        $feedbacks = Feedback::where('read', false)->latest()->paginate(15);
+        $feedbacks = Feedback::query()
+            ->where('read', false)
+            ->latest()
+            ->paginate(15);
 
         return view('backend.legacy.feedback.index', compact('feedbacks'));
     }
@@ -24,7 +27,11 @@ class FeedbackController extends Controller
 
     public function read()
     {
-        $feedbacks = Feedback::where('read', true)->latest()->paginate(15);
+        $feedbacks = Feedback::query()
+            ->where('read', true)
+            ->latest()
+            ->paginate(15);
+
         return view('backend.legacy.feedback.read', compact('feedbacks'));
     }
 
@@ -52,7 +59,7 @@ class FeedbackController extends Controller
         $feedback->delete();
 
         return redirect()->back();
-//        return redirect()->route('admin.feedback.index');
+        //        return redirect()->route('admin.feedback.index');
     }
 
     public function forceDelete(Feedback $feedback)
@@ -60,6 +67,6 @@ class FeedbackController extends Controller
         $feedback->forceDelete();
 
         return redirect()->back();
-//        return redirect()->route('admin.feedback.index');
+        //        return redirect()->route('admin.feedback.index');
     }
 }

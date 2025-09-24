@@ -17,7 +17,9 @@ class PostTranslationController extends Controller
      */
     public function index(Post $post)
     {
-        $post_translations = PostTranslation::where('post_id', $post->id)->get();
+        $post_translations = PostTranslation::query()
+            ->where('post_id', $post->id)
+            ->get();
 
         return view('backend.legacy.post_translation.index', compact(['post', 'post_translations']));
     }
@@ -29,7 +31,7 @@ class PostTranslationController extends Controller
     {
         $user_languages = auth()->user()->languages;
 
-        $already_used_languages = collect(PostTranslation::where('post_id', $post->id)->get()->pluck('language_id'));
+        $already_used_languages = collect(PostTranslation::query()->where('post_id', $post->id)->get()->pluck('language_id'));
 
         $languages = $user_languages->whereNotIn('id', $already_used_languages);
 
@@ -43,7 +45,7 @@ class PostTranslationController extends Controller
     {
         $user_languages = auth()->user()->languages;
 
-        $already_used_languages = collect($postTranslation::where('post_id', $postTranslation->post_id)->get()->pluck('language_id'));
+        $already_used_languages = collect($postTranslation::query()->where('post_id', $postTranslation->post_id)->get()->pluck('language_id'));
 
         $languages = $user_languages->whereNotIn('id', $already_used_languages);
 
@@ -57,7 +59,7 @@ class PostTranslationController extends Controller
     {
         $postTranslationSaveAction->handle($request->validated());
 
-        $slug = Post::where('id', $request->post_id)->first();
+        $slug = Post::query()->where('id', $request->post_id)->first();
 
         return redirect()->route('admin.postTranslations.index', $slug)->with('success', 'Your Post Translation created successfully!');
     }

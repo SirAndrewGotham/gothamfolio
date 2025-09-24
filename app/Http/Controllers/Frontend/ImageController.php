@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Requests\StoreImageRequest;
 use App\Http\Requests\UpdateImageRequest;
-use App\Models\Image;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
+use Intervention\Image\Laravel\Facades\Image;
 
 class ImageController
 {
@@ -32,9 +32,9 @@ class ImageController
     public function store(StoreImageRequest $request): RedirectResponse
     {
         // validation moved to StoreImageRequest
-//        $this->validate($request, [
-//            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-//        ]);
+        //        $this->validate($request, [
+        //            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        //        ]);
 
         $image = Image::read($request->file('image'));
 

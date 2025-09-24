@@ -82,15 +82,15 @@ class BlogController
 
     public function prepareIndex(): array
     {
-        $languages[] = Language::where('code', app()->getLocale())->first()->id;
+        $languages[] = Language::query()->where('code', app()->getLocale())->first()->id;
         if (auth()->check()) {
-            $languages = Language::where('id', auth()->user()->language_id)->pluck('id');
+            $languages = Language::query()->where('id', auth()->user()->language_id)->pluck('id');
             if (auth()->user()->languages) {
                 $languages = auth()->user()->languages->pluck('id');
             }
         }
 
-        $posts = PostTranslation::where(function (Builder $query) {
+        $posts = PostTranslation::query()->where(function (Builder $query) {
             $query->where('status', 'Published')
                 ->where(function (Builder $query) {
                     $query->whereNull('published_at')
@@ -127,15 +127,15 @@ class BlogController
 
     public function prepareTags()
     {
-        $languages[] = Language::where('code', app()->getLocale())->first()->id;
+        $languages[] = Language::query()->where('code', app()->getLocale())->first()->id;
         if (auth()->check()) {
-            $languages = Language::where('id', auth()->user()->language_id)->pluck('id');
+            $languages = Language::query()->where('id', auth()->user()->language_id)->pluck('id');
             if (auth()->user()->languages) {
                 $languages = auth()->user()->languages->pluck('id');
             }
         }
 
-        $posts = PostTranslation::where(function (Builder $query) {
+        $posts = PostTranslation::query()->where(function (Builder $query) {
             $query->where('status', 'Published')
                 ->where(function (Builder $query) {
                     $query->whereNull('published_at')

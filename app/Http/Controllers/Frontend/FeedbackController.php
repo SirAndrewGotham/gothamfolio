@@ -20,7 +20,7 @@ class FeedbackController extends Controller
     public function store(StoreFeedbackRequest $request)
     {
         if (config('gothamfolio.frontend.feedback-to-db') == 'on') {
-            Feedback::create($request->validated());
+            Feedback::query()->create($request->validated());
         }
 
         // send email to the requester if set in configuration

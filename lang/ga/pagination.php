@@ -3,6 +3,6 @@
 declare(strict_types=1);
 
 return [
-    'next'     => 'Ar aghaidh »',
+    'next' => 'Ar aghaidh »',
     'previous' => '« Roimhe Seo',
 ];

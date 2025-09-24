@@ -64,7 +64,7 @@ class WorkController extends Controller
      */
     public function update(UpdateWorkRequest $request, Work $work)
     {
-        (new WorkUpdateAction())->handle($request->validated(), $work);
+        (new WorkUpdateAction)->handle($request->validated(), $work);
 
         return redirect()->route('admin.works.index');
     }

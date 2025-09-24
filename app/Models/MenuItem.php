@@ -66,14 +66,14 @@ class MenuItem extends Model
 
         if (is_string($parameters)) {
             $parameters = json_decode($parameters, true);
-        } elseif (is_array($parameters)) {
-            $parameters = $parameters;
         } elseif (is_object($parameters)) {
             $parameters = json_decode(json_encode($parameters), true);
+//        } elseif (is_array($parameters)) {
+//            $parameters = $parameters;
         }
 
-        if (!is_null($route)) {
-            if (!Route::has($route)) {
+        if (! is_null($route)) {
+            if (! Route::has($route)) {
                 return '#';
             }
 
@@ -113,8 +113,7 @@ class MenuItem extends Model
     /**
      * Return the Highest Order Menu Item.
      *
-     * @param number $parent (Optional) Parent id. Default null
-     *
+     * @param  number  $parent  (Optional) Parent id. Default null
      * @return number Order number
      */
     public function highestOrderMenuItem($parent = null)
@@ -125,7 +124,7 @@ class MenuItem extends Model
             ->orderBy('order', 'DESC')
             ->first();
 
-        if (!is_null($item)) {
+        if (! is_null($item)) {
             $order = intval($item->order) + 1;
         }
 

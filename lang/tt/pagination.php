@@ -3,6 +3,6 @@
 declare(strict_types=1);
 
 return [
-    'next'     => 'Алга \"',
+    'next' => 'Алга \"',
     'previous' => '«Алдагы',
 ];

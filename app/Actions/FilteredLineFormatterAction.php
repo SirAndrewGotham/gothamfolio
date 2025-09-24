@@ -7,11 +7,11 @@ namespace App\Actions;
 use Illuminate\Support\Str;
 use Monolog\Formatter\LineFormatter;
 
-final  class FilteredLineFormatterAction extends LineFormatter
+final class FilteredLineFormatterAction extends LineFormatter
 {
-    protected const FILTERED_REPLACEMENT = '[FILTERED]';
+    protected const string FILTERED_REPLACEMENT = '[FILTERED]';
 
-    protected const CONFIG_KEYS_TO_FILTER = [
+    protected const array CONFIG_KEYS_TO_FILTER = [
         'database.connections.mysql.password',
     ];
 

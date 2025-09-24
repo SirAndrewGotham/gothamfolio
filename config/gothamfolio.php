@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'website_url' => env('APP_URL', 'AndrewGotham.ru'),
     'frontend' => [
         'theme' => env('FRONT_THEME', 'legacy'),
         'resume' => env('RESUME', 'on'),

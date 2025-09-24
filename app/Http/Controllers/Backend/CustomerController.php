@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Intervention\Image\Laravel\Facades\Image;
 
 class CustomerController extends Controller
 {
@@ -76,29 +78,28 @@ class CustomerController extends Controller
     {
         // Image Handling
         if (isset($data['image'])) {
-            $data['image'] = $this->buildImage(str_slug($data['label']), $data['image']);
+            $data['image'] = $this->buildImage(Str::slug($data['label']), $data['image']);
         }
 
         // We create the Customer
         if ($id === null) {
-            return $this->customers->create($data);
+            return Customer::query()->create($data);
         }
 
-        return $this->customers->update($data, $id);
+        return Customer::query()->update($data, $id);
     }
 
     /**
      * Build the image.
      *
-     * @param string       $slug
-     * @param UploadedFile $image
-     *
+     * @param  string  $slug
+     * @param  string  $image
      * @return string
      */
-    protected function buildImage($slug, $image)
+    protected function buildImage($slug, $file)
     {
-        $filePath = 'uploads/customers/'.$slug.'.'.$image->getClientOriginalExtension();
-        Image::read($image)->save(public_path($filePath));
+        $filePath = 'uploads/customers/'.$slug.'.'.$file->getClientOriginalExtension();
+        Image::read($file)->save(public_path($filePath));
 
         return '/'.$filePath;
     }

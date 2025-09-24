@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Auth;
 //    {
 //        $this->folder = 'uploads/posts';
 //    }
+    public function __construct()
+    {
+        $this->folder = 'uploads/posts';
+    }
 
     public function handle(array $data = [], $post = null): void
     {

@@ -2,11 +2,12 @@
 
 namespace App\Concerns;
 
+use App\Models\Translation;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use App\Models\Translation;
-//use Translator;
+
+// use Translator;
 
 trait Translatable
 {
@@ -21,7 +22,7 @@ trait Translatable
             return false;
         }
 
-        return !empty($this->getTranslatableAttributes());
+        return ! empty($this->getTranslatableAttributes());
     }
 
     /**
@@ -40,9 +41,8 @@ trait Translatable
      * This scope eager loads the translations for the default and the fallback locale only.
      * We can use this as a shortcut to improve performance in our application.
      *
-     * @param Builder     $query
-     * @param string|null $locale
-     * @param string|bool $fallback
+     * @param  string|null  $locale
+     * @param  string|bool  $fallback
      */
     public function scopeWithTranslation(Builder $query, $locale = null, $fallback = true)
     {
@@ -69,9 +69,8 @@ trait Translatable
      * This scope eager loads the translations for the default and the fallback locale only.
      * We can use this as a shortcut to improve performance in our application.
      *
-     * @param Builder           $query
-     * @param string|null|array $locales
-     * @param string|bool       $fallback
+     * @param  string|null|array  $locales
+     * @param  string|bool  $fallback
      */
     public function scopeWithTranslations(Builder $query, $locales = null, $fallback = true)
     {
@@ -105,42 +104,39 @@ trait Translatable
     /**
      * Translate the whole model.
      *
-     * @param null|string $language
-     * @param bool|string $fallback
-     *
+     * @param  null|string  $language
+     * @param  bool|string  $fallback
      */
     public function translate($language = null, $fallback = true)
     {
-        if (!$this->relationLoaded('translations')) {
+        if (! $this->relationLoaded('translations')) {
             $this->load('translations');
         }
 
-//        return (new Translator($this))->translate($language, $fallback);
+        //        return (new Translator($this))->translate($language, $fallback);
         return $this->translate($language, $fallback);
     }
 
     /**
      * Get a single translated attribute.
      *
-     * @param $attribute
-     * @param null $language
-     * @param bool $fallback
-     *
+     * @param  null  $language
+     * @param  bool  $fallback
      * @return null
      */
     public function getTranslatedAttribute($attribute, $language = null, $fallback = true)
     {
         // If multilingual is not enabled don't check for translations
-        if (!config('gothamfolio.multilingual.enabled')) {
+        if (! config('gothamfolio.multilingual.enabled')) {
             return $this->getAttributeValue($attribute);
         }
 
-        list($value) = $this->getTranslatedAttributeMeta($attribute, $language, $fallback);
+        [$value] = $this->getTranslatedAttributeMeta($attribute, $language, $fallback);
 
         return $value;
     }
 
-    public function getTranslationsOf($attribute, array $languages = null, $fallback = true)
+    public function getTranslationsOf($attribute, ?array $languages = null, $fallback = true)
     {
         if (is_null($languages)) {
             $languages = config('gothamfolio.multilingual.locales', [config('gothamfolio.multilingual.default')]);
@@ -158,7 +154,7 @@ trait Translatable
     {
         // Attribute is translatable
         //
-        if (!in_array($attribute, $this->getTranslatableAttributes())) {
+        if (! in_array($attribute, $this->getTranslatableAttributes())) {
             return [$this->getAttribute($attribute), config('gothamfolio.multilingual.default'), false];
         }
 
@@ -176,7 +172,7 @@ trait Translatable
             return [$this->getAttribute($attribute), $default, true];
         }
 
-        if (!$this->relationLoaded('translations')) {
+        if (! $this->relationLoaded('translations')) {
             $this->load('translations');
         }
 
@@ -220,7 +216,7 @@ trait Translatable
     {
         $response = [];
 
-        if (!$this->relationLoaded('translations')) {
+        if (! $this->relationLoaded('translations')) {
             $this->load('translations');
         }
 
@@ -234,6 +230,7 @@ trait Translatable
 
             if ($locale == $default) {
                 $this->$attribute = $translations[$locale];
+
                 continue;
             }
 
@@ -256,33 +253,33 @@ trait Translatable
      * @example  Class::whereTranslation('title', '=', 'zuhause', ['de', 'iu'])
      * @example  $query->whereTranslation('title', '=', 'zuhause', ['de', 'iu'])
      *
-     * @param string       $field    {required} the field your looking to find a value in.
-     * @param string       $operator {required} value you are looking for or a relation modifier such as LIKE, =, etc.
-     * @param string       $value    {optional} value you are looking for. Only use if you supplied an operator.
-     * @param string|array $locales  {optional} locale(s) you are looking for the field.
-     * @param bool         $default  {optional} if true checks for $value is in default database before checking translations.
-     *
+     * @param  string  $field  {required} the field your looking to find a value in.
+     * @param  string  $operator  {required} value you are looking for or a relation modifier such as LIKE, =, etc.
+     * @param  string  $value  {optional} value you are looking for. Only use if you supplied an operator.
+     * @param  string|array  $locales  {optional} locale(s) you are looking for the field.
+     * @param  bool  $default  {optional} if true checks for $value is in default database before checking translations.
      * @return Builder
      */
     public static function scopeWhereTranslation($query, $field, $operator, $value = null, $locales = null, $default = true)
     {
-        if ($locales && !is_array($locales)) {
+        if ($locales && ! is_array($locales)) {
             $locales = [$locales];
         }
-        if (!isset($value)) {
+        if (! isset($value)) {
             $value = $operator;
             $operator = '=';
         }
 
-        $self = new static();
+        $self = new static;
         $table = $self->getTable();
 
         return $query->whereIn(
             $self->getKeyName(),
-            Translation::where('table_name', $table)
+            Translation::query()
+                ->where('table_name', $table)
                 ->where('column_name', $field)
                 ->where('value', $operator, $value)
-                ->when(!is_null($locales), function ($query) use ($locales) {
+                ->when(! is_null($locales), function ($query) use ($locales) {
                     return $query->whereIn('locale', $locales);
                 })
                 ->pluck('foreign_key')
@@ -293,7 +290,7 @@ trait Translatable
 
     public function hasTranslatorMethod($name)
     {
-        if (!isset($this->translatorMethods)) {
+        if (! isset($this->translatorMethods)) {
             return false;
         }
 
@@ -302,7 +299,7 @@ trait Translatable
 
     public function getTranslatorMethod($name)
     {
-        if (!$this->hasTranslatorMethod($name)) {
+        if (! $this->hasTranslatorMethod($name)) {
             return false;
         }
 
@@ -313,7 +310,7 @@ trait Translatable
     {
         $this->translations()
             ->whereIn('column_name', $attributes)
-            ->when(!is_null($locales), function ($query) use ($locales) {
+            ->when(! is_null($locales), function ($query) use ($locales) {
                 $method = is_array($locales) ? 'whereIn' : 'where';
 
                 return $query->$method('locale', $locales);
@@ -325,7 +322,7 @@ trait Translatable
     {
         $this->translations()
             ->where('column_name', $attribute)
-            ->when(!is_null($locales), function ($query) use ($locales) {
+            ->when(! is_null($locales), function ($query) use ($locales) {
                 $method = is_array($locales) ? 'whereIn' : 'where';
 
                 return $query->$method('locale', $locales);
@@ -336,8 +333,7 @@ trait Translatable
     /**
      * Prepare translations and set default locale field value.
      *
-     * @param object $request
-     *
+     * @param  object  $request
      * @return array translations
      */
     public function prepareTranslations($request)
@@ -347,10 +343,10 @@ trait Translatable
         // Translatable Fields
         $transFields = $this->getTranslatableAttributes();
 
-        $fields = !empty($request->attributes->get('breadRows')) ? array_intersect($request->attributes->get('breadRows'), $transFields) : $transFields;
+        $fields = ! empty($request->attributes->get('breadRows')) ? array_intersect($request->attributes->get('breadRows'), $transFields) : $transFields;
 
         foreach ($fields as $field) {
-            if (!$request->input($field.'_i18n')) {
+            if (! $request->input($field.'_i18n')) {
                 throw new Exception('Invalid Translatable field'.$field);
             }
 
@@ -377,8 +373,7 @@ trait Translatable
     /**
      * Prepare translations and set default locale field value.
      *
-     * @param object $requestData
-     *
+     * @param  object  $requestData
      * @return array translations
      */
     public function prepareTranslationsFromArray($field, &$requestData)
@@ -410,8 +405,7 @@ trait Translatable
     /**
      * Save translations.
      *
-     * @param object $translations
-     *
+     * @param  object  $translations
      * @return void
      */
     public function saveTranslations($translations)

@@ -14,7 +14,9 @@ class LanguageController extends Controller
      */
     public function index()
     {
-        $languages = Language::orderBy('is_active', 'desc')->get();
+        $languages = Language::query()
+            ->orderBy('is_active', 'desc')
+            ->get();
 
         return view('backend.legacy.languages.index', compact('languages'));
     }

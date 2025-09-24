@@ -38,7 +38,7 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        Tag::create($request->all());
+        Tag::query()->create($request->all());
 
         return redirect()->route('admin.tags.index');
     }

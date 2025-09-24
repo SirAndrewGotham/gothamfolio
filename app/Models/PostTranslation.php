@@ -9,7 +9,6 @@ use Database\Factories\PostTranslationFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Str;
@@ -30,7 +29,7 @@ class PostTranslation extends Model
             $originalSlug = $slug;
             $count = 2;
             while (static::whereSlug($slug)->exists()) {
-                $slug = $originalSlug . '-' . $count++;
+                $slug = $originalSlug.'-'.$count++;
             }
             $model->slug = $slug;
         });
@@ -41,7 +40,7 @@ class PostTranslation extends Model
         return 'slug';
     }
 
-    protected  $casts = [
+    protected $casts = [
         'excerpt' => 'string',
         'body' => 'string',
         'order' => 'integer',

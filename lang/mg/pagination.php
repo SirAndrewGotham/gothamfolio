@@ -3,6 +3,6 @@
 declare(strict_types=1);
 
 return [
-    'next'     => 'Manaraka \"',
+    'next' => 'Manaraka \"',
     'previous' => '«Teo aloha',
 ];

@@ -3,6 +3,6 @@
 declare(strict_types=1);
 
 return [
-    'next'     => 'ווייַטער »',
+    'next' => 'ווייַטער »',
     'previous' => '« פרייַערדיק',
 ];

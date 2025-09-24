@@ -18,7 +18,7 @@ class WorkTranslationController extends Controller
      */
     public function index(Work $work)
     {
-        $work_translations = WorkTranslation::where('work_id', $work->id)->get();
+        $work_translations = WorkTranslation::query()->where('work_id', $work->id)->get();
 
         return view('backend.legacy.work_translation.index', compact(['work', 'work_translations']));
     }
@@ -30,7 +30,7 @@ class WorkTranslationController extends Controller
     {
         $user_languages = auth()->user()->languages;
 
-        $already_used_languages = collect(WorkTranslation::where('work_id', $work->id)->get()->pluck('language_id'));
+        $already_used_languages = collect(WorkTranslation::query()->where('work_id', $work->id)->get()->pluck('language_id'));
 
         $languages = $user_languages->whereNotIn('id', $already_used_languages);
 
@@ -44,7 +44,7 @@ class WorkTranslationController extends Controller
     {
         $user_languages = auth()->user()->languages;
 
-        $already_used_languages = collect($workTranslation::where('work_id', $workTranslation->work_id)->get()->pluck('language_id'));
+        $already_used_languages = collect($workTranslation::query()->where('work_id', $workTranslation->work_id)->get()->pluck('language_id'));
 
         $languages = $user_languages->whereNotIn('id', $already_used_languages);
 
@@ -58,7 +58,7 @@ class WorkTranslationController extends Controller
     {
         $workTranslationSaveAction->handle($request->validated());
 
-        $slug = Work::where('id', $request->work_id)->first();
+        $slug = Work::query()->where('id', $request->work_id)->first();
 
         return redirect()->route('admin.workTranslations.index', $slug)->with('success', 'Your Work Translation created successfully!');
     }

@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Auth;
 
     public function handle(array $data = [], $competenceTranslation = null): void
     {
-//        dd($competenceTranslation);
-//        dd($data);
+        //        dd($competenceTranslation);
+        //        dd($data);
         if (isset($data['tags'])) {
             $tags = $data['tags'];
         }
@@ -29,8 +29,8 @@ use Illuminate\Support\Facades\Auth;
         // Create new Competence Translation
         if ($competenceTranslation === null) {
             $data['user_id'] = Auth::id();
-//            $competenceTranslation->find($competenceTranslation);
-//            $competence = Competence::create($data);
+            //            $competenceTranslation->find($competenceTranslation);
+            //            $competence = Competence::create($data);
             $competenceTranslation = CompetenceTranslation::create([
                 'competence_id' => $data['competence_id'],
                 'language_id' => $data['language_id'],
