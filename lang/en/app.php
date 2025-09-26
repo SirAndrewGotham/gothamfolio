@@ -151,6 +151,7 @@ return [
         'resume' => [
             'page-title' => 'My Resume',
             'breadcrumb-title' => 'Resume',
+            'pdf' => 'Download Resume PDF',
             'work-experience' => [
                 'title' => 'Work Experience',
                 1 => [

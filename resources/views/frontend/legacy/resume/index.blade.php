@@ -6,6 +6,9 @@
     <section>
         <div class="container">
             <div class="heading no-margin-bottom pt15">
+                <a href="{{ asset('uploads/resume/'.app()->getLocale().'/Andrew_Gotham_resume.pdf') }}" class="btn btn-rw btn-primary" target="_blank">{{ trans('app.frontend.resume.pdf') }}</a>
+            </div>
+            <div class="heading no-margin-bottom pt15">
                 <h2>{{ trans('app.frontend.resume.work-experience.title') }}</h2>
             </div>
             <ul class="timeline no-margin">
