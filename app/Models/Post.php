@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Concerns\HasSlug;
 use Database\Factories\PostFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,7 +17,7 @@ use Illuminate\Support\Str;
 class Post extends Model
 {
     /** @use HasFactory<PostFactory> */
-    use HasFactory, SoftDeletes;
+    use HasFactory, HasSlug, SoftDeletes;
 
     protected $fillable = [
         'user_id',
@@ -28,21 +29,23 @@ class Post extends Model
     {
         parent::boot();
 
-        self::creating(function ($model) {
-            $slug = Str::slug($model->title);
-            $originalSlug = $slug;
-            $count = 2;
-            while (static::whereSlug($slug)->exists()) {
-                $slug = $originalSlug.'-'.$count++;
-            }
-            $model->slug = $slug;
-        });
+        // mmoved to the HasSlug Trait
+//        self::creating(function ($model) {
+//            $slug = Str::slug($model->title);
+//            $originalSlug = $slug;
+//            $count = 2;
+//            while (static::whereSlug($slug)->exists()) {
+//                $slug = $originalSlug.'-'.$count++;
+//            }
+//            $model->slug = $slug;
+//        });
     }
 
-    public function getRouteKeyName(): string
-    {
-        return 'slug';
-    }
+    // This one has moved to the HasSlug trait as well
+//    public function getRouteKeyName(): string
+//    {
+//        return 'slug';
+//    }
 
     public function translations(): HasMany
     {
