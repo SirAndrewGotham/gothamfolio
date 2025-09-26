@@ -46,3 +46,5 @@ Andrew
 [Telegram contact](https://t.me/sirandrewgotham)
 
 [Telegram web development group (in Esperanto)](https://t.me/RetejoEsperanta)
+
+![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/SirAndrewGotham/gothamfolio?utm_source=oss&utm_medium=github&utm_campaign=SirAndrewGotham%2Fgothamfolio&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
