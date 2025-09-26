@@ -151,6 +151,7 @@ return [
         'resume' => [
             'page-title' => 'Моё резюме',
             'breadcrumb-title' => 'Резюме',
+            'pdf' => 'Скачать PDF резюме',
             'work-experience' => [
                 'title' => 'Опыт работы',
                 1 => [
