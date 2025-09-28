@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>@yield('meta-title', 'Page Title') - GothamFolio Backend</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="shortcut icon" href="{{ asset('assets/frontend/legacy/img/favicon.png') }}">
 
     <link href="{{ asset('assets/backend/legacy/css/backend.css') }}" rel="stylesheet">
 
@@ -12,6 +13,7 @@
 {{--    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>--}}
     <![endif]-->
 
+    @vite('resources/css/app.css')
     @yield('styles')
 </head>
 <body class="skin-blue sidebar-mini">

@@ -6,6 +6,7 @@ namespace App\Actions;
 
 use AllowDynamicProperties;
 use App\Enums\PostStatus;
+use App\Models\Language;
 use App\Models\Post;
 use App\Models\PostTranslation;
 use Illuminate\Support\Facades\Auth;
@@ -29,7 +30,7 @@ use Illuminate\Support\Facades\Auth;
             $data['user_id'] = Auth::id();
             $post = Post::create($data);
             if (isset($image)) {
-                $image = $this->buildImage->handle($this->folder, $post->slug, $image);
+                $image = $this->buildImage->handle($this->folder.'/'.$post->id, Language::where('id', $data['language_id'])->first()->code, $image);
             }
             $postTranslation = PostTranslation::create([
                 'post_id' => $post->id,

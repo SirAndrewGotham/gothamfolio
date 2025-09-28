@@ -59,6 +59,7 @@ class PostTranslationController extends Controller
     {
         $postTranslationSaveAction->handle($request->validated());
 
+        // We are redirecting to the main Post list with all committed translations by the post slug
         $slug = Post::query()->where('id', $request->post_id)->first();
 
         return redirect()->route('admin.postTranslations.index', $slug)->with('success', 'Your Post Translation created successfully!');

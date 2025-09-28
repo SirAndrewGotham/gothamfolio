@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('excerpt')->nullable();
             $table->text('body');
+            $table->integer('order')->default(0);
             $table->string('image')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->timestamp('published_through')->nullable();

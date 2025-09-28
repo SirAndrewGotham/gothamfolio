@@ -27,13 +27,15 @@ class PostTranslationFactory extends Factory
         return [
             'language_id' => $this->faker->randomElement($languages),
             'user_id' => User::factory(),
-            'post_id' => Post::factory(),
+            'post_id' => Post::factory(), // Automatically create and associate a Post
             'title' => $title,
             'slug' => Str::slug($title),
             'excerpt' => '<p>'.$this->faker->realText(200).'</p>',
             'body' => '<p>'.$this->faker->realText(2000).'</p>',
             'image' => $this->faker->imageUrl(750, 346, 'cats', false),
             'published_at' => now(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }

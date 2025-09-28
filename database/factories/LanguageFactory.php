@@ -20,7 +20,7 @@ class LanguageFactory extends Factory
         return [
             'default' => false,
             'fallback' => false,
-            'code' => 'ace',
+            'code' => fake()->unique()->countryCode(),
             'regional' => '',
             'script' => 'Latn',
             'dir' => 'ltr',
@@ -28,7 +28,7 @@ class LanguageFactory extends Factory
             'name' => 'Aceh',
             'english' => 'Achinese',
             'slug' => 'achinese',
-            'is_active' => false,
+            'is_active' => true,
             'is_available' => true,
         ];
     }

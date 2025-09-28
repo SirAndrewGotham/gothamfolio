@@ -17,7 +17,12 @@ class MenuItemFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'menu_id' => \App\Models\Menu::factory(),
+            'title' => $this->faker->unique()->word(),
+            'slug' => $this->faker->unique()->slug(),
+            'url' => $this->faker->url(),
+            'target' => '_self',
+            'order' => $this->faker->numberBetween(1, 10),
         ];
     }
 }

@@ -24,7 +24,7 @@ class PostFactory extends Factory
         $title = substr($this->faker->sentence(rand(3, 7)), 0, -1);
 
         return [
-            'language_id' => $this->faker->randomElement($languages),
+            // 'language_id' => $this->faker->randomElement($languages),
             'user_id' => User::factory(),
             'title' => $title,
             'slug' => Str::slug($title),
