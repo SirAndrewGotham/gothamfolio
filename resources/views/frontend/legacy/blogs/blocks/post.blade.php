@@ -4,7 +4,7 @@
             <img class="img-responsive full-width" src="{{ asset('uploads/posts/'. $post->post_id . '/' . $post->image) }}" alt="{{ $post->title }}">
         </a>
     @else
-        <img class="img-responsive full-width" src="{{ asset('uploads/posts/'.$post->image) }}" alt="">
+        <img class="img-responsive full-width" src="{{ asset('uploads/posts/' . $post->post_id . '/' . $post->image) }}" alt="">
     @endif
     <div class="blog-post-holder">
         <ul class="list-inline posted-info">
