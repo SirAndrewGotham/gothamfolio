@@ -15,7 +15,13 @@ use Illuminate\Support\Str;
 class PostTranslationFactory extends Factory
 {
     /**
-     * Define the model's default state.
+     * Provide default attribute values for creating PostTranslation records via the factory.
+     *
+     * The definition selects a random active language ID, generates a 3–7 word title
+     * (trailing period removed) and slug, creates associated User and Post instances
+     * via their factories, wraps Faker-generated excerpt and body HTML in `<p>` tags,
+     * produces an image URL (750x346, 'cats'), and sets `published_at`, `created_at`
+     * and `updated_at` to the current timestamp.
      *
      * @return array<string, mixed>
      */

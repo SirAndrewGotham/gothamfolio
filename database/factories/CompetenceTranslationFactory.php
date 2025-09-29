@@ -10,9 +10,13 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class CompetenceTranslationFactory extends Factory
 {
     /**
-     * Define the model's default state.
+     * Provide the model's default attribute values for testing and seeding.
      *
-     * @return array<string, mixed>
+     * The default state sets related model factories for competence_id, language_id, user_id, and status_by,
+     * and populates translation attributes: title, slug, excerpt, body, order, status, published_at,
+     * published_through, status_note, and views.
+     *
+     * @return array<string, mixed> The attribute array to assign to the model.
      */
     public function definition(): array
     {

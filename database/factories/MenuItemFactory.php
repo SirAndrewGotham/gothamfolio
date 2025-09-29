@@ -10,9 +10,15 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class MenuItemFactory extends Factory
 {
     /**
-     * Define the model's default state.
+     * Defines default attribute values for a MenuItem model factory.
      *
-     * @return array<string, mixed>
+     * @return array<string, mixed> Associative array with keys:
+     *  - 'menu_id' => a Menu factory instance to associate the MenuItem,
+     *  - 'title' => a unique word,
+     *  - 'slug' => a unique slug,
+     *  - 'url' => a generated URL,
+     *  - 'target' => the string '_self',
+     *  - 'order' => an integer between 1 and 10.
      */
     public function definition(): array
     {

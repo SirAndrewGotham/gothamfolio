@@ -10,9 +10,16 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class TranslationFactory extends Factory
 {
     /**
-     * Define the model's default state.
+     * Provide default attribute values for the Translation model factory.
      *
-     * @return array<string, mixed>
+     * Returns an associative array of model attributes mapped to fake values:
+     * - `table_name`: table identifier as a word string
+     * - `column_name`: column identifier as a word string
+     * - `foreign_key`: numeric foreign key
+     * - `locale`: language code
+     * - `value`: translated text sentence
+     *
+     * @return array<string,mixed>
      */
     public function definition(): array
     {

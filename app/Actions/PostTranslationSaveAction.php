@@ -18,6 +18,25 @@ use Illuminate\Support\Facades\Auth;
         $this->folder = 'uploads/posts';
     }
 
+    /**
+     * Creates a new post translation or updates an existing one, and persists optional tags and image.
+     *
+     * When $data contains an `image`, the image is processed and the resulting value is saved on creation.
+     * If $postTranslation is null a new PostTranslation record is created using values from $data;
+     * otherwise the provided translation is updated with $data.
+     *
+     * Accepted keys in $data:
+     * - post_id (int) — ID of the parent post.
+     * - language_id (int) — Language ID for the translation (used for image processing when present).
+     * - title (string), excerpt (string), body (string) — primary translation fields.
+     * - image (mixed, optional) — image payload to be processed and stored on creation.
+     * - link (string|null, optional), published_at (string|null, optional), published_through (string|null, optional)
+     * - order (int, optional), status (int|string, optional), status_by (int, optional)
+     * - tags (array, optional) — tags to associate with the translation.
+     *
+     * @param array $data Associative array of translation attributes and optional keys described above.
+     * @param mixed|null $postTranslation Existing PostTranslation instance to update, or null to create a new one.
+     */
     public function handle(array $data = [], $postTranslation = null): void
     {
         if (isset($data['tags'])) {

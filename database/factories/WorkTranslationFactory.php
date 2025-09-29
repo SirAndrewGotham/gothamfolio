@@ -14,9 +14,11 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class WorkTranslationFactory extends Factory
 {
     /**
-     * Define the model's default state.
+     * Provide the default attribute values for a WorkTranslation model created by the factory.
      *
-     * @return array<string, mixed>
+     * The returned array contains keys used to populate a WorkTranslation: `language_id` chosen by recycling existing Language records, `user_id`, `work_id`, and `status_by` created via factories, text fields (`title`, `slug`, `excerpt`, `body`), media/links (`image`, `link`), publication timestamps (`published_at`, `published_through`), `status` set to "Published", an optional `status_note`, and numeric `views`.
+     *
+     * @return array<string, mixed> Associative array of model attributes and their default values.
      */
     public function definition(): array
     {

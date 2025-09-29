@@ -53,8 +53,12 @@ class PostTranslationController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
+         * Create and persist a new post translation, then redirect to the translations list for the post.
+         *
+         * @param StorePostTranslationRequest $request Validated input for the new post translation (must include `post_id`).
+         * @param PostTranslationSaveAction $postTranslationSaveAction Action that persists the post translation.
+         * @return \Illuminate\Http\RedirectResponse Redirect to the post translations index with a success flash message.
+         */
     public function store(StorePostTranslationRequest $request, PostTranslationSaveAction $postTranslationSaveAction)
     {
         $postTranslationSaveAction->handle($request->validated());

@@ -8,7 +8,17 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Create the `customers` table with its columns and constraints.
+     *
+     * The table includes:
+     * - `id`: auto-incrementing primary key.
+     * - Optional foreign key to `languages` with delete restricted.
+     * - `label`: string.
+     * - `description`: text.
+     * - `image`: nullable string.
+     * - `published_at`: nullable timestamp.
+     * - `created_at` and `updated_at` timestamps.
+     * - `deleted_at` soft delete timestamp.
      */
     public function up(): void
     {

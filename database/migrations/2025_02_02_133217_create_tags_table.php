@@ -7,7 +7,10 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Create the `tags` database table.
+     *
+     * Creates a `tags` table with an auto-incrementing `id`, a required `name`,
+     * a unique `slug`, and an optional `content` text column.
      */
     public function up(): void
     {
