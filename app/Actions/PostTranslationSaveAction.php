@@ -6,6 +6,7 @@ namespace App\Actions;
 
 use AllowDynamicProperties;
 use App\Enums\PostStatus;
+use App\Models\Language;
 use App\Models\Post;
 use App\Models\PostTranslation;
 use Illuminate\Support\Facades\Auth;
@@ -19,18 +20,20 @@ use Illuminate\Support\Facades\Auth;
 
     public function handle(array $data = [], $postTranslation = null): void
     {
-        //        dd($postTranslation);
-        //        dd($data);
         if (isset($data['tags'])) {
             $tags = $data['tags'];
         }
         $image = $data['image'] ?? null;
 
+        if (isset($image)) {
+            $folder = $this->folder.'/'.$data['post_id'];
+            $slug = Language::where('id', $data['language_id'])->first()->code;
+            $image = $data['image'];
+            $image = $this->buildImage->handle($folder, $slug, $image);
+        }
+
         // Create new Post Translation
         if ($postTranslation === null) {
-            $data['user_id'] = Auth::id();
-            //            $postTranslation->find($postTranslation);
-            //            $post = Post::create($data);
             $postTranslation = PostTranslation::create([
                 'post_id' => $data['post_id'],
                 'language_id' => $data['language_id'],
@@ -48,9 +51,6 @@ use Illuminate\Support\Facades\Auth;
                 'status_note' => 'Initial Post creation',
                 'views' => 0,
             ]);
-            if (isset($image)) {
-                $image = $this->buildImage->handle($this->folder, $postTranslation->slug, $image);
-            }
         } else {
             $postTranslation->find($postTranslation);
             $postTranslation->update($data);

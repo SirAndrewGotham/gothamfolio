@@ -35,6 +35,7 @@ Route::get('postTranslations/{postTranslation}/translate', [PostTranslationContr
 Route::get('postTranslations/{postTranslation}/edit', [PostTranslationController::class, 'edit'])->name('postTranslations.edit');
 Route::put('postTranslations/{postTranslation}', [PostTranslationController::class, 'update'])->name('postTranslations.update');
 Route::delete('postTranslations/{postTranslation}', [PostTranslationController::class, 'destroy'])->name('postTranslations.destroy');
+Route::delete('postTranslations/{postTranslation}/forceDelete', [PostTranslationController::class, 'forceDelete'])->name('postTranslations.forceDelete');
 
 // Works
 Route::resource('works', WorkController::class);
@@ -48,6 +49,7 @@ Route::get('workTranslations/{workTranslation}/translate', [WorkTranslationContr
 Route::get('workTranslations/{workTranslation}/edit', [WorkTranslationController::class, 'edit'])->name('workTranslations.edit');
 Route::put('workTranslations/{workTranslation}', [WorkTranslationController::class, 'update'])->name('workTranslations.update');
 Route::delete('workTranslations/{workTranslation}', [WorkTranslationController::class, 'destroy'])->name('workTranslations.destroy');
+Route::get('workTranslations/{workTranslation}/forceDelete', [WorkTranslationController::class, 'forceDelete'])->name('workTranslations.forceDelete');
 
 // Customers
 Route::resource('customers', CustomerController::class);
@@ -64,10 +66,12 @@ Route::resource('languages', LanguageController::class);
 
 // Feedback
 Route::get('feedback/read', [FeedbackController::class, 'read'])->name('feedback.read');
-Route::get('forceDelete/{feedback}', [FeedbackController::class, 'forceDelete'])->name('feedback.forceDelete');
-Route::get('feedback/{feedback}/mark-as-read', [FeedbackController::class, 'markAsRead'])->name('feedback.mark-as-read');
-Route::get('feedback/{feedback}/unread', [FeedbackController::class, 'unread'])->name('feedback.unread');
+Route::put('feedback/{feedback}/mark-as-read', [FeedbackController::class, 'markAsRead'])->name('feedback.mark-as-read');
+Route::put('feedback/{feedback}/mark-as-unread', [FeedbackController::class, 'unread'])->name('feedback.mark-as-unread');
+Route::delete('feedback/{feedback}/forceDelete', [FeedbackController::class, 'forceDelete'])->name('feedback.forceDelete');
 Route::resource('feedback', FeedbackController::class)->only(['index', 'show', 'destroy']);
 
 // Profile
-Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
+Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::patch('profile', [ProfileController::class, 'update'])->name('profile.update');
+Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

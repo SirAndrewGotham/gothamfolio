@@ -34,7 +34,6 @@ class WorkTranslationFactory extends Factory
             'link' => $this->faker->url,
             'published_at' => null,
             'published_through' => null,
-            'order' => 0,
             'status' => 'Published', // ['Published', 'Draft', 'Pending', 'Rejected'])->default('Published')
             'status_by' => User::factory(),
             'status_note' => null,

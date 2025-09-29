@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignIdFor(Language::class)->nullable()->constrained()->restrictOnDelete();
             $table->string('label');
             $table->text('description');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
             $table->softDeletes();

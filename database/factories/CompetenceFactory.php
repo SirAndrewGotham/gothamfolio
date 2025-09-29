@@ -16,8 +16,12 @@ class CompetenceFactory extends Factory
      */
     public function definition(): array
     {
+        $title = $this->faker->sentence(3);
+
         return [
-            //
+            'user_id' => \App\Models\User::factory(),
+            'title' => $title,
+            'slug' => \Illuminate\Support\Str::slug($title),
         ];
     }
 }
