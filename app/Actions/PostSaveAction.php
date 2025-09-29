@@ -30,8 +30,12 @@ use Illuminate\Support\Facades\Auth;
             $data['user_id'] = Auth::id();
             $post = Post::create($data);
             if (isset($image)) {
-                $image = $this->buildImage->handle($this->folder.'/'.$post->id, Language::where('id', $data['language_id'])->first()->code, $image);
-            }
+                $language = Language::query()->findOrFail($data['language_id']);
+                $image = $this->buildImage->handle(
+                    $this->folder.'/'.$post->id,
+                    $language->code,
+                    $image
+                );
             $postTranslation = PostTranslation::create([
                 'post_id' => $post->id,
                 'language_id' => $data['language_id'],
