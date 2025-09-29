@@ -11,9 +11,14 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class TranslateFactory extends Factory
 {
     /**
-     * Define the model's default state.
+     * Provide default attributes for creating a Translate model instance.
      *
-     * @return array<string, mixed>
+     * The returned array sets:
+     * - `language_id` to a Language factory instance for the related language.
+     * - `translatable_type` to `\App\Models\User::class` as a dummy morph type.
+     * - `translatable_id` to a User factory instance as a dummy morphable ID.
+     *
+     * @return array<string, mixed> The attribute array suitable for creating a Translate model.
      */
     public function definition(): array
     {

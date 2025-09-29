@@ -14,9 +14,14 @@ use Illuminate\Support\Str;
 class PostFactory extends Factory
 {
     /**
-     * Define the model's default state.
+     * Provide default attribute values for creating a Post model instance.
      *
-     * @return array<string, mixed>
+     * Returns an associative array containing attributes for a Post:
+     * - `user_id`: a User factory instance to associate an author.
+     * - `title`: a generated short title.
+     * - `slug`: a URL-friendly slug derived from the title.
+     *
+     * @return array<string, mixed> Associative array of Post attributes (`user_id`, `title`, `slug`)
      */
     public function definition(): array
     {

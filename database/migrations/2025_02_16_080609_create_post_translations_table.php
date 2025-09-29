@@ -10,7 +10,20 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Create the post_translations table with its columns, indexes, and foreign key constraints.
+     *
+     * The table includes:
+     * - id primary key
+     * - post_id foreign key (cascade on delete)
+     * - language_id nullable foreign key (restrict on delete)
+     * - user_id nullable foreign key (restrict on delete)
+     * - title, unique slug, nullable excerpt, body
+     * - order integer defaulting to 0
+     * - nullable image, published_at, published_through
+     * - status enum (Published, Draft, Pending, Rejected) defaulting to 'Published'
+     * - status_by nullable foreign key to users.id (on delete set null) and nullable status_note
+     * - views unsigned big integer defaulting to 0
+     * - created_at/updated_at timestamps and deleted_at for soft deletes
      */
     public function up(): void
     {

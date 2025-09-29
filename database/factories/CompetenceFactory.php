@@ -10,9 +10,16 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class CompetenceFactory extends Factory
 {
     /**
-     * Define the model's default state.
+     * Define the default attributes for a Competence model.
      *
-     * @return array<string, mixed>
+     * Generates a three-word fake title, assigns a new User factory to `user_id`,
+     * and creates a slug from the generated title.
+     *
+     * @return array<string,mixed> {
+     *     @var \Illuminate\Database\Eloquent\Factories\Factory $user_id Factory that will create the related User.
+     *     @var string $title The generated three-word title.
+     *     @var string $slug A URL-friendly slug derived from `$title`.
+     * }
      */
     public function definition(): array
     {

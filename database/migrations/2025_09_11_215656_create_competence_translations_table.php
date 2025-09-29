@@ -9,7 +9,19 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Create the `competence_translations` table with its columns, foreign keys, indexes, timestamps, and soft-delete column.
+     *
+     * The table includes:
+     * - an auto-incrementing primary `id`
+     * - a required foreign key to `competences` that cascades on delete
+     * - nullable foreign keys to `languages` and `users` that restrict deletion
+     * - `title`, unique `slug`, optional `excerpt`, and `body` fields
+     * - integer `order` defaulting to 0
+     * - optional `image`, `published_at`, and `published_through` timestamps
+     * - `status` enum with values `Published`, `Draft`, `Pending`, `Rejected` (default `Published`)
+     * - nullable `status_by` foreign key to `users(id)` that is set to null on user deletion
+     * - optional `status_note`, unsigned big integer `views` defaulting to 0
+     * - `created_at`/`updated_at` timestamps and `deleted_at` for soft deletes
      */
     public function up(): void
     {

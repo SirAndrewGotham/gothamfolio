@@ -10,9 +10,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class MenuFactory extends Factory
 {
     /**
-     * Define the model's default state.
+     * Defines the model's default attribute values for the factory.
      *
-     * @return array<string, mixed>
+     * @return array<string, string> Associative array with 'name' and 'slug' set to unique fake strings.
      */
     public function definition(): array
     {
