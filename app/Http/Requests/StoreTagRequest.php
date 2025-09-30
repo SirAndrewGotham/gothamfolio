@@ -5,6 +5,10 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @property string $name
+ * @property string|null $content
+ */
 class StoreTagRequest extends FormRequest
 {
     /**

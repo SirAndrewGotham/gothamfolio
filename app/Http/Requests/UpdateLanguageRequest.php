@@ -5,6 +5,13 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @property string $name
+ * @property string $code
+ * @property string $english
+ * @property bool $default
+ * @property bool $is_active
+ */
 class UpdateLanguageRequest extends FormRequest
 {
     /**

@@ -8,17 +8,52 @@ use App\Concerns\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property string $title
+ * @property string $route
+ * @property string $url
+ * @property string $parameters
+ * @property int $order
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
+ * @property int $menu_id
+ * @property int $menu_item_id
+ * @property-read \App\Models\Menu $menu
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\MenuItem> $children
+ *
+ * @mixin \Illuminate\Database\Eloquent\Builder
+ */
 class MenuItem extends Model
 {
     /** @use HasFactory<\Database\Factories\MenuItemFactory> */
     use HasFactory, Translatable;
 
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
     protected $table = 'menu_items';
 
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array<string>
+     */
     protected $guarded = [];
 
+    /**
+     * The attributes that should be translated.
+     *
+     * @var array<int, string>
+     */
     protected $translatable = ['title'];
 
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
     public static function boot()
     {
         parent::boot();
@@ -36,27 +71,59 @@ class MenuItem extends Model
         });
     }
 
+    /**
+     * Get all of the children for the MenuItem
+     *
+     * @return \\Illuminate\\Database\\Eloquent\\Relations\\HasMany
+     */
     public function children()
     {
         return $this->hasMany(MenuItem::class, 'menu_item_id')
             ->with('children');
     }
 
+    /**
+     * Get the menu that owns the MenuItem
+     *
+     * @return \\Illuminate\\Database\\Eloquent\\Relations\\BelongsTo
+     */
     public function menu()
     {
         return $this->belongsTo(Menu::class);
     }
 
+    /**
+     * Get the link for the menu item.
+     *
+     * @param  bool  $absolute
+     * @return string
+     */
     public function link($absolute = false)
     {
         return $this->prepareLink($absolute, $this->route, $this->parameters, $this->url);
     }
 
+    /**
+     * Get the translator link for the menu item.
+     *
+     * @param  mixed  $translator
+     * @param  bool  $absolute
+     * @return string
+     */
     public function translatorLink($translator, $absolute = false)
     {
         return $this->prepareLink($absolute, $translator->route, $translator->parameters, $translator->url);
     }
 
+    /**
+     * Prepare the link for the menu item.
+     *
+     * @param  bool  $absolute
+     * @param  string|null  $route
+     * @param  array|string|object|null  $parameters
+     * @param  string|null  $url
+     * @return string
+     */
     protected function prepareLink($absolute, $route, $parameters, $url)
     {
         if (is_null($parameters)) {
@@ -84,11 +151,21 @@ class MenuItem extends Model
         return $url;
     }
 
+    /**
+     * Get the parameters attribute.
+     *
+     * @return array<string, mixed>
+     */
     public function getParametersAttribute()
     {
         return json_decode($this->attributes['parameters'] ?? '', true);
     }
 
+    /**
+     * Set the parameters attribute.
+     *
+     * @param  array<string, mixed>|string  $value
+     */
     public function setParametersAttribute($value)
     {
         if (is_array($value)) {
@@ -98,6 +175,11 @@ class MenuItem extends Model
         $this->attributes['parameters'] = $value;
     }
 
+    /**
+     * Set the url attribute.
+     *
+     * @param  string|null  $value
+     */
     public function setUrlAttribute($value)
     {
         if (is_null($value)) {

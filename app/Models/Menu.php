@@ -9,15 +9,41 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
+/**
+ * @property string $name
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\MenuItem> $items
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\MenuItem> $parent_items
+ *
+ * @mixin \Illuminate\Database\Eloquent\Builder
+ *
+ * @extends \Illuminate\Database\Eloquent\Model<\Database\Factories\MenuFactory>
+ */
 class Menu extends Model
 {
     /** @use HasFactory<\Database\Factories\MenuFactory> */
     use HasFactory;
 
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
     protected $table = 'menus';
 
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array<string>
+     */
     protected $guarded = [];
 
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
     public static function boot()
     {
         parent::boot();
@@ -31,11 +57,21 @@ class Menu extends Model
         });
     }
 
+    /**
+     * Get all of the items for the Menu
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function items()
     {
         return $this->hasMany(MenuItem::class);
     }
 
+    /**
+     * Get all of the parent_items for the Menu
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function parent_items()
     {
         return $this->hasMany(MenuItem::class)
@@ -99,11 +135,20 @@ class Menu extends Model
         );
     }
 
+    /**
+     * Remove the menu from cache.
+     */
     public function removeMenuFromCache()
     {
         \Cache::forget('menu_'.$this->name);
     }
 
+    /**
+     * Process the menu items.
+     *
+     * @param  \Illuminate\Support\Collection<int, \App\Models\MenuItem>  $items
+     * @return \Illuminate\Support\Collection<int, \App\Models\MenuItem>
+     */
     protected static function processItems($items)
     {
         // Eagerload Translations

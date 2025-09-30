@@ -4,6 +4,10 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @property string $label
+ * @property string $description
+ */
 class UpdateCustomerRequest extends FormRequest
 {
     /**
@@ -27,6 +31,11 @@ class UpdateCustomerRequest extends FormRequest
         ];
     }
 
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
     public function messages(): array
     {
         return [

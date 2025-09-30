@@ -5,6 +5,11 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @property string      $name
+ * @property string|null $content
+ * @property string      $slug
+ */
 class UpdateTagRequest extends FormRequest
 {
     /**
