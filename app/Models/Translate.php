@@ -16,8 +16,18 @@ class Translate extends Model
 
     protected $guarded = ['id'];
 
+    public function language()
+    {
+        return $this->belongsTo(Language::class);
+    }
+
+    public function translatable()
+    {
+        return $this->morphTo();
+    }
+
     public function images()
     {
-        return $this->morphedByMany(Image::class, 'taggable');
+        return $this->morphToMany(Image::class, 'translatable');
     }
 }

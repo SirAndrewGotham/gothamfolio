@@ -9,11 +9,10 @@ use Illuminate\Support\Str;
 
 final readonly class TagsSaveAction
 {
-    public function handle($data, $model)
+    public function handle(array $data, $model): void
     {
         $tagIds = collect();
-        $tags = explode(',', $data);
-        foreach ($tags as $tag) {
+        foreach ($data as $tag) {
             $tagId = Tag::firstOrCreate(['name' => Str::trim($tag)]);
             $tagIds->push($tagId);
         }

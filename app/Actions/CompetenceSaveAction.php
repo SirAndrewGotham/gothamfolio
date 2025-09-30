@@ -9,6 +9,7 @@ use App\Enums\CompetenceStatus;
 use App\Models\Competence;
 use App\Models\CompetenceTranslation;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 #[AllowDynamicProperties] final class CompetenceSaveAction
 {
@@ -26,10 +27,13 @@ use Illuminate\Support\Facades\Auth;
 
         // We create a Competence
         if ($competence === null) {
-            $data['user_id'] = Auth::id();
-            $competence = Competence::create($data);
+            $competence = Competence::create([
+                'user_id' => Auth::id(),
+                'title' => $data['title'] ?? null, // Assuming title is used for slug generation
+                'slug' => $data['slug'] ?? null, // If slug is pre-generated
+            ]);
             if (isset($image)) {
-                $image = $this->buildImage->handle($this->folder, $competence->slug, $image);
+                $image = $this->buildImage->handle($this->folder.'/'.$competence->id, Str::slug($data['title']), $image);
             }
             $competenceTranslation = CompetenceTranslation::create([
                 'competence_id' => $competence->id,

@@ -1,21 +1,34 @@
 <?php
 
+use App\Models\Language;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Route;
+
+use function Pest\Laravel\actingAs;
+
+uses(RefreshDatabase::class);
+
+beforeEach(function () {
+    Language::factory()->create(['code' => 'en', 'name' => 'English', 'default' => true, 'is_active' => true]);
+
+    // Removed admin route setup as this is an authentication test
+    // Route::middleware(['web', 'auth'])
+    //     ->prefix('admin')
+    //     ->name('admin.')
+    //     ->group(base_path('routes/admin.php'));
+});
 
 test('password can be updated', function () {
     $user = User::factory()->create();
 
-    $response = $this
-        ->actingAs($user)
-        ->from('/profile')
+    actingAs($user)->from('/profile')
         ->put('/password', [
             'current_password' => 'password',
             'password' => 'new-password',
             'password_confirmation' => 'new-password',
-        ]);
-
-    $response
+        ])
         ->assertSessionHasNoErrors()
         ->assertRedirect('/profile');
 
@@ -25,16 +38,12 @@ test('password can be updated', function () {
 test('correct password must be provided to update password', function () {
     $user = User::factory()->create();
 
-    $response = $this
-        ->actingAs($user)
-        ->from('/profile')
+    actingAs($user)->from('/profile')
         ->put('/password', [
             'current_password' => 'wrong-password',
             'password' => 'new-password',
             'password_confirmation' => 'new-password',
-        ]);
-
-    $response
+        ])
         ->assertSessionHasErrorsIn('updatePassword', 'current_password')
         ->assertRedirect('/profile');
 });

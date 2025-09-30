@@ -10,6 +10,7 @@ use App\Models\Language;
 use App\Models\Post;
 use App\Models\PostTranslation;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 #[AllowDynamicProperties] final class PostSaveAction
 {
@@ -31,11 +32,13 @@ use Illuminate\Support\Facades\Auth;
             $post = Post::create($data);
             if (isset($image)) {
                 $language = Language::query()->findOrFail($data['language_id']);
+                $slug = Str::slug($data['title']);
                 $image = $this->buildImage->handle(
                     $this->folder.'/'.$post->id,
-                    $language->code,
+                    $slug,
                     $image
                 );
+            }
             $postTranslation = PostTranslation::create([
                 'post_id' => $post->id,
                 'language_id' => $data['language_id'],

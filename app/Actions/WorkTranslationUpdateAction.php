@@ -12,11 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 #[AllowDynamicProperties] final class WorkTranslationUpdateAction
 {
-//    public function __construct(private readonly BuildImageAction $buildImage, private readonly TagsSaveAction $saveTags)
-//    {
-//        $this->folder = 'uploads/works';
-//    }
-    public function __construct()
+    public function __construct(private readonly BuildImageAction $buildImage, private readonly TagsSaveAction $saveTags)
     {
         $this->folder = 'uploads/works';
     }

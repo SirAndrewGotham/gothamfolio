@@ -13,7 +13,7 @@
 @endsection
 
 @section('content')
-    <form role="form" action="{{ route('admin.settings.update') }}" method="POST">
+    <form role="form" action="{{ route('admin.settings.update', $id) }}" method="POST">
         @csrf
         @method('PUT')
 

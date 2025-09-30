@@ -25,9 +25,9 @@ class LanguageFactory extends Factory
             'script' => 'Latn',
             'dir' => 'ltr',
             'flag' => 'ace.png',
-            'name' => 'Aceh',
-            'english' => 'Achinese',
-            'slug' => 'achinese',
+            'name' => $this->faker->unique()->word(),
+            'english' => $this->faker->unique()->word().' Language',
+            'slug' => $this->faker->unique()->slug(),
             'is_active' => true,
             'is_available' => true,
         ];

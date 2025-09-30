@@ -2,10 +2,22 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    /**
+     * The model to policy mappings for the application.
+     *
+     * @var array<class-string, class-string>
+     */
+    protected $policies = [
+        \App\Models\Language::class => \App\Policies\LanguagePolicy::class,
+        \App\Models\Tag::class => \App\Policies\TagPolicy::class,
+        \App\Models\User::class => \App\Policies\UserPolicy::class,
+    ];
+
     /**
      * Register any application services.
      */
@@ -19,6 +31,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // We will register policies here after all other service providers have been registered
+        foreach ($this->policies as $model => $policy) {
+            Gate::policy($model, $policy);
+        }
     }
 }

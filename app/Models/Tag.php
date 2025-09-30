@@ -4,39 +4,24 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Concerns\HasSlug;
 use Database\Factories\TagFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
-use Illuminate\Support\Str;
 
 class Tag extends Model
 {
     /** @use HasFactory<TagFactory> */
-    use HasFactory;
+    use HasFactory, HasSlug;
 
     protected $fillable = ['name', 'slug', 'content'];
 
     public $timestamps = false;
 
-    protected static function boot(): void
+    protected static function getSluggableField(): string
     {
-        parent::boot();
-
-        self::creating(function ($model) {
-            $slug = Str::slug($model->name);
-            $originalSlug = $slug;
-            $count = 2;
-            while (static::whereSlug($slug)->exists()) {
-                $slug = $originalSlug.'-'.$count++;
-            }
-            $model->slug = $slug;
-        });
-    }
-
-    public function getRouteKeyName(): string
-    {
-        return 'slug';
+        return 'name';
     }
 
     public function posts(): MorphToMany

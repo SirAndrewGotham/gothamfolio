@@ -33,7 +33,7 @@
         @forelse($work->translations as $work)
             <tr>
                 <td>
-                    <img src="{{ asset('uploads/works/'.$work->id.'/'.$work->image) }}" height="50px" >
+                    <img src="{{ asset('uploads/works/'.$work->id.'/'.$work->image) }}" height="50px" alt="{{ $work->title }}">
                 </td>
                 <td>
                     {{ $work->title }}
@@ -54,7 +54,7 @@
                         <i class="fa fa-eye"></i>
                         {{ __('View') }}
                     </a>
-                    <a href="{{ route('admin.work.edit', $work->slug) }}" class="btn btn-warning">
+                    <a href="{{ route('admin.works.edit', $work->slug) }}" class="btn btn-warning">
                         <i class="fa fa-pencil"></i>
                         {{ __('Edit') }}
                     </a>
@@ -62,7 +62,7 @@
                         <i class="fa fa-pencil"></i>
                         {{ __('Translate') }}
                     </a>
-                    <a href="{{ route('admin.work.destroy', $work->slug) }}" class="btn btn-danger">
+                    <a href="{{ route('admin.works.destroy', $work->slug) }}" class="btn btn-danger">
                         <i class="fa fa-trash-o"></i>
                         {{ __('Delete') }}
                     </a>

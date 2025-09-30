@@ -6,9 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreLanguageRequest;
 use App\Http\Requests\UpdateLanguageRequest;
 use App\Models\Language;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class LanguageController extends Controller
 {
+    use AuthorizesRequests;
+
     /**
      * Display a listing of the resource.
      */
@@ -26,7 +29,7 @@ class LanguageController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.legacy.languages.create');
     }
 
     /**
@@ -34,7 +37,9 @@ class LanguageController extends Controller
      */
     public function store(StoreLanguageRequest $request)
     {
-        //
+        Language::query()->create($request->validated());
+
+        return redirect()->route('admin.languages.index')->with('success', 'Language created successfully.');
     }
 
     /**
@@ -58,7 +63,13 @@ class LanguageController extends Controller
      */
     public function update(UpdateLanguageRequest $request, Language $language)
     {
-        //
+        if ($request->boolean('default') && Language::where('default', true)->where('id', '!=', $language->id)->exists()) {
+            return redirect()->back()->with('error', 'Only one language can be default.');
+        }
+
+        $language->update($request->validated());
+
+        return redirect()->route('admin.languages.index')->with('success', 'Language updated successfully.');
     }
 
     /**
@@ -66,6 +77,12 @@ class LanguageController extends Controller
      */
     public function destroy(Language $language)
     {
-        //
+        if ($language->default) {
+            return redirect()->back()->with('error', 'Cannot delete default language.');
+        }
+
+        $language->delete();
+
+        return redirect()->route('admin.languages.index')->with('success', 'Language deleted successfully.');
     }
 }

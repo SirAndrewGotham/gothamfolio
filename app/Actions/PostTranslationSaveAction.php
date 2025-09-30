@@ -6,10 +6,10 @@ namespace App\Actions;
 
 use AllowDynamicProperties;
 use App\Enums\PostStatus;
-use App\Models\Language;
 use App\Models\Post;
 use App\Models\PostTranslation;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 #[AllowDynamicProperties] final class PostTranslationSaveAction
 {
@@ -27,9 +27,9 @@ use Illuminate\Support\Facades\Auth;
 
         if (isset($image)) {
             $folder = $this->folder.'/'.$data['post_id'];
-            $slug = Language::where('id', $data['language_id'])->first()->code;
+            $imageSlug = Str::slug($data['title']);
             $image = $data['image'];
-            $image = $this->buildImage->handle($folder, $slug, $image);
+            $image = $this->buildImage->handle($folder, $imageSlug, $image);
         }
 
         // Create new Post Translation

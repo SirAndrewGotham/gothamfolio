@@ -20,7 +20,7 @@ class FeedbackFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->safeEmail(),
-            'message' => $this->faker->realText(),
+            'message' => 'This is a test feedback message.',
         ];
     }
 }

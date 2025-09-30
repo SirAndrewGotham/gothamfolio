@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Actions\BuildImageAction;
+use App\Actions\TagsSaveAction;
 use App\Actions\WorkSaveAction;
 use App\Actions\WorkUpdateAction;
 use App\Http\Controllers\Controller;
@@ -62,9 +64,9 @@ class WorkController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateWorkRequest $request, Work $work)
+    public function update(UpdateWorkRequest $request, Work $work, BuildImageAction $buildImage, TagsSaveAction $saveTags)
     {
-        (new WorkUpdateAction)->handle($request->validated(), $work);
+        (new WorkUpdateAction($buildImage, $saveTags))->handle($request->validated(), $work);
 
         return redirect()->route('admin.works.index');
     }
