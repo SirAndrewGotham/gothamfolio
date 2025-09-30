@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Actions\BuildImageAction;
 use App\Actions\PostSaveAction;
 use App\Actions\PostUpdateAction;
+use App\Actions\TagsSaveAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
@@ -60,9 +62,9 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePostRequest $request, Post $post)
+    public function update(UpdatePostRequest $request, Post $post, BuildImageAction $buildImage, TagsSaveAction $saveTags)
     {
-        (new PostUpdateAction)->handle($request->validated(), $post);
+        (new PostUpdateAction($buildImage, $saveTags))->handle($request->validated(), $post);
 
         return redirect()->route('admin.posts.index');
     }
@@ -74,6 +76,6 @@ class PostController extends Controller
     {
         $post->delete();
 
-        return redirect()->route('admin.posts.index');
+        return redirect()->route('admin.posts.index')->with('message', 'Post deleted successfully');
     }
 }

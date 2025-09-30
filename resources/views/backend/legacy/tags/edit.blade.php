@@ -24,7 +24,6 @@
         </div>
         <div class="form-group">
             <input type="text" name="slug" value="{{ $tag->slug }}" placeholder="{{ __('Slug') }}" class="form-control" disabled="disabled">
-            <input type="hidden" name="slug" value="{{ $tag->slug }}">
         </div>
         <button type="submit" class="btn btn-rw btn-primary">{{ __('Submit') }}</button>
     </form>

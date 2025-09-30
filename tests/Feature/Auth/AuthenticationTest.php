@@ -1,29 +1,46 @@
 <?php
 
+use App\Models\Language;
 use App\Models\User;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Route;
+
+use function Pest\Laravel\get;
+use function Pest\Laravel\post;
+
+uses(RefreshDatabase::class);
+
+beforeEach(function () {
+    Language::factory()->create(['code' => 'en', 'name' => 'English', 'default' => true, 'is_active' => true]);
+
+    // Removed admin route setup as this is an authentication test
+    // Route::middleware(['web', 'auth'])
+    //     ->prefix('admin')
+    //     ->name('admin.')
+    //     ->group(base_path('routes/admin.php'));
+});
 
 test('login screen can be rendered', function () {
-    $response = $this->get('/login');
-
-    $response->assertStatus(200);
+    get('/login')
+        ->assertOk();
 });
 
 test('users can authenticate using the login screen', function () {
     $user = User::factory()->create();
 
-    $response = $this->post('/login', [
+    post('/login', [
         'email' => $user->email,
         'password' => 'password',
-    ]);
+    ])
+        ->assertRedirect(route('admin.dashboard'));
 
     $this->assertAuthenticated();
-    $response->assertRedirect(route('dashboard', absolute: false));
 });
 
 test('users can not authenticate with invalid password', function () {
     $user = User::factory()->create();
 
-    $this->post('/login', [
+    post('/login', [
         'email' => $user->email,
         'password' => 'wrong-password',
     ]);
@@ -34,8 +51,10 @@ test('users can not authenticate with invalid password', function () {
 test('users can logout', function () {
     $user = User::factory()->create();
 
-    $response = $this->actingAs($user)->post('/logout');
+    $this->actingAs($user);
+
+    post('/logout')
+        ->assertRedirect('/');
 
     $this->assertGuest();
-    $response->assertRedirect('/');
 });

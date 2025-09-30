@@ -35,10 +35,11 @@
                 <td>
                     <div class="row">
                         <div class="col-md-3">
-                            <a href="{{ route('admin.feedback.unread', $feedback) }}" class="btn btn-default">
-                                <i class="fa fa-check"></i>
-                                {{ __('Unread') }}
-                            </a>
+                            <form action="{{ route('admin.feedback.mark-as-unread', $feedback) }}" class="btn btn-default" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <button type="submit" class="btn-link btn-anchor"><i class="fa fa-check"></i> {{ __('Unread') }}</button>
+                            </form>
                         </div>
                         <div class="col-md-3">
                             <a href="{{-- route('admin.feedback.show', $feedback) --}}" class="btn btn-info">
@@ -54,10 +55,11 @@
                             </form>
                         </div>
                         <div class="col-md-3">
-                            <a href="{{ route('admin.feedback.forceDelete', $feedback) }}" class="btn btn-danger">
-                                <i class="fa fa-trash-o"></i>
-                                {{ __('Force delete') }}
-                            </a>
+                            <form action="{{ route('admin.feedback.forceDelete', $feedback) }}" class="btn btn-danger" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn-link btn-anchor"><i class="fa fa-trash-o"></i> {{ __('Force delete') }}</button>
+                            </form>
                         </div>
                     </div>
                 </td>

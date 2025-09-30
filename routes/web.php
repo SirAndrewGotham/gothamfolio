@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\Backend\PostTranslationController;
 use App\Http\Controllers\Frontend\BlogController;
-//use App\Http\Controllers\Frontend\ContactController;
+// use App\Http\Controllers\Frontend\ContactController;
 use App\Http\Controllers\Frontend\FeedbackController;
 use App\Http\Controllers\Frontend\GalleryController;
 use App\Http\Controllers\Frontend\HomeController;
@@ -55,3 +55,7 @@ Route::post('image-upload', [ImageController::class, 'store'])->name('image.stor
 // Feedback
 Route::get('/contact', [FeedbackController::class, 'index'])->name('feedback.index');
 Route::post('/contact', [FeedbackController::class, 'store'])->name('feedback.store');
+
+Route::get('/dashboard', function () {
+    return redirect('/');
+})->middleware(['auth', 'verified'])->name('dashboard');

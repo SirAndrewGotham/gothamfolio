@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Actions;
 
 use AllowDynamicProperties;
-use App\Enums\CompetenceStatus;
 use App\Models\Competence;
 use App\Models\CompetenceTranslation;
 use Illuminate\Support\Facades\Auth;
@@ -17,44 +16,47 @@ use Illuminate\Support\Facades\Auth;
         $this->folder = 'uploads/competences';
     }
 
-    public function handle(array $data = [], $competence = null): void
+    public function handle(array $data, Competence $competence): void
     {
         if (isset($data['tags'])) {
             $tags = $data['tags'];
         }
         $image = $data['image'] ?? null;
 
-        // Create new Competence
-        if ($competence === null) {
-            $data['user_id'] = Auth::id();
-            $competence = Competence::create($data);
-            if (isset($image)) {
-                $image = $this->buildImage->handle($this->folder.'/'.$competence->id, $competence->slug, $image);
-            }
-            $competenceTranslation = CompetenceTranslation::create([
-                'competence_id' => $competence->id,
-                'language_id' => $data['language_id'],
+        $competence->update([
+            'title' => $data['title'] ?? $competence->title,
+            'slug' => $data['slug'] ?? $competence->slug,
+            'user_id' => Auth::id(),
+        ]);
+
+        // Update the related CompetenceTranslation if it exists
+        $competenceTranslation = $competence->translations()->where('language_id', $data['language_id'])->first();
+
+        if ($competenceTranslation) {
+            $competenceTranslation->update([
+                'language_id' => $data['language_id'] ?? $competenceTranslation->language_id,
                 'user_id' => Auth::id(),
-                'title' => $data['title'],
-                'excerpt' => $data['excerpt'],
-                'body' => $data['body'],
-                'image' => $image ?? null,
-                'link' => $data['link'] ?? null,
-                'published_at' => $data['published_at'] ?? null,
-                'published_through' => $data['published_through'] ?? null,
-                'order' => $data['order'] ?? 0,
-                'status' => $data['status'] ?? CompetenceStatus::Published,
-                'status_by' => $data['status_by'] ?? Auth::id(),
-                'status_note' => 'Initial Competence creation',
-                'views' => 0,
+                'title' => $data['translation_title'] ?? $competenceTranslation->title,
+                'excerpt' => $data['excerpt'] ?? $competenceTranslation->excerpt,
+                'body' => $data['body'] ?? $competenceTranslation->body,
+                'image' => $image ?? $competenceTranslation->image,
+                'link' => $data['link'] ?? $competenceTranslation->link,
+                'published_at' => $data['published_at'] ?? $competenceTranslation->published_at,
+                'published_through' => $data['published_through'] ?? $competenceTranslation->published_through,
+                'order' => $data['order'] ?? $competenceTranslation->order,
+                'status' => $data['status'] ?? $competenceTranslation->status,
+                'status_by' => $data['status_by'] ?? $competenceTranslation->status_by,
+                'status_note' => 'Competence updated',
+                'views' => $data['views'] ?? $competenceTranslation->views,
             ]);
-        } else {
-            $competence->find($competence);
-            $competence->update($data);
         }
 
         if (isset($tags)) {
             $this->saveTags->handle($tags, $competenceTranslation);
+        }
+
+        if (isset($image) && $competenceTranslation) {
+            $image = $this->buildImage->handle($this->folder, $competenceTranslation->slug, $image);
         }
     }
 }

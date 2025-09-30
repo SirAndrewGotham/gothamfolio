@@ -22,7 +22,7 @@ Route::middleware('guest')->group(function () {
     } else {
         Route::match(['get', 'post'], 'register', function () {
             return redirect('/');
-        });
+        })->name('register');
     }
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])

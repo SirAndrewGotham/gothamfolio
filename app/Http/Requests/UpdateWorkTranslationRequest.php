@@ -53,9 +53,9 @@ class UpdateWorkTranslationRequest extends FormRequest
             $this->merge(['excerpt' => Str::limit($this->input('body'), 50, preserveWords: true)]);
         }
         $this->merge([
-            'work_id' => Crypt::decrypt($this->work_id),
+            'work_id' => Crypt::decryptString($this->work_id),
             'user_id' => $this->user_id ?? auth()->id(),
-            'language_id' => (int) Crypt::decrypt($this->language),
+            'language_id' => (int) Crypt::decryptString($this->language),
             'order' => $this->order ?? 0,
         ]);
     }

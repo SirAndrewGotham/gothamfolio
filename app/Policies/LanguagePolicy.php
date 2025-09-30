@@ -12,7 +12,7 @@ class LanguagePolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -60,6 +60,6 @@ class LanguagePolicy
      */
     public function forceDelete(User $user, Language $language): bool
     {
-        return false;
+        return true;
     }
 }

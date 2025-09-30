@@ -20,8 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', DashboardController::class)->name('dashboard');
 
 // Settings
-Route::get('settings', [SettingController::class, 'edit'])->name('settings.edit');
-Route::put('settings', [SettingController::class, 'update'])->name('settings.update');
+Route::get('settings/{setting}', [SettingController::class, 'edit'])->name('settings.edit');
+Route::put('settings/{setting}', [SettingController::class, 'update'])->name('settings.update');
 
 // Posts
 Route::resource('posts', PostController::class);

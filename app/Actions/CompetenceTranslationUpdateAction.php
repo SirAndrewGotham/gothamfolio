@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
         $this->folder = 'uploads/competences';
     }
 
-    public function handle(array $data = [], $competenceTranslation = null): void
+    public function handle(array $data, CompetenceTranslation $competenceTranslation): void
     {
         if (isset($data['tags'])) {
             $tags = $data['tags'];
@@ -58,6 +58,10 @@ use Illuminate\Support\Facades\Auth;
 
         if (isset($tags)) {
             $this->saveTags->handle($tags, $competenceTranslation);
+        }
+
+        if (isset($image)) {
+            $image = $this->buildImage->handle($this->folder, $competenceTranslation->slug, $image);
         }
     }
 }

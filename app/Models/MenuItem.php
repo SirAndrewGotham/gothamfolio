@@ -7,7 +7,6 @@ namespace App\Models;
 use App\Concerns\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Routing\Route;
 
 class MenuItem extends Model
 {
@@ -39,7 +38,7 @@ class MenuItem extends Model
 
     public function children()
     {
-        return $this->hasMany(MenuItem::class, 'parent_id')
+        return $this->hasMany(MenuItem::class, 'menu_item_id')
             ->with('children');
     }
 
@@ -68,12 +67,10 @@ class MenuItem extends Model
             $parameters = json_decode($parameters, true);
         } elseif (is_object($parameters)) {
             $parameters = json_decode(json_encode($parameters), true);
-//        } elseif (is_array($parameters)) {
-//            $parameters = $parameters;
         }
 
         if (! is_null($route)) {
-            if (! Route::has($route)) {
+            if (! \Illuminate\Support\Facades\Route::has($route)) {
                 return '#';
             }
 
@@ -89,7 +86,7 @@ class MenuItem extends Model
 
     public function getParametersAttribute()
     {
-        return json_decode($this->attributes['parameters'] ?? '');
+        return json_decode($this->attributes['parameters'] ?? '', true);
     }
 
     public function setParametersAttribute($value)
@@ -120,7 +117,7 @@ class MenuItem extends Model
     {
         $order = 1;
 
-        $item = $this->where('parent_id', '=', $parent)
+        $item = $this->where('menu_item_id', '=', $parent)
             ->orderBy('order', 'DESC')
             ->first();
 

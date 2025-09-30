@@ -39,7 +39,7 @@ class Menu extends Model
     public function parent_items()
     {
         return $this->hasMany(MenuItem::class)
-            ->whereNull('parent_id');
+            ->whereNull('menu_item_id');
     }
 
     /**
@@ -65,7 +65,7 @@ class Menu extends Model
             return false;
         }
 
-//        event(new MenuDisplay($menu));
+        //        event(new MenuDisplay($menu));
 
         // Convert options array into object
         $options = (object) $options;

@@ -63,6 +63,8 @@ trait Translatable
                 }
             });
         }]);
+
+        return $query;
     }
 
     /**
@@ -89,16 +91,20 @@ trait Translatable
 
             $query->where(function ($q) use ($locales, $fallback) {
                 if (is_array($locales)) {
+                    // If an array of locales is provided, only load those specific locales.
+                    // The fallback mechanism should be handled by getTranslatedAttribute
+                    // or explicitly included in the $locales array by the caller if desired.
                     $q->whereIn('locale', $locales);
                 } else {
                     $q->where('locale', $locales);
-                }
-
-                if ($fallback !== false) {
-                    $q->orWhere('locale', $fallback);
+                    if ($fallback !== false) {
+                        $q->orWhere('locale', $fallback);
+                    }
                 }
             });
         }]);
+
+        return $query;
     }
 
     /**
@@ -114,7 +120,9 @@ trait Translatable
         }
 
         //        return (new Translator($this))->translate($language, $fallback);
-        return $this->translate($language, $fallback);
+        //        return $this->translate($language, $fallback); // Commented out to prevent infinite recursion
+        // TODO: Implement proper translation logic with a Translator class if needed.
+        return null;
     }
 
     /**
@@ -212,208 +220,208 @@ trait Translatable
         return property_exists($this, 'translatable') ? $this->translatable : [];
     }
 
-    public function setAttributeTranslations($attribute, array $translations, $save = false)
-    {
-        $response = [];
-
-        if (! $this->relationLoaded('translations')) {
-            $this->load('translations');
-        }
-
-        $default = config('gothamfolio.multilingual.default', 'en');
-        $locales = config('gothamfolio.multilingual.locales', [$default]);
-
-        foreach ($locales as $locale) {
-            if (empty($translations[$locale])) {
-                continue;
-            }
-
-            if ($locale == $default) {
-                $this->$attribute = $translations[$locale];
-
-                continue;
-            }
-
-            $tranlator = $this->translate($locale, false);
-            $tranlator->$attribute = $translations[$locale];
-
-            if ($save) {
-                $tranlator->save();
-            }
-
-            $response[] = $tranlator;
-        }
-
-        return $response;
-    }
-
-    /**
-     * Get entries filtered by translated value.
-     *
-     * @example  Class::whereTranslation('title', '=', 'zuhause', ['de', 'iu'])
-     * @example  $query->whereTranslation('title', '=', 'zuhause', ['de', 'iu'])
-     *
-     * @param  string  $field  {required} the field your looking to find a value in.
-     * @param  string  $operator  {required} value you are looking for or a relation modifier such as LIKE, =, etc.
-     * @param  string  $value  {optional} value you are looking for. Only use if you supplied an operator.
-     * @param  string|array  $locales  {optional} locale(s) you are looking for the field.
-     * @param  bool  $default  {optional} if true checks for $value is in default database before checking translations.
-     * @return Builder
-     */
-    public static function scopeWhereTranslation($query, $field, $operator, $value = null, $locales = null, $default = true)
-    {
-        if ($locales && ! is_array($locales)) {
-            $locales = [$locales];
-        }
-        if (! isset($value)) {
-            $value = $operator;
-            $operator = '=';
-        }
-
-        $self = new static;
-        $table = $self->getTable();
-
-        return $query->whereIn(
-            $self->getKeyName(),
-            Translation::query()
-                ->where('table_name', $table)
-                ->where('column_name', $field)
-                ->where('value', $operator, $value)
-                ->when(! is_null($locales), function ($query) use ($locales) {
-                    return $query->whereIn('locale', $locales);
-                })
-                ->pluck('foreign_key')
-        )->when($default, function ($query) use ($field, $operator, $value) {
-            return $query->orWhere($field, $operator, $value);
-        });
-    }
-
-    public function hasTranslatorMethod($name)
-    {
-        if (! isset($this->translatorMethods)) {
-            return false;
-        }
-
-        return isset($this->translatorMethods[$name]);
-    }
-
-    public function getTranslatorMethod($name)
-    {
-        if (! $this->hasTranslatorMethod($name)) {
-            return false;
-        }
-
-        return $this->translatorMethods[$name];
-    }
-
-    public function deleteAttributeTranslations(array $attributes, $locales = null)
-    {
-        $this->translations()
-            ->whereIn('column_name', $attributes)
-            ->when(! is_null($locales), function ($query) use ($locales) {
-                $method = is_array($locales) ? 'whereIn' : 'where';
-
-                return $query->$method('locale', $locales);
-            })
-            ->delete();
-    }
-
-    public function deleteAttributeTranslation($attribute, $locales = null)
-    {
-        $this->translations()
-            ->where('column_name', $attribute)
-            ->when(! is_null($locales), function ($query) use ($locales) {
-                $method = is_array($locales) ? 'whereIn' : 'where';
-
-                return $query->$method('locale', $locales);
-            })
-            ->delete();
-    }
-
-    /**
-     * Prepare translations and set default locale field value.
-     *
-     * @param  object  $request
-     * @return array translations
-     */
-    public function prepareTranslations($request)
-    {
-        $translations = [];
-
-        // Translatable Fields
-        $transFields = $this->getTranslatableAttributes();
-
-        $fields = ! empty($request->attributes->get('breadRows')) ? array_intersect($request->attributes->get('breadRows'), $transFields) : $transFields;
-
-        foreach ($fields as $field) {
-            if (! $request->input($field.'_i18n')) {
-                throw new Exception('Invalid Translatable field'.$field);
-            }
-
-            $trans = json_decode($request->input($field.'_i18n'), true);
-
-            // Set the default local value
-            $request->merge([$field => $trans[config('gothamfolio.multilingual.default', 'en')]]);
-
-            $translations[$field] = $this->setAttributeTranslations(
-                $field,
-                $trans
-            );
-
-            // Remove field hidden input
-            unset($request[$field.'_i18n']);
-        }
-
-        // Remove language selector input
-        unset($request['i18n_selector']);
-
-        return $translations;
-    }
-
-    /**
-     * Prepare translations and set default locale field value.
-     *
-     * @param  object  $requestData
-     * @return array translations
-     */
-    public function prepareTranslationsFromArray($field, &$requestData)
-    {
-        $translations = [];
-
-        $field = 'field_display_name_'.$field;
-
-        if (empty($requestData[$field.'_i18n'])) {
-            throw new Exception('Invalid Translatable field '.$field);
-        }
-
-        $trans = json_decode($requestData[$field.'_i18n'], true);
-
-        // Set the default local value
-        $requestData['display_name'] = $trans[config('gothamfolio.multilingual.default', 'en')];
-
-        $translations['display_name'] = $this->setAttributeTranslations(
-            'display_name',
-            $trans
-        );
-
-        // Remove field hidden input
-        unset($requestData[$field.'_i18n']);
-
-        return $translations;
-    }
-
-    /**
-     * Save translations.
-     *
-     * @param  object  $translations
-     * @return void
-     */
-    public function saveTranslations($translations)
-    {
-        foreach ($translations as $field => $locales) {
-            foreach ($locales as $locale => $translation) {
-                $translation->save();
-            }
-        }
-    }
+    //    public function setAttributeTranslations($attribute, array $translations, $save = false)
+    //    {
+    //        $response = [];
+    //
+    //        if (! $this->relationLoaded('translations')) {
+    //            $this->load('translations');
+    //        }
+    //
+    //        $default = config('gothamfolio.multilingual.default', 'en');
+    //        $locales = config('gothamfolio.multilingual.locales', [$default]);
+    //
+    //        foreach ($locales as $locale) {
+    //            if (empty($translations[$locale])) {
+    //                continue;
+    //            }
+    //
+    //            if ($locale == $default) {
+    //                $this->$attribute = $translations[$locale];
+    //
+    //                continue;
+    //            }
+    //
+    //            $tranlator = $this->translate($locale, false);
+    //            $tranlator->$attribute = $translations[$locale];
+    //
+    //            if ($save) {
+    //                $tranlator->save();
+    //            }
+    //
+    //            $response[] = $tranlator;
+    //        }
+    //
+    //        return $response;
+    //    }
+    //
+    //    /**
+    //     * Get entries filtered by translated value.
+    //     *
+    //     * @example  Class::whereTranslation('title', '=', 'zuhause', ['de', 'iu'])
+    //     * @example  $query->whereTranslation('title', '=', 'zuhause', ['de', 'iu'])
+    //     *
+    //     * @param  string  $field  {required} the field your looking to find a value in.
+    //     * @param  string  $operator  {required} value you are looking for or a relation modifier such as LIKE, =, etc.
+    //     * @param  string  $value  {optional} value you are looking for. Only use if you supplied an operator.
+    //     * @param  string|array  $locales  {optional} locale(s) you are looking for the field.
+    //     * @param  bool  $default  {optional} if true checks for $value is in default database before checking translations.
+    //     * @return Builder
+    //     */
+    //    public static function scopeWhereTranslation($query, $field, $operator, $value = null, $locales = null, $default = true)
+    //    {
+    //        if ($locales && ! is_array($locales)) {
+    //            $locales = [$locales];
+    //        }
+    //        if (! isset($value)) {
+    //            $value = $operator;
+    //            $operator = '=';
+    //        }
+    //
+    //        $self = new static;
+    //        $table = $self->getTable();
+    //
+    //        return $query->whereIn(
+    //            $self->getKeyName(),
+    //            Translation::query()
+    //                ->where('table_name', $table)
+    //                ->where('column_name', $field)
+    //                ->where('value', $operator, $value)
+    //                ->when(! is_null($locales), function ($query) use ($locales) {
+    //                    return $query->whereIn('locale', $locales);
+    //                })
+    //                ->pluck('foreign_key')
+    //        )->when($default, function ($query) use ($field, $operator, $value) {
+    //            return $query->orWhere($field, $operator, $value);
+    //        });
+    //    }
+    //
+    //    public function hasTranslatorMethod($name)
+    //    {
+    //        if (! isset($this->translatorMethods)) {
+    //            return false;
+    //        }
+    //
+    //        return isset($this->translatorMethods[$name]);
+    //    }
+    //
+    //    public function getTranslatorMethod($name)
+    //    {
+    //        if (! $this->hasTranslatorMethod($name)) {
+    //            return false;
+    //        }
+    //
+    //        return $this->translatorMethods[$name];
+    //    }
+    //
+    //    public function deleteAttributeTranslations(array $attributes, $locales = null)
+    //    {
+    //        $this->translations()
+    //            ->whereIn('column_name', $attributes)
+    //            ->when(! is_null($locales), function ($query) use ($locales) {
+    //                $method = is_array($locales) ? 'whereIn' : 'where';
+    //
+    //                return $query->$method('locale', $locales);
+    //            })
+    //            ->delete();
+    //    }
+    //
+    //    public function deleteAttributeTranslation($attribute, $locales = null)
+    //    {
+    //        $this->translations()
+    //            ->where('column_name', $attribute)
+    //            ->when(! is_null($locales), function ($query) use ($locales) {
+    //                $method = is_array($locales) ? 'whereIn' : 'where';
+    //
+    //                return $query->$method('locale', $locales);
+    //            })
+    //            ->delete();
+    //    }
+    //
+    //    /**
+    //     * Prepare translations and set default locale field value.
+    //     *
+    //     * @param  object  $request
+    //     * @return array translations
+    //     */
+    //    public function prepareTranslations($request)
+    //    {
+    //        $translations = [];
+    //
+    //        // Translatable Fields
+    //        $transFields = $this->getTranslatableAttributes();
+    //
+    //        $fields = ! empty($request->attributes->get('breadRows')) ? array_intersect($request->attributes->get('breadRows'), $transFields) : $transFields;
+    //
+    //        foreach ($fields as $field) {
+    //            if (! $request->input($field.'_i18n')) {
+    //                throw new Exception('Invalid Translatable field'.$field);
+    //            }
+    //
+    //            $trans = json_decode($request->input($field.'_i18n'), true);
+    //
+    //            // Set the default local value
+    //            $request->merge([$field => $trans[config('gothamfolio.multilingual.default', 'en')]]);
+    //
+    //            $translations[$field] = $this->setAttributeTranslations(
+    //                $field,
+    //                $trans
+    //            );
+    //
+    //            // Remove field hidden input
+    //            unset($request[$field.'_i18n']);
+    //        }
+    //
+    //        // Remove language selector input
+    //        unset($request['i18n_selector']);
+    //
+    //        return $translations;
+    //    }
+    //
+    //    /**
+    //     * Prepare translations and set default locale field value.
+    //     *
+    //     * @param  object  $requestData
+    //     * @return array translations
+    //     */
+    //    public function prepareTranslationsFromArray($field, &$requestData)
+    //    {
+    //        $translations = [];
+    //
+    //        $field = 'field_display_name_'.$field;
+    //
+    //        if (empty($requestData[$field.'_i18n'])) {
+    //            throw new Exception('Invalid Translatable field '.$field);
+    //        }
+    //
+    //        $trans = json_decode($requestData[$field.'_i18n'], true);
+    //
+    //        // Set the default local value
+    //        $requestData['display_name'] = $trans[config('gothamfolio.multilingual.default', 'en')];
+    //
+    //        $translations['display_name'] = $this->setAttributeTranslations(
+    //            'display_name',
+    //            $trans
+    //        );
+    //
+    //        // Remove field hidden input
+    //        unset($requestData[$field.'_i18n']);
+    //
+    //        return $translations;
+    //    }
+    //
+    //    /**
+    //     * Save translations.
+    //     *
+    //     * @param  object  $translations
+    //     * @return void
+    //     */
+    //    public function saveTranslations($translations)
+    //    {
+    //        foreach ($translations as $field => $locales) {
+    //            foreach ($locales as $locale => $translation) {
+    //                $translation->save();
+    //            }
+    //        }
+    //    }
 }

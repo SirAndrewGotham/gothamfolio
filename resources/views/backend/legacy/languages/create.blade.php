@@ -1,47 +1,44 @@
 @extends('backend.legacy.layouts.app')
 
 @section('meta-title')
-    {{ __('Create a Work') }}
+    {{ __('Create a Language') }}
 @endsection
 
 @section('page-title')
-    {{ __('Create a Work') }}
+    {{ __('Create a Language') }}
 @endsection
 
 @section('breadcrumb-title')
-    {{ __('New Work') }}
+    {{ __('New Language') }}
 @endsection
 
 @section('content')
-    <form role="form" action="{{ route('admin.works.store') }}" method="POST" enctype="multipart/form-data">
+    <form role="form" action="{{ route('admin.languages.store') }}" method="POST">
         @csrf
 
         @include('backend.legacy.layouts._formErrors')
 
         <div class="form-group">
-            <label for="title">{{ __('Title') }}</label>
-            <input type="text" name="title" id="title" value="{{ old('title') }}" class="form-control">
+            <label for="name">{{ __('Language Name') }}</label>
+            <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control">
         </div>
         <div class="form-group">
-            <label for="slug">{{ __('Slug') }}</label>
-            <input type="text" name="slug" id="slug" value="{{ old('slug') }}" class="form-control">
+            <label for="code">{{ __('Language Code (e.g., en)') }}</label>
+            <input type="text" name="code" id="code" value="{{ old('code') }}" class="form-control">
         </div>
         <div class="form-group">
-            <label for="excerpt">{{ __('Excerpt') }}</label>
-            <textarea name="excerpt" id="excerpt" cols="30" rows="10" class="form-control summernote">{{ old('excerpt') }}</textarea>
+            <label for="english">{{ __('English Name (e.g., English)') }}</label>
+            <input type="text" name="english" id="english" value="{{ old('english') }}" class="form-control">
         </div>
-        <div class="form-group">
-            <label for="content">{{ __('Content') }}</label>
-            <textarea name="content" id="content" cols="30" rows="10" class="form-control summernote">{{ old('content') }}</textarea>
+        <div class="form-group form-check">
+            <input type="checkbox" name="default" id="default" value="1" class="form-check-input" {{ old('default') ? 'checked' : '' }}>
+            <label class="form-check-label" for="default">{{ __('Set as Default Language') }}</label>
         </div>
-        <div class="form-group">
-            <label for="tags">{{ __('Tags') }}</label>
-            <input type="text" name="tags" id="tags" value="{{ old('tags') }}" class="form-control">
+        <div class="form-group form-check">
+            <input type="checkbox" name="is_active" id="is_active" value="1" class="form-check-input" {{ old('is_active', true) ? 'checked' : '' }}>
+            <label class="form-check-label" for="is_active">{{ __('Is Active') }}</label>
         </div>
-        <div class="form-group">
-            <label for="image">{{ __('Image') }}</label>
-            <input type="file" id="image" name="image">
-        </div>
+
         <button type="submit" class="btn btn-rw btn-primary">{{ __('Submit') }}</button>
     </form>
 @endsection

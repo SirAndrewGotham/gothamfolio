@@ -25,6 +25,11 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        // Ensure at least one active language exists before creating a user
+        if (Language::where('is_active', true)->doesntExist()) {
+            Language::factory()->create(['code' => 'en', 'name' => 'English', 'english' => 'English', 'default' => true, 'is_active' => true]);
+        }
+
         $languages = Language::where('is_active', true)->pluck('id')->toArray();
         $name = $this->faker->unique()->name();
 

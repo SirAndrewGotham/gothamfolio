@@ -33,7 +33,7 @@
         @forelse($post->translations as $post)
             <tr>
                 <td>
-                    <img src="{{ asset('uploads/posts/'.$post->id.'/'.$post->image) }}" height="50px" >
+                    <img src="{{ asset('uploads/posts/'.$post->id.'/'.$post->image) }}" height="50px" alt="{{ $post->title }}">
                 </td>
                 <td>
                     {{ $post->title }}
@@ -42,7 +42,7 @@
                     {{ $post->language->name }}
                 </td>
                 <td>
-                    <a href="{{ route('admin.users.show', $work->user->slug) }}">
+                    <a href="{{ route('admin.users.show', $post->user->slug) }}">
                         {{ $post->user->name }}
                     </a>
                 </td>
@@ -54,7 +54,7 @@
                         <i class="fa fa-eye"></i>
                         {{ __('View') }}
                     </a>
-                    <a href="{{ route('admin.post.edit', $post->slug) }}" class="btn btn-warning">
+                    <a href="{{ route('admin.posts.edit', $post->slug) }}" class="btn btn-warning">
                         <i class="fa fa-pencil"></i>
                         {{ __('Edit') }}
                     </a>
@@ -62,7 +62,7 @@
                         <i class="fa fa-pencil"></i>
                         {{ __('Translate') }}
                     </a>
-                    <a href="{{ route('admin.post.destroy', $post->slug) }}" class="btn btn-danger">
+                    <a href="{{ route('admin.posts.destroy', $post->slug) }}" class="btn btn-danger">
                         <i class="fa fa-trash-o"></i>
                         {{ __('Delete') }}
                     </a>

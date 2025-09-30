@@ -20,7 +20,13 @@ class SetLocale
         $active_languages = Language::query()->where('is_active', true)->pluck('code');
 
         if (session()->get('language') === null) {
-            session()->put('language', Language::query()->where('default', true)->first()->code);
+            $defaultLanguage = Language::query()->where('default', true)->first();
+            if ($defaultLanguage) {
+                session()->put('language', $defaultLanguage->code);
+            } else {
+                // Fallback to 'en' if no default language is set in the database
+                session()->put('language', 'en');
+            }
         }
 
         if ((request('change_language') && ! $active_languages->contains(request('change_language'))) || (session()->has('language') && ! $active_languages->contains(session()->get('language')))) {

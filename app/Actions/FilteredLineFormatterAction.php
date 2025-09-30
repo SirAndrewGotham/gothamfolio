@@ -9,7 +9,7 @@ use Monolog\Formatter\LineFormatter;
 
 final class FilteredLineFormatterAction extends LineFormatter
 {
-    protected const string FILTERED_REPLACEMENT = '[FILTERED]';
+    public const string FILTERED_REPLACEMENT = '[FILTERED]';
 
     protected const array CONFIG_KEYS_TO_FILTER = [
         'database.connections.mysql.password',

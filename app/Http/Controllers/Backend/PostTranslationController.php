@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Actions\BuildImageAction;
 use App\Actions\PostTranslationSaveAction;
 use App\Actions\PostTranslationUpdateAction;
+use App\Actions\TagsSaveAction;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostTranslationRequest;
 use App\Http\Requests\UpdatePostTranslationRequest;
@@ -84,9 +86,9 @@ class PostTranslationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePostTranslationRequest $request, PostTranslation $postTranslation)
+    public function update(UpdatePostTranslationRequest $request, PostTranslation $postTranslation, BuildImageAction $buildImage, TagsSaveAction $saveTags)
     {
-        (new PostTranslationUpdateAction)->handle($request->validated(), $postTranslation);
+        (new PostTranslationUpdateAction($buildImage, $saveTags))->handle($request->validated(), $postTranslation);
 
         return redirect()->route('admin.postTranslations.index', $postTranslation->post->slug)->with('success', 'Your Post Translation updated successfully!');
     }
@@ -98,13 +100,13 @@ class PostTranslationController extends Controller
     {
         $postTranslation->delete();
 
-        return redirect()->back();
+        return redirect()->route('admin.postTranslations.index', $postTranslation->post->slug)->with('success', 'Post Translation deleted successfully!');
     }
 
     public function forceDelete(PostTranslation $postTranslation)
     {
         $postTranslation->forceDelete();
 
-        return redirect()->back();
+        return redirect()->route('admin.postTranslations.index', $postTranslation->post->slug)->with('success', 'Post Translation force deleted successfully!');
     }
 }

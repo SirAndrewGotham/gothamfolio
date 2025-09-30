@@ -4,38 +4,23 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Concerns\HasSlug;
 use Database\Factories\LanguageFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Str;
 
 class Language extends Model
 {
     /** @use HasFactory<LanguageFactory> */
-    use HasFactory, SoftDeletes;
+    use HasFactory, HasSlug, SoftDeletes;
 
     protected $guarded = ['id'];
 
-    protected static function boot(): void
+    protected static function getSluggableField(): string
     {
-        parent::boot();
-
-        self::creating(function ($model) {
-            $slug = Str::slug($model->english);
-            $originalSlug = $slug;
-            $count = 2;
-            while (static::whereSlug($slug)->exists()) {
-                $slug = $originalSlug.'-'.$count++;
-            }
-            $model->slug = $slug;
-        });
-    }
-
-    public function getRouteKeyName(): string
-    {
-        return 'slug';
+        return 'english';
     }
 
     public function users(): BelongsToMany

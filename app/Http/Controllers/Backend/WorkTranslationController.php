@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Actions\BuildImageAction;
+use App\Actions\TagsSaveAction;
 use App\Actions\WorkTranslationSaveAction;
 use App\Actions\WorkTranslationUpdateAction;
 use App\Http\Controllers\Controller;
@@ -83,9 +85,9 @@ class WorkTranslationController extends Controller
      * Update the specified resource in storage.
      */
     //    #[NoReturn] public function update(UpdateWorkTranslationRequest $request, WorkTranslation $workTranslation)
-    public function update(UpdateWorkTranslationRequest $request, WorkTranslation $workTranslation)
+    public function update(UpdateWorkTranslationRequest $request, WorkTranslation $workTranslation, BuildImageAction $buildImage, TagsSaveAction $saveTags)
     {
-        (new WorkTranslationUpdateAction)->handle($request->validated(), $workTranslation);
+        (new WorkTranslationUpdateAction($buildImage, $saveTags))->handle($request->validated(), $workTranslation);
 
         return redirect()->route('admin.workTranslations.index', $workTranslation->work->slug)->with('success', 'Your Work Translation updated successfully!');
     }

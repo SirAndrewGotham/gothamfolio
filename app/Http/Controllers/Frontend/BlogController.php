@@ -43,6 +43,8 @@ class BlogController
      */
     public function show(PostTranslation $post)
     {
+        $post->load('post'); // Eager load the parent post
+
         [$tags] = $this->prepareTags();
 
         return view('frontend.legacy.blogs.show', compact('post', 'tags'));

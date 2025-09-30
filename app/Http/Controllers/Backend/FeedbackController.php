@@ -58,15 +58,13 @@ class FeedbackController extends Controller
     {
         $feedback->delete();
 
-        return redirect()->back();
-        //        return redirect()->route('admin.feedback.index');
+        return redirect()->route('admin.feedback.index');
     }
 
     public function forceDelete(Feedback $feedback)
     {
         $feedback->forceDelete();
 
-        return redirect()->back();
-        //        return redirect()->route('admin.feedback.index');
+        return redirect()->route('admin.feedback.read');
     }
 }

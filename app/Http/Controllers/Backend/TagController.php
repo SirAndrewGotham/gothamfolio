@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreTagRequest;
+use App\Http\Requests\UpdateTagRequest;
 use App\Models\Tag;
-use Illuminate\Http\Request;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class TagController extends Controller
 {
+    use AuthorizesRequests;
+
     /**
      * Display a listing of the resource.
      */
@@ -36,11 +40,11 @@ class TagController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTagRequest $request)
     {
-        Tag::query()->create($request->all());
+        Tag::query()->create($request->validated());
 
-        return redirect()->route('admin.tags.index');
+        return redirect()->route('admin.tags.index')->with('success', 'Tag created successfully.');
     }
 
     /**
@@ -62,11 +66,11 @@ class TagController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tag $tag)
+    public function update(UpdateTagRequest $request, Tag $tag)
     {
-        Tag::update($request->all(), $tag->slug);
+        $tag->update($request->validated());
 
-        return redirect()->route('admin.tags.index');
+        return redirect()->route('admin.tags.index')->with('success', 'Tag updated successfully.');
     }
 
     /**
@@ -76,6 +80,6 @@ class TagController extends Controller
     {
         $tag->delete();
 
-        return redirect()->route('admin.tags.index');
+        return redirect()->route('admin.tags.index')->with('success', 'Tag deleted successfully.');
     }
 }

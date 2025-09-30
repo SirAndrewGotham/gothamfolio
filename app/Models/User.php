@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Concerns\HasSlug;
 use Database\Factories\UserFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,12 +17,12 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, HasSlug, Notifiable;
 
-    public function getRouteKeyName(): string
-    {
-        return 'slug';
-    }
+    //    public function getRouteKeyName(): string
+    //    {
+    //        return 'slug';
+    //    }
 
     /**
      * The attributes that are mass assignable.
@@ -32,6 +33,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'slug',
+        'language_id',
     ];
 
     /**
@@ -79,5 +82,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function languages(): BelongsToMany
     {
         return $this->belongsToMany(Language::class);
+    }
+
+    protected static function getSluggableField(): string
+    {
+        return 'name';
     }
 }

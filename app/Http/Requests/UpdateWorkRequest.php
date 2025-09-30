@@ -24,8 +24,10 @@ class UpdateWorkRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            //            'slug' => 'required',
-            //            'content' => 'required',
+            'translation_title' => 'required|string',
+            'excerpt' => 'nullable|string',
+            'body' => 'required',
+            'language_id' => 'required|integer|exists:languages,id',
         ];
     }
 }

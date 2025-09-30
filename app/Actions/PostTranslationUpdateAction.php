@@ -12,16 +12,12 @@ use Illuminate\Support\Facades\Auth;
 
 #[AllowDynamicProperties] final class PostTranslationUpdateAction
 {
-//        public function __construct(private readonly BuildImageAction $buildImage, private readonly TagsSaveAction $saveTags)
-//        {
-//            $this->folder = 'uploads/posts';
-//        }
-    public function __construct()
+    public function __construct(private readonly BuildImageAction $buildImage, private readonly TagsSaveAction $saveTags)
     {
         $this->folder = 'uploads/posts';
     }
 
-    public function handle(array $data = [], $postTranslation = null): void
+    public function handle(array $data, PostTranslation $postTranslation): void
     {
         if (isset($data['tags'])) {
             $tags = $data['tags'];
