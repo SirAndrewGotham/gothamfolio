@@ -6,9 +6,9 @@ use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 /**
- * @property string $name
- * @property string $content
- * @property string $slug
+ * @property string      $name
+ * @property string|null $content
+ * @property string      $slug
  */
 class UpdateTagRequest extends FormRequest
 {
