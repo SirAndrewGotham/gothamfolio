@@ -6,27 +6,30 @@ namespace App\Models;
 
 use App\Concerns\HasSlug;
 use Database\Factories\PostFactory;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 /**
  * @property string $title
  * @property string $slug
- * @property \Illuminate\Support\Carbon $created_at
- * @property \Illuminate\Support\Carbon $updated_at
- * @property \Illuminate\Support\Carbon $deleted_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property Carbon $deleted_at
  * @property int $user_id
- * @property-read \App\Models\User $user
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PostTranslation> $translations
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Tag> $tags
+ * @property-read User $user
+ * @property-read Collection<int, PostTranslation> $translations
+ * @property-read Collection<int, Tag> $tags
  *
- * @mixin \Illuminate\Database\Eloquent\Builder
+ * @mixin Builder
  *
- * @extends \Illuminate\Database\Eloquent\Model<\Database\Factories\PostFactory>
+ * @extends Model<PostFactory>
  */
 class Post extends Model
 {
@@ -45,15 +48,7 @@ class Post extends Model
     ];
 
     /**
-     * The "booted" method of the model.
-     */
-    protected static function boot(): void
-    {
-        parent::boot();
-    }
-
-    /**
-     * Get all of the translations for the Post
+     * Get all the translations for the Post
      */
     public function translations(): HasMany
     {
@@ -61,7 +56,7 @@ class Post extends Model
     }
 
     /**
-     * Get all of the tags for the Post
+     * Get all the tags for the Post
      */
     public function tags(): MorphToMany
     {

@@ -33,7 +33,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  *
  * @mixin \\Illuminate\\Database\\Eloquent\\Builder
  *
- * @extends \Illuminate\Database\Eloquent\Model<\Database\Factories\WorkTranslationFactory>
+ * @extends Model<WorkTranslationFactory>
  */
 class WorkTranslation extends Model
 {
@@ -68,9 +68,9 @@ class WorkTranslation extends Model
     }
 
     /**
-     * Get all of the tags for the WorkTranslation
+     * Get all the tags for the WorkTranslation
      *
-     * @return \\Illuminate\\Database\\Eloquent\\Relations\\MorphToMany
+     * @return MorphToMany \Illuminate\\Database\\Eloquent\\Relations\\MorphToMany
      */
     public function tags(): MorphToMany
     {
@@ -80,7 +80,7 @@ class WorkTranslation extends Model
     /**
      * Get the user that owns the WorkTranslation
      *
-     * @return \\Illuminate\\Database\\Eloquent\\Relations\\BelongsTo
+     * @return BelongsTo \Illuminate\\Database\\Eloquent\\Relations\\BelongsTo
      */
     public function user(): BelongsTo
     {
@@ -90,17 +90,17 @@ class WorkTranslation extends Model
     /**
      * Get the work that owns the WorkTranslation
      *
-     * @return \\Illuminate\\Database\\Eloquent\\Relations\\BelongsTo
+     * @return BelongsTo \Illuminate\\Database\\Eloquent\\Relations\\BelongsTo
      */
     public function work(): BelongsTo
     {
-        return $this->belongsTo(Work::class, 'work_id', 'id', 'work_translations');
+        return $this->belongsTo(Work::class, 'work_id', 'id');
     }
 
     /**
      * Get the language that owns the WorkTranslation
      *
-     * @return \\Illuminate\\Database\\Eloquent\\Relations\\BelongsTo
+     * @return BelongsTo \Illuminate\\Database\\Eloquent\\Relations\\BelongsTo
      */
     public function language(): BelongsTo
     {

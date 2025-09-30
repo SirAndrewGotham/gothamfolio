@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Policies;
+namespace App\Models\Policies;
 
-use App\Models\Tag;
+use App\Models\Translation;
 use App\Models\User;
 
-class TagPolicy
+class TranslationPolicy
 {
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return false;
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Tag $tag): bool
+    public function view(User $user, Translation $translation): bool
     {
         return false;
     }
@@ -34,7 +34,7 @@ class TagPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Tag $tag): bool
+    public function update(User $user, Translation $translation): bool
     {
         return false;
     }
@@ -42,7 +42,7 @@ class TagPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Tag $tag): bool
+    public function delete(User $user, Translation $translation): bool
     {
         return false;
     }
@@ -50,7 +50,7 @@ class TagPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Tag $tag): bool
+    public function restore(User $user, Translation $translation): bool
     {
         return false;
     }
@@ -58,8 +58,8 @@ class TagPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Tag $tag): bool
+    public function forceDelete(User $user, Translation $translation): bool
     {
-        return true;
+        return false;
     }
 }

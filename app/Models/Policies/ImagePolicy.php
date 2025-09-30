@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Policies;
+namespace App\Models\Policies;
 
-use App\Models\Gallery;
+use App\Models\Image;
 use App\Models\User;
 
-class GalleryPolicy
+class ImagePolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -18,7 +18,7 @@ class GalleryPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Gallery $gallery): bool
+    public function view(User $user, Image $photo): bool
     {
         return false;
     }
@@ -34,7 +34,7 @@ class GalleryPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Gallery $gallery): bool
+    public function update(User $user, Image $photo): bool
     {
         return false;
     }
@@ -42,7 +42,7 @@ class GalleryPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Gallery $gallery): bool
+    public function delete(User $user, Image $photo): bool
     {
         return false;
     }
@@ -50,7 +50,7 @@ class GalleryPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Gallery $gallery): bool
+    public function restore(User $user, Image $photo): bool
     {
         return false;
     }
@@ -58,7 +58,7 @@ class GalleryPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Gallery $gallery): bool
+    public function forceDelete(User $user, Image $photo): bool
     {
         return false;
     }

@@ -6,6 +6,7 @@ use Database\Factories\ImageFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Image extends Model
@@ -15,12 +16,12 @@ class Image extends Model
 
     protected $guarded = ['id'];
 
-    public function tags()
+    public function tags(): MorphToMany
     {
         return $this->morphToMany(Tag::class, 'taggable');
     }
 
-    public function translates()
+    public function translates(): MorphToMany
     {
         return $this->morphToMany(Translate::class, 'translatable');
     }

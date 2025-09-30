@@ -55,7 +55,7 @@ it('a gallery can belong to a parent gallery', function () {
     $parentGallery = Gallery::factory()->create();
     $childGallery = Gallery::factory()->create(['gallery_id' => $parentGallery->id]);
 
-    expect($childGallery->galleries->id)->toBe($parentGallery->id);
+    expect($childGallery->parentGallery->id)->toBe($parentGallery->id);
 });
 
 it('a gallery can have many tags', function () {

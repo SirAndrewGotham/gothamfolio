@@ -5,8 +5,15 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Concerns\Translatable;
+use Database\Factories\MenuItemFactory;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Route;
 
 /**
  * @property string $title
@@ -14,18 +21,18 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $url
  * @property string $parameters
  * @property int $order
- * @property \Illuminate\Support\Carbon $created_at
- * @property \Illuminate\Support\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  * @property int $menu_id
  * @property int $menu_item_id
- * @property-read \App\Models\Menu $menu
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\MenuItem> $children
+ * @property-read Menu $menu
+ * @property-read Collection<int, MenuItem> $children
  *
- * @mixin \Illuminate\Database\Eloquent\Builder
+ * @mixin Builder
  */
 class MenuItem extends Model
 {
-    /** @use HasFactory<\Database\Factories\MenuItemFactory> */
+    /** @use HasFactory<MenuItemFactory> */
     use HasFactory, Translatable;
 
     /**
@@ -47,36 +54,36 @@ class MenuItem extends Model
      *
      * @var array<int, string>
      */
-    protected $translatable = ['title'];
+    protected array $translatable = ['title'];
 
     /**
      * The "booted" method of the model.
      *
      * @return void
      */
-    public static function boot()
+    public static function boot(): void
     {
         parent::boot();
 
         static::created(function ($model) {
-            $model->menu->removeMenuFromCache();
+            $model->menu?->removeMenuFromCache();
         });
 
         static::saved(function ($model) {
-            $model->menu->removeMenuFromCache();
+            $model->menu?->removeMenuFromCache();
         });
 
         static::deleted(function ($model) {
-            $model->menu->removeMenuFromCache();
+            $model->menu?->removeMenuFromCache();
         });
     }
 
     /**
-     * Get all of the children for the MenuItem
+     * Get all the children for the MenuItem
      *
-     * @return \\Illuminate\\Database\\Eloquent\\Relations\\HasMany
+     * @return Builder|HasMany \Illuminate\\Database\\Eloquent\\Relations\\HasMany
      */
-    public function children()
+    public function children(): Builder|HasMany
     {
         return $this->hasMany(MenuItem::class, 'menu_item_id')
             ->with('children');
@@ -85,9 +92,9 @@ class MenuItem extends Model
     /**
      * Get the menu that owns the MenuItem
      *
-     * @return \\Illuminate\\Database\\Eloquent\\Relations\\BelongsTo
+     * @return BelongsTo \Illuminate\\Database\\Eloquent\\Relations\\BelongsTo
      */
-    public function menu()
+    public function menu(): BelongsTo
     {
         return $this->belongsTo(Menu::class);
     }
@@ -96,9 +103,9 @@ class MenuItem extends Model
      * Get the link for the menu item.
      *
      * @param  bool  $absolute
-     * @return string
+     * @return string|null
      */
-    public function link($absolute = false)
+    public function link(bool $absolute = false): ?string
     {
         return $this->prepareLink($absolute, $this->route, $this->parameters, $this->url);
     }
@@ -108,9 +115,9 @@ class MenuItem extends Model
      *
      * @param  mixed  $translator
      * @param  bool  $absolute
-     * @return string
+     * @return string|null
      */
-    public function translatorLink($translator, $absolute = false)
+    public function translatorLink(mixed $translator, bool $absolute = false): ?string
     {
         return $this->prepareLink($absolute, $translator->route, $translator->parameters, $translator->url);
     }
@@ -120,11 +127,11 @@ class MenuItem extends Model
      *
      * @param  bool  $absolute
      * @param  string|null  $route
-     * @param  array|string|object|null  $parameters
+     * @param  object|array|string|null  $parameters
      * @param  string|null  $url
-     * @return string
+     * @return string|null
      */
-    protected function prepareLink($absolute, $route, $parameters, $url)
+    protected function prepareLink(bool $absolute, ?string $route, object|array|string|null $parameters, ?string $url): ?string
     {
         if (is_null($parameters)) {
             $parameters = [];
@@ -133,11 +140,11 @@ class MenuItem extends Model
         if (is_string($parameters)) {
             $parameters = json_decode($parameters, true);
         } elseif (is_object($parameters)) {
-            $parameters = json_decode(json_encode($parameters), true);
+            $parameters = (array) $parameters;
         }
 
         if (! is_null($route)) {
-            if (! \Illuminate\Support\Facades\Route::has($route)) {
+            if (! Route::has($route)) {
                 return '#';
             }
 
@@ -156,7 +163,7 @@ class MenuItem extends Model
      *
      * @return array<string, mixed>
      */
-    public function getParametersAttribute()
+    public function getParametersAttribute(): mixed
     {
         return json_decode($this->attributes['parameters'] ?? '', true);
     }
@@ -164,9 +171,9 @@ class MenuItem extends Model
     /**
      * Set the parameters attribute.
      *
-     * @param  array<string, mixed>|string  $value
+     * @param  string|array<string, mixed>  $value
      */
-    public function setParametersAttribute($value)
+    public function setParametersAttribute(array|string $value): void
     {
         if (is_array($value)) {
             $value = json_encode($value);
@@ -180,7 +187,7 @@ class MenuItem extends Model
      *
      * @param  string|null  $value
      */
-    public function setUrlAttribute($value)
+    public function setUrlAttribute(?string $value): void
     {
         if (is_null($value)) {
             $value = '';
@@ -195,7 +202,7 @@ class MenuItem extends Model
      * @param  number  $parent  (Optional) Parent id. Default null
      * @return number Order number
      */
-    public function highestOrderMenuItem($parent = null)
+    public function highestOrderMenuItem($parent = null): int
     {
         $order = 1;
 

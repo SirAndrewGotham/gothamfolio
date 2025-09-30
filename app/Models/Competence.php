@@ -5,31 +5,35 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\Concerns\HasSlug;
+use Database\Factories\CompetenceFactory;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 /**
  * @property string $title
  * @property string $slug
- * @property \Illuminate\Support\Carbon $created_at
- * @property \Illuminate\Support\Carbon $updated_at
- * @property \Illuminate\Support\Carbon $deleted_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property Carbon $deleted_at
  * @property int $user_id
- * @property-read \App\Models\User $user
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\CompetenceTranslation> $translations
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Tag> $tags
+ * @property-read User $user
+ * @property-read Collection<int, CompetenceTranslation> $translations
+ * @property-read Collection<int, Tag> $tags
  *
- * @mixin \Illuminate\Database\Eloquent\Builder
+ * @mixin Builder
  *
- * @extends \Illuminate\Database\Eloquent\Model<\Database\Factories\CompetenceFactory>
+ * @extends Model<CompetenceFactory>
  */
 class Competence extends Model
 {
-    /** @use HasFactory<\Database\Factories\CompetenceFactory> */
+    /** @use HasFactory<CompetenceFactory> */
     use HasFactory, HasSlug, SoftDeletes;
 
     /**
@@ -44,7 +48,7 @@ class Competence extends Model
     ];
 
     /**
-     * Get all of the translations for the Competence
+     * Get all the translations for the Competence
      */
     public function translations(): HasMany
     {
@@ -52,7 +56,7 @@ class Competence extends Model
     }
 
     /**
-     * Get all of the tags for the Competence
+     * Get all the tags for the Competence
      */
     public function tags(): MorphToMany
     {

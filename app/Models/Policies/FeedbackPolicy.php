@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Policies;
+namespace App\Models\Policies;
 
-use App\Models\Translate;
+use App\Models\Feedback;
 use App\Models\User;
 
-class TranslatePolicy
+class FeedbackPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -18,7 +18,7 @@ class TranslatePolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Translate $translate): bool
+    public function view(User $user, Feedback $feedback): bool
     {
         return false;
     }
@@ -34,7 +34,7 @@ class TranslatePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Translate $translate): bool
+    public function update(User $user, Feedback $feedback): bool
     {
         return false;
     }
@@ -42,7 +42,7 @@ class TranslatePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Translate $translate): bool
+    public function delete(User $user, Feedback $feedback): bool
     {
         return false;
     }
@@ -50,7 +50,7 @@ class TranslatePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Translate $translate): bool
+    public function restore(User $user, Feedback $feedback): bool
     {
         return false;
     }
@@ -58,7 +58,7 @@ class TranslatePolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Translate $translate): bool
+    public function forceDelete(User $user, Feedback $feedback): bool
     {
         return false;
     }

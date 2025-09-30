@@ -13,9 +13,9 @@ class AppServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        \App\Models\Language::class => \App\Policies\LanguagePolicy::class,
-        \App\Models\Tag::class => \App\Policies\TagPolicy::class,
-        \App\Models\User::class => \App\Policies\UserPolicy::class,
+        \App\Models\Language::class => \App\Models\Policies\LanguagePolicy::class,
+        \App\Models\Tag::class => \App\Models\Policies\TagPolicy::class,
+        \App\Models\User::class => \App\Models\Policies\UserPolicy::class,
     ];
 
     /**

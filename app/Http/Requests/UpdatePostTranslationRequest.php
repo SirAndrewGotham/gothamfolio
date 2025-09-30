@@ -65,11 +65,20 @@ class UpdatePostTranslationRequest extends FormRequest
      */
     protected function prepareForValidation(): void
     {
-        if ($this->input('excerpt') == null) {
+        if ($this->input('excerpt') === null) {
             $this->merge(['excerpt' => Str::limit($this->input('body'), 50, preserveWords: true)]);
         }
+
+        try {
+            $postId = Crypt::decryptString($this->post_id);
+            $languageId = (int) Crypt::decryptString($this->language);
+        } catch (\Illuminate\Contracts\Encryption\DecryptException $e) {
+            abort(400,
+                'Invalid encrypted input');
+        }
+
         $this->merge([
-            'post_id' => Crypt::decryptString($this->post_id),
+            'post_id' => $this->post_id ? Crypt::decryptString($this->post_id) : null,
             'user_id' => $this->user_id ?? auth()->id(),
             'language_id' => (int) Crypt::decryptString($this->language),
             'order' => $this->order ?? 0,

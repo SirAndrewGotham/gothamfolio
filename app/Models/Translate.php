@@ -5,25 +5,31 @@ declare(strict_types=1);
 namespace App\Models;
 
 use Database\Factories\TranslateFactory;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 /**
  * @property string $name
  * @property string $key
  * @property string $value
- * @property \Illuminate\Support\Carbon $created_at
- * @property \Illuminate\Support\Carbon $updated_at
- * @property \Illuminate\Support\Carbon $deleted_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property Carbon $deleted_at
  * @property int $language_id
- * @property-read \App\Models\Language $language
- * @property-read \Illuminate\Database\Eloquent\Model $translatable
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Image> $images
+ * @property-read Language $language
+ * @property-read Model $translatable
+ * @property-read Collection<int, Image> $images
  *
- * @mixin \Illuminate\Database\Eloquent\Builder
+ * @mixin Builder
  *
- * @extends \Illuminate\Database\Eloquent\Model<\Database\Factories\TranslateFactory>
+ * @extends Model<TranslateFactory>
  */
 class Translate extends Model
 {
@@ -40,9 +46,9 @@ class Translate extends Model
     /**
      * Get the language that owns the Translate
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
-    public function language()
+    public function language(): BelongsTo
     {
         return $this->belongsTo(Language::class);
     }
@@ -50,19 +56,19 @@ class Translate extends Model
     /**
      * Get the parent translatable model.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     * @return MorphTo
      */
-    public function translatable()
+    public function translatable(): MorphTo
     {
         return $this->morphTo();
     }
 
     /**
-     * Get all of the images for the Translate
+     * Get all the images for the Translate
      *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     * @return MorphToMany
      */
-    public function images()
+    public function images(): MorphToMany
     {
         return $this->morphToMany(Image::class, 'translatable');
     }
