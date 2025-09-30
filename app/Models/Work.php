@@ -6,27 +6,30 @@ namespace App\Models;
 
 use App\Concerns\HasSlug;
 use Database\Factories\WorkFactory;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 /**
  * @property string $title
  * @property string $slug
- * @property \Illuminate\Support\Carbon $created_at
- * @property \Illuminate\Support\Carbon $updated_at
- * @property \Illuminate\Support\Carbon $deleted_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property Carbon $deleted_at
  * @property int $user_id
- * @property-read \App\Models\User $user
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\WorkTranslation> $translations
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Tag> $tags
+ * @property-read User $user
+ * @property-read Collection<int, WorkTranslation> $translations
+ * @property-read Collection<int, Tag> $tags
  *
- * @mixin \Illuminate\Database\Eloquent\Builder
+ * @mixin Builder
  *
- * @extends \Illuminate\Database\Eloquent\Model<\Database\Factories\WorkFactory>
+ * @extends Model<WorkFactory>
  */
 class Work extends Model
 {
@@ -45,7 +48,8 @@ class Work extends Model
     ];
 
     /**
-     * Get all of the tags for the Work
+     * Get all the tags for the Work
+     * @return MorphToMany<Tag>
      */
     public function tags(): MorphToMany
     {
@@ -54,6 +58,7 @@ class Work extends Model
 
     /**
      * Get the user that owns the Work
+     * @return BelongsTo<User>
      */
     public function user(): BelongsTo
     {
@@ -61,7 +66,8 @@ class Work extends Model
     }
 
     /**
-     * Get all of the translations for the Work
+     * Get all the translations for the Work
+     * @return HasMany<WorkTranslation>
      */
     public function translations(): HasMany
     {
@@ -73,10 +79,11 @@ class Work extends Model
      *
      * @return bool|null
      */
-    public function delete()
+    public function delete(): ?bool
     {
-        $this->translations()->delete();
-
-        return parent::delete();
+        return \DB::transaction(function () {
+            $this->translations()->delete();
+            return parent::delete();
+        });
     }
 }

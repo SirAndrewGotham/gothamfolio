@@ -57,6 +57,7 @@ class StorePostTranslationRequest extends FormRequest
             'status' => [Rule::enum(PostStatus::class)],
             'status_by' => 'nullable|exists:users,id',
             'status_note' => 'nullable|string',
+            'language' => 'required|string',
         ];
     }
 
@@ -65,7 +66,7 @@ class StorePostTranslationRequest extends FormRequest
      */
     protected function prepareForValidation(): void
     {
-        if ($this->input('excerpt') == null) {
+        if ($this->input('excerpt') === null) {
             $this->merge(['excerpt' => Str::limit($this->input('body'), 50, preserveWords: true)]);
         }
         $this->merge([
@@ -74,5 +75,20 @@ class StorePostTranslationRequest extends FormRequest
             'language_id' => (int) Crypt::decryptString($this->language),
             'order' => $this->order ?? 0,
         ]);
+    }
+
+    /*** Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'title.required' => 'The work title is required.',
+            'translation_title.required' => 'The translation title is required.',
+            'body.required' => 'The work body content is required.',
+            'language_id.required' => 'A language must be selected.',
+            'language_id.exists' => 'The selected language is invalid.',
+        ];
     }
 }

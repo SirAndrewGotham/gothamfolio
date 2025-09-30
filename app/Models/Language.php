@@ -6,22 +6,25 @@ namespace App\Models;
 
 use App\Concerns\HasSlug;
 use Database\Factories\LanguageFactory;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 /**
  * @property string $name
  * @property string $slug
- * @property \Illuminate\Support\Carbon $created_at
- * @property \Illuminate\Support\Carbon $updated_at
- * @property \Illuminate\Support\Carbon $deleted_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\User> $users
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property Carbon $deleted_at
+ * @property-read Collection<int, User> $users
  *
- * @mixin \Illuminate\Database\Eloquent\Builder
+ * @mixin Builder
  *
- * @extends \Illuminate\Database\Eloquent\Model<\Database\Factories\LanguageFactory>
+ * @extends Model<LanguageFactory>
  */
 class Language extends Model
 {

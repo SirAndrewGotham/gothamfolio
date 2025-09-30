@@ -26,7 +26,7 @@ class StoreCompetenceTranslationRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return auth()->check();
     }
 
     /**
@@ -37,7 +37,19 @@ class StoreCompetenceTranslationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'competence_id' => ['nullable', 'integer', 'exists:competences,id'],
+            'user_id' => ['required', 'integer', 'exists:users,id'],
+            'language_id' => ['required', 'integer', 'exists:languages,id'],
+            'name' => ['required', 'string', 'max:255'],
+            'excerpt' => ['nullable', 'string'],
+            'body' => ['required', 'string'],
+            'order' => ['nullable', 'integer'],
+            'published_at' => ['nullable', 'date'],
+            'published_through' => ['nullable', 'date'],
+            'tags' => ['nullable', 'array'],
+            'status' => ['required', 'string'],
+            'status_by' => ['nullable', 'integer', 'exists:users,id'],
+            'status_note' => ['nullable', 'string'],
         ];
     }
 }

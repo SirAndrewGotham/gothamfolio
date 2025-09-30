@@ -8,40 +8,38 @@ namespace App\Models;
 use App\Concerns\HasSlug;
 use Database\Factories\UserFactory;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 
 /**
  * @property string $name
  * @property string $email
  * @property string $password
  * @property string $slug
- * @property \Illuminate\Support\Carbon $email_verified_at
+ * @property Carbon $email_verified_at
  * @property string $remember_token
- * @property \Illuminate\Support\Carbon $created_at
- * @property \Illuminate\Support\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  * @property int $language_id
- * @property-read \App\Models\Language $language
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Post> $posts
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Work> $works
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Language> $languages
+ * @property-read Language $language
+ * @property-read Collection<int, Post> $posts
+ * @property-read Collection<int, Work> $works
+ * @property-read Collection<int, Language> $languages
  *
- * @mixin \Illuminate\Database\Eloquent\Builder
+ * @mixin Builder
  *
- * @extends \Illuminate\Foundation\Auth\User<\Database\Factories\UserFactory>
+ * @extends Authenticatable<UserFactory>
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, HasSlug, Notifiable;
-
-    //    public function getRouteKeyName(): string
-    //    {
-    //        return 'slug';
-    //    }
 
     /**
      * The attributes that are mass assignable.
@@ -66,10 +64,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'remember_token',
     ];
 
-    //    public function getLanguages()
-    //    {
-    //    }
-
     /**
      * Get the attributes that should be cast.
      *
@@ -84,7 +78,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * Get all of the posts for the User
+     * Get all the posts for the User
      */
     public function posts(): HasMany
     {
@@ -92,17 +86,12 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * Get all of the works for the User
+     * Get all the works for the User
      */
     public function works(): HasMany
     {
         return $this->hasMany(Work::class);
     }
-
-    //    public function comments(): HasMany
-    //    {
-    //        return $this->hasMany(Comment::class);
-    //    }
 
     /**
      * The languages that belong to the User

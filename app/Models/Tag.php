@@ -6,6 +6,8 @@ namespace App\Models;
 
 use App\Concerns\HasSlug;
 use Database\Factories\TagFactory;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
@@ -14,13 +16,13 @@ use Illuminate\Database\Eloquent\Relations\MorphToMany;
  * @property string $name
  * @property string $slug
  * @property string $content
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\PostTranslation> $posts
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Work> $works
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Image> $images
+ * @property-read Collection<int, PostTranslation> $posts
+ * @property-read Collection<int, Work> $works
+ * @property-read Collection<int, Image> $images
  *
- * @mixin \Illuminate\Database\Eloquent\Builder
+ * @mixin Builder
  *
- * @extends \Illuminate\Database\Eloquent\Model<\Database\Factories\TagFactory>
+ * @extends Model<TagFactory>
  */
 class Tag extends Model
 {

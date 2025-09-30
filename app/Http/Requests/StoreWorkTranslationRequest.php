@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Enums\WorkStatus;
+use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Crypt;
@@ -73,10 +74,20 @@ class StoreWorkTranslationRequest extends FormRequest
         if ($this->input('excerpt') == null) {
             $this->merge(['excerpt' => Str::limit($this->input('body'), 50, preserveWords: true)]);
         }
+
+        try {
+            $workId = Crypt::decryptString($this->work_id);
+            $languageId = (int) Crypt::decryptString($this->language);
+        } catch (DecryptException $e) {
+            // Let validation handle invalid IDs
+            $workId = null;
+            $languageId = null;
+        }
+
         $this->merge([
-            'work_id' => Crypt::decryptString($this->work_id),
+            'work_id' => $workId,
             'user_id' => $this->user_id ?? auth()->id(),
-            'language_id' => (int) Crypt::decryptString($this->language),
+            'language_id' => $languageId,
             'order' => $this->order ?? 0,
         ]);
     }

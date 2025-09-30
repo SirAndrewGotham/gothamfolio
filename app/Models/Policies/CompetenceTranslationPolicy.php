@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Policies;
+namespace App\Models\Policies;
 
+use App\Models\CompetenceTranslation;
 use App\Models\User;
-use App\Models\Work;
 
-class WorkPolicy
+class CompetenceTranslationPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -18,7 +18,7 @@ class WorkPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Work $work): bool
+    public function view(User $user, CompetenceTranslation $competenceTranslation): bool
     {
         return false;
     }
@@ -34,7 +34,7 @@ class WorkPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Work $work): bool
+    public function update(User $user, CompetenceTranslation $competenceTranslation): bool
     {
         return false;
     }
@@ -42,7 +42,7 @@ class WorkPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Work $work): bool
+    public function delete(User $user, CompetenceTranslation $competenceTranslation): bool
     {
         return false;
     }
@@ -50,7 +50,7 @@ class WorkPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Work $work): bool
+    public function restore(User $user, CompetenceTranslation $competenceTranslation): bool
     {
         return false;
     }
@@ -58,7 +58,7 @@ class WorkPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Work $work): bool
+    public function forceDelete(User $user, CompetenceTranslation $competenceTranslation): bool
     {
         return false;
     }

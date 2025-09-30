@@ -70,9 +70,18 @@ class UpdateWorkTranslationRequest extends FormRequest
      */
     protected function prepareForValidation(): void
     {
-        if ($this->input('excerpt') == null) {
+        if ($this->input('excerpt') === null) {
             $this->merge(['excerpt' => Str::limit($this->input('body'), 50, preserveWords: true)]);
         }
+
+        try {
+            $workId = Crypt::decryptString($this->work_id);
+            $languageId = (int) Crypt::decryptString($this->language);
+        } catch (\Illuminate\Contracts\Encryption\DecryptException $e) {
+            abort(400,
+                'Invalid encrypted input');
+        }
+
         $this->merge([
             'work_id' => Crypt::decryptString($this->work_id),
             'user_id' => $this->user_id ?? auth()->id(),

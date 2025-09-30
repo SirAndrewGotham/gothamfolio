@@ -4,25 +4,32 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Database\Factories\MenuFactory;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 
 /**
  * @property string $name
- * @property \Illuminate\Support\Carbon $created_at
- * @property \Illuminate\Support\Carbon $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\MenuItem> $items
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\MenuItem> $parent_items
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property-read Collection<int, MenuItem> $items
+ * @property-read Collection<int, MenuItem> $parent_items
  *
- * @mixin \Illuminate\Database\Eloquent\Builder
+ * @mixin Builder
  *
- * @extends \Illuminate\Database\Eloquent\Model<\Database\Factories\MenuFactory>
+ * @extends Model<MenuFactory>
  */
 class Menu extends Model
 {
-    /** @use HasFactory<\Database\Factories\MenuFactory> */
+    /** @use HasFactory<MenuFactory> */
     use HasFactory;
 
     /**
@@ -44,7 +51,7 @@ class Menu extends Model
      *
      * @return void
      */
-    public static function boot()
+    public static function boot(): void
     {
         parent::boot();
 
@@ -58,21 +65,21 @@ class Menu extends Model
     }
 
     /**
-     * Get all of the items for the Menu
+     * Get all the items for the Menu
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function items()
+    public function items(): HasMany
     {
         return $this->hasMany(MenuItem::class);
     }
 
     /**
-     * Get all of the parent_items for the Menu
+     * Get all the parent_items for the Menu
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
-    public function parent_items()
+    public function parent_items(): HasMany
     {
         return $this->hasMany(MenuItem::class)
             ->whereNull('menu_item_id');
@@ -85,7 +92,7 @@ class Menu extends Model
      * @param  string|null  $type
      * @return string
      */
-    public static function display($menuName, $type = null, array $options = [])
+    public static function display(string $menuName, string $type = null, array $options = []): HtmlString|false|string|\Illuminate\Support\Collection
     {
         // GET THE MENU - sort collection in blade
         $menu = \Cache::remember('menu_'.$menuName, \Carbon\Carbon::now()->addDays(30), function () use ($menuName) {
@@ -130,15 +137,15 @@ class Menu extends Model
             return $items;
         }
 
-        return new \Illuminate\Support\HtmlString(
-            \Illuminate\Support\Facades\View::make($type, ['items' => $items, 'options' => $options])->render()
+        return new HtmlString(
+            View::make($type, ['items' => $items, 'options' => $options])->render()
         );
     }
 
     /**
      * Remove the menu from cache.
      */
-    public function removeMenuFromCache()
+    public function removeMenuFromCache(): void
     {
         \Cache::forget('menu_'.$this->name);
     }
@@ -146,12 +153,12 @@ class Menu extends Model
     /**
      * Process the menu items.
      *
-     * @param  \Illuminate\Support\Collection<int, \App\Models\MenuItem>  $items
-     * @return \Illuminate\Support\Collection<int, \App\Models\MenuItem>
+     * @param  \Illuminate\Support\Collection<int, MenuItem>  $items
+     * @return \Illuminate\Support\Collection<int, MenuItem>
      */
-    protected static function processItems($items)
+    protected static function processItems(\Illuminate\Support\Collection $items): \Illuminate\Support\Collection
     {
-        // Eagerload Translations
+        // Eager load Translations
         if (config('gothamfolio.multilingual.enabled')) {
             $items->load('translations');
         }

@@ -1,24 +1,24 @@
 <?php
 
-namespace App\Policies;
+namespace App\Models\Policies;
 
-use App\Models\Language;
+use App\Models\Menu;
 use App\Models\User;
 
-class LanguagePolicy
+class MenuPolicy
 {
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        return true;
+        return false;
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Language $language): bool
+    public function view(User $user, Menu $menu): bool
     {
         return false;
     }
@@ -34,7 +34,7 @@ class LanguagePolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Language $language): bool
+    public function update(User $user, Menu $menu): bool
     {
         return false;
     }
@@ -42,7 +42,7 @@ class LanguagePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Language $language): bool
+    public function delete(User $user, Menu $menu): bool
     {
         return false;
     }
@@ -50,7 +50,7 @@ class LanguagePolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, Language $language): bool
+    public function restore(User $user, Menu $menu): bool
     {
         return false;
     }
@@ -58,8 +58,8 @@ class LanguagePolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, Language $language): bool
+    public function forceDelete(User $user, Menu $menu): bool
     {
-        return true;
+        return false;
     }
 }
