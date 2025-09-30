@@ -9,6 +9,24 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
+/**
+ * @property int $work_id
+ * @property int $user_id
+ * @property int $language_id
+ * @property string $title
+ * @property string|null $excerpt
+ * @property string $body
+ * @property mixed|null $image
+ * @property mixed|null $link
+ * @property string|null $published_at
+ * @property string|null $published_through
+ * @property int|null $order
+ * @property \App\Enums\WorkStatus $status
+ * @property int|null $status_by
+ * @property string|null $status_note
+ * @property int|null $views
+ * @property mixed|null $tags
+ */
 class UpdateWorkTranslationRequest extends FormRequest
 {
     /**
@@ -47,6 +65,9 @@ class UpdateWorkTranslationRequest extends FormRequest
         ];
     }
 
+    /**
+     * Prepare the data for validation.
+     */
     protected function prepareForValidation(): void
     {
         if ($this->input('excerpt') == null) {

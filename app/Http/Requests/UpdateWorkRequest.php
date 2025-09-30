@@ -5,6 +5,13 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * @property string $title
+ * @property string $translation_title
+ * @property string $excerpt
+ * @property string $body
+ * @property int $language_id
+ */
 class UpdateWorkRequest extends FormRequest
 {
     /**

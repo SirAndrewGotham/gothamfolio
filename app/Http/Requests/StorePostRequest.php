@@ -9,6 +9,22 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
+/**
+ * @property int|null $post_id
+ * @property int $user_id
+ * @property int $language_id
+ * @property string $title
+ * @property string|null $excerpt
+ * @property string $body
+ * @property int|null $order
+ * @property string|null $published_at
+ * @property string|null $published_through
+ * @property mixed|null $tags
+ * @property mixed|null $image
+ * @property \\App\\Enums\\PostStatus $status
+ * @property int|null $status_by
+ * @property string|null $status_note
+ */
 class StorePostRequest extends FormRequest
 {
     /**
@@ -44,6 +60,9 @@ class StorePostRequest extends FormRequest
         ];
     }
 
+    /**
+     * Prepare the data for validation.
+     */
     protected function prepareForValidation(): void
     {
         if ($this->input('excerpt') == null) {
