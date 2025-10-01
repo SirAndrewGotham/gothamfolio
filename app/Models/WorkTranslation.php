@@ -5,11 +5,14 @@ namespace App\Models;
 use App\Concerns\HasSlug;
 use App\Enums\WorkStatus;
 use Database\Factories\WorkTranslationFactory;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Carbon;
 
 /**
  * @property string $name
@@ -17,21 +20,21 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $excerpt
  * @property string $body
  * @property int $order
- * @property \\App\\Enums\\WorkStatus $status
- * @property \\Illuminate\\Support\\Carbon $published_at
- * @property \\Illuminate\\Support\\Carbon $published_through
- * @property \\Illuminate\\Support\\Carbon $created_at
- * @property \\Illuminate\\Support\\Carbon $updated_at
- * @property \\Illuminate\\Support\\Carbon $deleted_at
+ * @property WorkStatus $status
+ * @property Carbon $published_at
+ * @property Carbon $published_through
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
+ * @property Carbon $deleted_at
  * @property int $work_id
  * @property int $language_id
  * @property int $user_id
- * @property-read \\App\\Models\\Language $language
- * @property-read \\App\\Models\\User $user
- * @property-read \\App\\Models\\Work $work
- * @property-read \\Illuminate\\Database\\Eloquent\\Collection<int, \\App\\Models\\Tag> $tags
+ * @property-read Language $language
+ * @property-read User $user
+ * @property-read Work $work
+ * @property-read Collection<int, Tag> $tags
  *
- * @mixin \\Illuminate\\Database\\Eloquent\\Builder
+ * @mixin Builder
  *
  * @extends Model<WorkTranslationFactory>
  */
@@ -70,7 +73,7 @@ class WorkTranslation extends Model
     /**
      * Get all the tags for the WorkTranslation
      *
-     * @return MorphToMany \Illuminate\\Database\\Eloquent\\Relations\\MorphToMany
+     * @return MorphToMany<Tag>
      */
     public function tags(): MorphToMany
     {
@@ -80,7 +83,7 @@ class WorkTranslation extends Model
     /**
      * Get the user that owns the WorkTranslation
      *
-     * @return BelongsTo \Illuminate\\Database\\Eloquent\\Relations\\BelongsTo
+     * @return BelongsTo<User>
      */
     public function user(): BelongsTo
     {
@@ -90,17 +93,17 @@ class WorkTranslation extends Model
     /**
      * Get the work that owns the WorkTranslation
      *
-     * @return BelongsTo \Illuminate\\Database\\Eloquent\\Relations\\BelongsTo
+     * @return BelongsTo<Work>
      */
     public function work(): BelongsTo
     {
-        return $this->belongsTo(Work::class, 'work_id', 'id');
+        return $this->belongsTo(Work::class);
     }
 
     /**
      * Get the language that owns the WorkTranslation
      *
-     * @return BelongsTo \Illuminate\\Database\\Eloquent\\Relations\\BelongsTo
+     * @return BelongsTo<Language>
      */
     public function language(): BelongsTo
     {

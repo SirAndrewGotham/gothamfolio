@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @property string $title
@@ -49,6 +50,7 @@ class Work extends Model
 
     /**
      * Get all the tags for the Work
+     *
      * @return MorphToMany<Tag>
      */
     public function tags(): MorphToMany
@@ -58,6 +60,7 @@ class Work extends Model
 
     /**
      * Get the user that owns the Work
+     *
      * @return BelongsTo<User>
      */
     public function user(): BelongsTo
@@ -67,6 +70,7 @@ class Work extends Model
 
     /**
      * Get all the translations for the Work
+     *
      * @return HasMany<WorkTranslation>
      */
     public function translations(): HasMany
@@ -76,14 +80,34 @@ class Work extends Model
 
     /**
      * Delete the model from the database.
-     *
-     * @return bool|null
      */
     public function delete(): ?bool
     {
-        return \DB::transaction(function () {
+        return DB::transaction(function () {
             $this->translations()->delete();
+
             return parent::delete();
+        });
+    }
+
+    public function forceDelete(): bool
+    {
+        return DB::transaction(function (): bool {
+            $this->translations()->withTrashed()->forceDelete();
+
+            return parent::forceDelete();
+        });
+    }
+
+    public function restore(): bool
+    {
+        return DB::transaction(function (): bool {
+            $restored = parent::restore();
+            if ($restored) {
+                $this->translations()->withTrashed()->restore();
+            }
+
+            return $restored;
         });
     }
 }

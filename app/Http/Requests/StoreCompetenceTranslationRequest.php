@@ -52,4 +52,24 @@ class StoreCompetenceTranslationRequest extends FormRequest
             'status_note' => ['nullable', 'string'],
         ];
     }
+
+    /**
+     * Get custom validation messages.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'competence_id.exists' => 'The selected competence does not exist.',
+            'user_id.required' => 'A user is required.',
+            'user_id.exists' => 'The selected user does not exist.',
+            'language_id.required' => 'A language is required.',
+            'language_id.exists' => 'The selected language does not exist.',
+            'name.required' => 'A name is required.',
+            'name.max' => 'The name may not be greater than 255 characters.',
+            'body.required' => 'Content is required.',
+            // Add more as needed
+        ];
+    }
 }

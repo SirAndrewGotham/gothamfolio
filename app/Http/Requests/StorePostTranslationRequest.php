@@ -43,18 +43,18 @@ class StorePostTranslationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'post_id' => 'nullable|exists:posts,id',
+            'post_id' => 'nullable|integer|exists:posts,id',
             'user_id' => 'required|exists:users,id',
             'language_id' => 'required|integer|exists:languages,id',
             'title' => 'required|string',
             'excerpt' => 'nullable|string',
-            'body' => 'required',
-            'order' => 'nullable',
+            'body' => 'required|string',
+            'order' => 'nullable|integer|min:0',
             'published_at' => 'nullable|date',
             'published_through' => 'nullable|date',
             'tags' => 'nullable',
             'image' => 'nullable',
-            'status' => [Rule::enum(PostStatus::class)],
+            'status' => ['nullable', Rule::enum(PostStatus::class)],
             'status_by' => 'nullable|exists:users,id',
             'status_note' => 'nullable|string',
             'language' => 'required|string',
@@ -86,9 +86,10 @@ class StorePostTranslationRequest extends FormRequest
         return [
             'title.required' => 'The work title is required.',
             'translation_title.required' => 'The translation title is required.',
-            'body.required' => 'The work body content is required.',
+            'body.required' => 'The body content is required.',
             'language_id.required' => 'A language must be selected.',
             'language_id.exists' => 'The selected language is invalid.',
+            'language.required' => 'A language must be selected.',
         ];
     }
 }

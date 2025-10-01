@@ -69,12 +69,31 @@ class UpdatePostTranslationRequest extends FormRequest
             $this->merge(['excerpt' => Str::limit($this->input('body'), 50, preserveWords: true)]);
         }
 
-        try {
-            $postId = Crypt::decryptString($this->post_id);
-            $languageId = (int) Crypt::decryptString($this->language);
-        } catch (\Illuminate\Contracts\Encryption\DecryptException $e) {
-            abort(400,
-                'Invalid encrypted input');
+        $data = [
+            'user_id' => $this->user_id ?? auth()->id(),
+            'order' => $this->order ?? 0,
+        ];
+        // Decrypt only when fields are present
+        if ($this->filled('post_id')) {
+            try {
+                $data['post_id'] = Crypt::decryptString((string) $this->post_id);
+            } catch (\Illuminate\Contracts\Encryption\DecryptException $e) {
+                throw \Illuminate\Validation\ValidationException::withMessages([
+                    'post_id' => 'Invalid encrypted input.',
+                ]);
+            }
+        } else {
+            $data['post_id'] = null;
+        }
+
+        if ($this->filled('language')) {
+            try {
+                $data['language_id'] = (int) Crypt::decryptString((string) $this->language);
+            } catch (\Illuminate\Contracts\Encryption\DecryptException $e) {
+                throw \Illuminate\Validation\ValidationException::withMessages([
+                    'language' => 'Invalid encrypted input.',
+                ]);
+            }
         }
 
         $this->merge([
@@ -83,5 +102,18 @@ class UpdatePostTranslationRequest extends FormRequest
             'language_id' => (int) Crypt::decryptString($this->language),
             'order' => $this->order ?? 0,
         ]);
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'language_id.required' => 'Please choose a language.',
+            'language_id.exists' => 'The selected language is invalid.',
+            'post_id.exists' => 'The selected post is invalid.',
+            'status.*' => 'The provided status value is invalid.',
+        ];
     }
 }

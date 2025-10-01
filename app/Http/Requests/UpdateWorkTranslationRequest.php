@@ -55,7 +55,6 @@ class UpdateWorkTranslationRequest extends FormRequest
             'link' => 'nullable',
             'published_at' => 'nullable|date',
             'published_through' => 'nullable|date',
-            //            'published_at' => 'nullable|date|date_format:Y-m-d H:i:s'
             'order' => 'nullable|integer',
             'status' => [Rule::enum(WorkStatus::class)],
             'status_by' => 'nullable|exists:users,id',
@@ -74,18 +73,10 @@ class UpdateWorkTranslationRequest extends FormRequest
             $this->merge(['excerpt' => Str::limit($this->input('body'), 50, preserveWords: true)]);
         }
 
-        try {
-            $workId = Crypt::decryptString($this->work_id);
-            $languageId = (int) Crypt::decryptString($this->language);
-        } catch (\Illuminate\Contracts\Encryption\DecryptException $e) {
-            abort(400,
-                'Invalid encrypted input');
-        }
-
         $this->merge([
             'work_id' => Crypt::decryptString($this->work_id),
             'user_id' => $this->user_id ?? auth()->id(),
-            'language_id' => (int) Crypt::decryptString($this->language),
+            'language_id' => (int) Crypt::decryptString($this->language_id),
             'order' => $this->order ?? 0,
         ]);
     }

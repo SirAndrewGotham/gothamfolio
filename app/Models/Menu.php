@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection as SupportCollection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\HtmlString;
@@ -48,8 +49,6 @@ class Menu extends Model
 
     /**
      * The "booted" method of the model.
-     *
-     * @return void
      */
     public static function boot(): void
     {
@@ -66,8 +65,6 @@ class Menu extends Model
 
     /**
      * Get all the items for the Menu
-     *
-     * @return HasMany
      */
     public function items(): HasMany
     {
@@ -76,8 +73,6 @@ class Menu extends Model
 
     /**
      * Get all the parent_items for the Menu
-     *
-     * @return HasMany
      */
     public function parent_items(): HasMany
     {
@@ -87,12 +82,8 @@ class Menu extends Model
 
     /**
      * Display menu.
-     *
-     * @param  string  $menuName
-     * @param  string|null  $type
-     * @return string
      */
-    public static function display(string $menuName, string $type = null, array $options = []): HtmlString|false|string|\Illuminate\Support\Collection
+    public static function display(string $menuName, ?string $type = null, array $options = []): HtmlString|false|string|SupportCollection
     {
         // GET THE MENU - sort collection in blade
         $menu = \Cache::remember('menu_'.$menuName, \Carbon\Carbon::now()->addDays(30), function () use ($menuName) {
@@ -153,10 +144,10 @@ class Menu extends Model
     /**
      * Process the menu items.
      *
-     * @param  \Illuminate\Support\Collection<int, MenuItem>  $items
-     * @return \Illuminate\Support\Collection<int, MenuItem>
+     * @param  SupportCollection<int, MenuItem>  $items
+     * @return SupportCollection<int, MenuItem>
      */
-    protected static function processItems(\Illuminate\Support\Collection $items): \Illuminate\Support\Collection
+    protected static function processItems(SupportCollection $items): SupportCollection
     {
         // Eager load Translations
         if (config('gothamfolio.multilingual.enabled')) {
