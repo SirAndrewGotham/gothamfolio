@@ -59,6 +59,7 @@ class UserPolicy
      */
     public function forceDelete(User $user, User $model): bool
     {
-        return true;
+        // TODO: tighten with roles/abilities (e.g., $user->can('users.forceDelete'))
+        return false;
     }
 }

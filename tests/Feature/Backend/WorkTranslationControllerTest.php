@@ -132,11 +132,10 @@ test('work translation can be updated by authenticated user', function () {
     actingAs($user)->put(route('admin.workTranslations.update', $workTranslation), [
         'work_id' => Crypt::encryptString($work->id),
         'user_id' => $user->id,
-        'language_id' => Language::first()->id,
+        'language_id' => $encryptedLanguageId,
         'title' => $updatedTitle,
         'excerpt' => $updatedExcerpt,
         'body' => $updatedBody,
-        'language' => $encryptedLanguageId,
     ])
         ->assertRedirect(route('admin.workTranslations.index', $workTranslation->work->slug))
         ->assertSessionHas('success', 'Your Work Translation updated successfully!');
@@ -159,10 +158,9 @@ test('work translation update fails with invalid data', function () {
     actingAs($user)->put(route('admin.workTranslations.update', $workTranslation), [
         'work_id' => Crypt::encryptString($work->id),
         'user_id' => $user->id,
-        'language_id' => Language::first()->id,
+        'language_id' => $encryptedLanguageId,
         'title' => '',
         'body' => '',
-        'language' => $encryptedLanguageId,
     ])
         ->assertSessionHasErrors([
             'title',

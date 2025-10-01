@@ -60,7 +60,7 @@ class Gallery extends Model
     }
 
     /**
-     * Get the galleries that owns the Gallery
+     * Get the parent Gallery that owns this Gallery
      */
     public function parentGallery(): BelongsTo
     {

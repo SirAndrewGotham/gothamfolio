@@ -31,6 +31,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // Support auto-discovery for policies under App\Models\Policies
+        Gate::guessPolicyNamesUsing(static function (string $modelClass): string {
+            return str_replace('App\\Models\\', 'App\\Models\\Policies\\', $modelClass).'Policy';
+        });
         // We will register policies here after all other service providers have been registered
         foreach ($this->policies as $model => $policy) {
             Gate::policy($model, $policy);

@@ -43,6 +43,7 @@ test('post can be stored by authenticated user', function () {
         'language_id' => Language::first()->id,
         'title' => 'Test Post Title',
         'body' => 'This is the test post body.',
+        'excerpt' => 'This is a test excerpt.',
         'language' => 'en', // This is used in prepareForValidation
     ])
         ->assertRedirect(route('admin.posts.index'))
@@ -105,6 +106,7 @@ test('post can be updated by authenticated user', function () {
         'language_id' => Language::first()->id,
         'title' => $updatedTitle,
         'body' => $updatedBody,
+        'excerpt' => 'Updated post excerpt.',
         'language' => 'en',
     ])
         ->assertRedirect(route('admin.posts.index'));

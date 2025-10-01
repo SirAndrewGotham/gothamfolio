@@ -58,8 +58,6 @@ class MenuItem extends Model
 
     /**
      * The "booted" method of the model.
-     *
-     * @return void
      */
     public static function boot(): void
     {
@@ -81,9 +79,9 @@ class MenuItem extends Model
     /**
      * Get all the children for the MenuItem
      *
-     * @return Builder|HasMany \Illuminate\\Database\\Eloquent\\Relations\\HasMany
+     * @return HasMany \Illuminate\\Database\\Eloquent\\Relations\\HasMany
      */
-    public function children(): Builder|HasMany
+    public function children(): HasMany
     {
         return $this->hasMany(MenuItem::class, 'menu_item_id')
             ->with('children');
@@ -101,9 +99,6 @@ class MenuItem extends Model
 
     /**
      * Get the link for the menu item.
-     *
-     * @param  bool  $absolute
-     * @return string|null
      */
     public function link(bool $absolute = false): ?string
     {
@@ -112,10 +107,6 @@ class MenuItem extends Model
 
     /**
      * Get the translator link for the menu item.
-     *
-     * @param  mixed  $translator
-     * @param  bool  $absolute
-     * @return string|null
      */
     public function translatorLink(mixed $translator, bool $absolute = false): ?string
     {
@@ -124,12 +115,6 @@ class MenuItem extends Model
 
     /**
      * Prepare the link for the menu item.
-     *
-     * @param  bool  $absolute
-     * @param  string|null  $route
-     * @param  object|array|string|null  $parameters
-     * @param  string|null  $url
-     * @return string|null
      */
     protected function prepareLink(bool $absolute, ?string $route, object|array|string|null $parameters, ?string $url): ?string
     {
@@ -160,8 +145,6 @@ class MenuItem extends Model
 
     /**
      * Get the parameters attribute.
-     *
-     * @return array<string, mixed>
      */
     public function getParametersAttribute(): mixed
     {
@@ -184,8 +167,6 @@ class MenuItem extends Model
 
     /**
      * Set the url attribute.
-     *
-     * @param  string|null  $value
      */
     public function setUrlAttribute(?string $value): void
     {
@@ -199,10 +180,10 @@ class MenuItem extends Model
     /**
      * Return the Highest Order Menu Item.
      *
-     * @param  number  $parent  (Optional) Parent id. Default null
-     * @return number Order number
+     * @param  int|null  $parent  (Optional) Parent id. Default null
+     * @return int Order number
      */
-    public function highestOrderMenuItem($parent = null): int
+    public function highestOrderMenuItem(?int $parent = null): int
     {
         $order = 1;
 
